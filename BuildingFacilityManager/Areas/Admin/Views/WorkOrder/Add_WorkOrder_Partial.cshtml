@@ -1,0 +1,79 @@
+﻿@using BuildingFacilityManager.Models.Assets.Enums
+@using BuildingFacilityManager.Models.Work_Order.Enums
+@model BuildingFacilityManager.ViewModels.WorkOrderViewModel
+
+
+@{
+
+    using (Ajax.BeginForm("AddWork", "WorkOrder", new AjaxOptions()
+    {
+        Confirm = "Are you Sure ?",
+        HttpMethod = "Post",
+        UpdateTargetId = "Work-table",
+        InsertionMode = InsertionMode.InsertAfter,
+        OnSuccess = "$('.close').click();"
+
+    }))
+    {
+
+
+        <div class="modal fade" id="myModal-AddWork" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add a new Work Order</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            @Html.HiddenFor(s => s.WorkOrder.Id)
+
+                        </div>
+
+                        <div>
+                            @Html.LabelFor(e => e.WorkOrder.Description)
+                            @Html.TextBoxFor(e => e.WorkOrder.Description, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.WorkOrder.Description)
+
+                        </div>
+
+                        <div>
+                            @Html.LabelFor(e => e.WorkOrder.WorkOrderStatus)
+                            @Html.DropDownListFor(e => e.WorkOrder.WorkOrderStatus, EnumHelper.GetSelectList(typeof(WorkOrderStatus)) ,
+                                "Select Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.WorkOrder.WorkOrderStatus)
+
+                        </div>
+
+                        <div>
+                            @Html.LabelFor(e => e.WorkOrder.AssetId)
+                            @Html.DropDownListFor(e => e.WorkOrder.AssetId,  new SelectList(Model.Assets, "Id","Label"),
+                                "Select Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.WorkOrder.AssetId)
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+
+    }
+}
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+

@@ -1,0 +1,49 @@
+﻿@model BuildingFacilityManager.ViewModels.AssetsViewModel
+@{
+                /**/
+
+                ViewBag.Title = ViewBag.AssetLabel;
+                Layout = "../Shared/_Layout.cshtml";
+}
+
+<h3>Work Orders for @ViewBag.AssetLabel</h3>
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Asset</th>
+            <th>Location</th>
+            <th>Storey</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var work in Model.WorkOrders)
+        {
+
+            <tr id="id-@work.Id">
+
+                <td>
+                    @work.Id
+                </td>
+                <td>
+                    @work.Description
+                </td>
+                <td>
+                    @work.WorkOrderStatus
+                </td>
+                <td>
+                    @work.Asset.Label
+                </td>
+                <td>
+                    @work.Asset.Space.Label
+                </td>
+                <td>
+                    @work.Asset.Space.Storey.Label
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,77 @@
+﻿@using BuildingFacilityManager.Models.Building_Models
+@using BuildingFacilityManager.Models.Building_Models.Enums
+@model BuildingFacilityManager.ViewModels.BuildingViewModel
+
+@{
+
+    using (Ajax.BeginForm("AddSpace", "Building", new AjaxOptions()
+    {
+        Confirm = "Are you Sure ?",
+        HttpMethod = "Post",
+        UpdateTargetId = "space-table",
+        InsertionMode = InsertionMode.InsertAfter,
+        OnSuccess = "$('.close').click();"
+
+    }))
+    {
+
+
+        <div class="modal fade" id="myModal-AddSpace" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add a new Space</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            @Html.HiddenFor(s => s.Space.Id)
+
+                        </div>
+
+                        <div>
+                            @Html.LabelFor(e => e.Space.Label)
+                            @Html.TextBoxFor(e => e.Space.Label, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Space.Label)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Space.Description)
+                            @Html.TextBoxFor(e => e.Space.Description, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Space.Description)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Space.SpaceType)
+                            @Html.DropDownListFor(e => e.Space.SpaceType, EnumHelper.GetSelectList(typeof(SpaceType)) , 
+                                "Select Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Space.SpaceType)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Space.Storey)
+                            @Html.DropDownListFor(e => e.Space.StoreyId, new SelectList(Model.Stories, "Id", "label"), "Select Storey", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Space.Storey)
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+
+    }
+}
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

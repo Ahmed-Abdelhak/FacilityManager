@@ -1,0 +1,71 @@
+﻿
+@model BuildingFacilityManager.ViewModels.BuildingViewModel
+
+@{
+
+    using (Ajax.BeginForm("AddStorey", "Building", new AjaxOptions()
+    {
+        Confirm = "Are you Sure ?",
+        HttpMethod = "Post",
+        UpdateTargetId = "storey-table",
+        InsertionMode = InsertionMode.InsertAfter,
+        OnSuccess = "$('.close').click();"
+
+    }))
+    {
+
+
+        <div class="modal fade" id="myModal-AddStorey" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add a new Storey</h4>
+                    </div>
+                    <div class="modal-body">
+                        
+                        @{
+                            string bId = Model.Building.Id.ToString();
+                           
+                        }
+
+                        @Html.HiddenFor(e => e.Storey.BuildingId, new { @Value = bId })  
+
+                        <div>
+                            @Html.HiddenFor(s => s.Storey.Id)
+
+                        </div>
+
+                        <div>
+                            @Html.LabelFor(e => e.Storey.Label)
+                            @Html.TextBoxFor(e => e.Storey.Label, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(e => e.Storey.Label)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Storey.Description)
+                            @Html.TextBoxFor(e => e.Storey.Description, new {@class = "form-control"})
+                            @Html.ValidationMessageFor(e => e.Storey.Description)
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+
+    }
+}
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

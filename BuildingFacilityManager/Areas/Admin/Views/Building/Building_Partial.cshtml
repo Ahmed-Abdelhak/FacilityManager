@@ -1,0 +1,29 @@
+﻿@model BuildingFacilityManager.ViewModels.BuildingViewModel
+
+<h3>Building</h3>
+
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Label</th>
+            <th>Description</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var building in Model.Buildings)
+        {
+
+            <tr id="id-@building.Id">
+               
+                <td>
+                    @building.Label
+                </td>
+                <td>
+                    @building.Description
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

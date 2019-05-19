@@ -1,0 +1,11 @@
+﻿@model BuildingFacilityManager.ViewModels.WorkOrderViewModel
+
+@{
+    ViewBag.Title = "Work Orders";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<h2>Work Orders</h2>
+
+@Html.Partial("WorkOrder_Inspector_Partial")
+@Html.Partial("Add_WorkOrder_Inspector_Partial")

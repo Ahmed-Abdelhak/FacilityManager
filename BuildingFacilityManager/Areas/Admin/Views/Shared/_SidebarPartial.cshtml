@@ -1,0 +1,19 @@
+﻿
+<div class="sidenav">
+    <ul id="nav">
+        <li>
+            @Html.ActionLink("Dashboard", "Index", "Dashboard", null, null)
+        </li>
+        <li>
+            <a href="#">Building</a>
+            <ul class="nested-nav-ul">
+                <li> @Html.ActionLink("Building Definition", "Index", "Building", null, null)</li>
+                <li> @Html.ActionLink("Building Tree", "Index", "Building", null, null)</li>
+
+            </ul>
+        </li>
+
+        <li>   @Html.ActionLink("Assets", "Index", "Asset", null, null) </li>
+        <li> @Html.ActionLink("Work Orders", "Index", "WorkOrder", null, null)</li>
+    </ul>
+</div>

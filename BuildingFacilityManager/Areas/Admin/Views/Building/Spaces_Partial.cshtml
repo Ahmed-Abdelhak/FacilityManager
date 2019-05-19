@@ -1,0 +1,48 @@
+﻿@model BuildingFacilityManager.ViewModels.BuildingViewModel
+
+
+
+
+<button type="button" class="btn btn-success" style="float: right" data-toggle="modal" data-target="#myModal-AddSpace">
+    Add
+</button>
+<h3>Spaces</h3>
+
+
+<table class="table table-hover table-striped">
+    <thead>
+        <tr>
+            <th>Label</th>
+            <th>Description</th>
+            <th>Type</th>
+            <th>Storey</th>
+        </tr>
+    </thead>
+    <tbody>
+        <div id="storey-table">
+            @foreach (var space in Model.Spaces)
+            {
+
+                <tr id="id-@space.Id">
+
+                    <td>
+                        @space.Label
+                    </td>
+                    <td>
+                        @space.Description
+                    </td>
+                    <td>
+                        @space.SpaceType
+                    </td>
+
+                    <td>
+                        @space.Storey.Label
+                    </td>
+                </tr>
+            }
+        </div>
+
+    </tbody>
+</table>
+
+
