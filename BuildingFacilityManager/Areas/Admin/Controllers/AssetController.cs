@@ -4,13 +4,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BuildingFacilityManager.Controllers;
 using BuildingFacilityManager.Models;
 using BuildingFacilityManager.Models.Assets;
 using BuildingFacilityManager.ViewModels;
 
 namespace BuildingFacilityManager.Areas.Admin.Controllers
 {
-    public class AssetController : Controller
+    public class AssetController : BaseController
     {
         private readonly ApplicationDbContext _context;
 
@@ -78,5 +79,58 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
 
             return PartialView("Assets_WorkOrders_Partial", assetMod);
         }
+
+        public ActionResult SpaceAssets(int id)
+        {
+            var space = _context.Spaces.Include(s => s.Assets).SingleOrDefault(s => s.Id == id);
+
+            var spaceAssets = new List<Asset>();
+            if (space != null)
+                foreach (var asset in space.Assets)
+                    spaceAssets.Add(asset);
+            if (space != null) ViewBag.spaceLabel = space.Label;
+            ViewBag.SpaceId = id;
+
+            return View(spaceAssets);
+        }
+
+        public ActionResult AssetsDetails(int id)
+        {
+            var asset = _context.Assets.Include(a => a.Space)
+                .Include(a => a.RelatedAssets)
+                .Include(a => a.WorkOrders)
+                .SingleOrDefault(a => a.Id == id);
+            return View(asset);
+        }
+
+
+
+        /// <summary>
+        ///  Deprecated, since i used a plugin called Datatables
+        /// </summary>
+
+        //public ActionResult SpaceAssetsSort(string sortOrder, int id)
+        //{
+        //    ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+        //    ViewBag.IdSortParm = !string.IsNullOrEmpty(sortOrder) ? "id_sort" : "";
+        //    ViewBag.StatusSortParm = !string.IsNullOrEmpty(sortOrder) ? "status_sort" : "";
+        //    ViewBag.TypeSortParm = !string.IsNullOrEmpty(sortOrder) ? "Type_sort" : "";
+
+
+        //    var space = _context.Spaces.Include(s => s.Assets).SingleOrDefault(s => s.Id == id);
+        //    var spaceAssets = new List<Asset>();
+        //    if (space != null)
+        //        foreach (var asset in space.Assets)
+        //            spaceAssets.Add(asset);
+
+
+        //    spaceAssets.Sort((a, b) => String.Compare(a.Label, b.Label, StringComparison.Ordinal));
+
+
+        //    if (space != null) ViewBag.spaceLabel = space.Label;
+        //    ViewBag.SpaceId = id;
+
+        //    return View("SpaceAssets", spaceAssets); // return the View of the SpaceAssets Action
+        //}
     }
 }

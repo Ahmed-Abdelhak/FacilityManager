@@ -4,13 +4,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BuildingFacilityManager.Controllers;
 using BuildingFacilityManager.Models;
 using BuildingFacilityManager.Models.Work_Order;
 using BuildingFacilityManager.ViewModels;
 
 namespace BuildingFacilityManager.Areas.Admin.Controllers
 {
-    public class WorkOrderController : Controller
+    public class WorkOrderController : BaseController
     {
         private readonly ApplicationDbContext _context;
 

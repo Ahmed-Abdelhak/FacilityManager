@@ -4,13 +4,14 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BuildingFacilityManager.Controllers;
 using BuildingFacilityManager.Models;
 using BuildingFacilityManager.Models.Work_Order;
 using BuildingFacilityManager.ViewModels;
 
 namespace BuildingFacilityManager.Areas.Inspector.Controllers
 {
-    public class WorkOrderController : Controller
+    public class WorkOrderController : BaseController
     {
         private readonly ApplicationDbContext _context;
 
@@ -43,6 +44,7 @@ namespace BuildingFacilityManager.Areas.Inspector.Controllers
 
         public ActionResult AddWork(WorkOrder workOrder)
         {
+
             var workModel = new WorkOrderViewModel()
             {
                 WorkOrders = _context.WorkOrders.Include(w => w.Asset)
@@ -50,11 +52,12 @@ namespace BuildingFacilityManager.Areas.Inspector.Controllers
                     .Include(w => w.Asset.Space.Storey)
                     .ToList(),
                 Assets = _context.Assets.ToList(),
-                Spaces = _context.Spaces.ToList()
+                Spaces = _context.Spaces.ToList(),
             };
 
             if (workOrder.Description != null && workOrder.WorkOrderStatus != 0 && workOrder.AssetId != 0)
             {
+                var user = User;
                 _context.WorkOrders.Add(workOrder);
                 _context.SaveChanges();
                 var workMod = new WorkOrderViewModel()

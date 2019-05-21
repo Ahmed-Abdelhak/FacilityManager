@@ -24,7 +24,14 @@ namespace BuildingFacilityManager.Models.Assets
         public DateTime? ManufacturedDate { get; set; }
         public float Price { get; set; }
         public string Warranty { get; set; }
+
         public virtual ICollection<Asset> RelatedAssets { get; set; }
+
+        public Asset RelatedAsset { get; set; }
+
+        [ForeignKey("RelatedAsset")]
+        public int? Fk_AssetId { get; set; }
+
         public List<WorkOrder> WorkOrders { get; set; }
     }
 }

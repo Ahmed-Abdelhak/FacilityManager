@@ -1,0 +1,27 @@
+﻿@using BuildingFacilityManager.Models.Building_Models
+@using BuildingFacilityManager.ViewModels
+@{
+    var building = (BuildingTreeViewModel)ViewBag.BuildingTreeViewModel;
+}
+<div class="sidenav">
+    <ul id="nav">
+        <li>
+            <a href="#">Building Tree</a>
+            <ul class="nested-nav-ul">
+                @foreach (var storey in building.Stories)
+                {
+                    <li>
+                        <a href="#"> [ @storey.Label Storey ] </a>
+                        <ul class="nested-nav-ul">
+                            @foreach (var space in @storey.Spaces)
+                            {
+                                <li>@Html.ActionLink(space.Label, "SpaceAssets", "Asset", new { id = space.Id }, null)</li>
+                            }
+                        </ul>
+                    </li>
+                }
+
+            </ul>
+        </li>
+    </ul>
+</div>

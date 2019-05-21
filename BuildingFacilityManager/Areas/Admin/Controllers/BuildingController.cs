@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BuildingFacilityManager.Controllers;
 using BuildingFacilityManager.Models;
 using BuildingFacilityManager.Models.Building_Models;
 using BuildingFacilityManager.ViewModels;
 
 namespace BuildingFacilityManager.Areas.Admin.Controllers
 {
-    public class BuildingController : Controller
+    public class BuildingController : BaseController
     {
 
         private readonly ApplicationDbContext _context;
@@ -17,6 +19,10 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
         public BuildingController()
         {
             _context = new ApplicationDbContext();
+            //this.BuildingTreeViewModel = new BuildingTreeViewModel();
+            //this.BuildingTreeViewModel.Spaces = _context.Spaces.Include(s => s.Assets).ToList();
+            //this.BuildingTreeViewModel.Stories = _context.Stories.Include(s => s.Spaces).ToList();
+            //this.ViewData["BuildingTreeViewModel"] = this.BuildingTreeViewModel;
         }
         protected override void Dispose(bool disposing)
         {
@@ -31,7 +37,7 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
             {
                 Buildings = _context.Buildings.ToList(),
                 Stories = _context.Stories.ToList(),
-                Building = _context.Buildings.SingleOrDefault(b=>b.Id == 1),
+                Building = _context.Buildings.SingleOrDefault(b => b.Id == 1),
                 Spaces = _context.Spaces.ToList()
 
 
@@ -58,7 +64,7 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
 
             if (storey.Label != null)
             {
-               
+
                 _context.Stories.Add(storey);
                 _context.SaveChanges();
                 var buildingModel = new BuildingViewModel
@@ -112,7 +118,17 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
             return View("Index", buildingModelBefore);
 
         }
+
+        //public ActionResult Is()
+        //{
+        //    var buildingTree = new BuildingTreeViewModel()
+        //    {
+        //        Stories = _context.Stories.Include(s => s.Spaces).ToList(),
+        //        Spaces = _context.Spaces.Include(s=>s.Assets).ToList()
+        //    };
+        //    return View();
+        //}
     }
 
-    
+
 }

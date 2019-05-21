@@ -4,12 +4,13 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using BuildingFacilityManager.Controllers;
 using BuildingFacilityManager.Models;
 using BuildingFacilityManager.ViewModels;
 
 namespace BuildingFacilityManager.Areas.Inspector.Controllers
 {
-    public class AssetController : Controller
+    public class AssetController : BaseController
     {
         private readonly ApplicationDbContext _context;
 

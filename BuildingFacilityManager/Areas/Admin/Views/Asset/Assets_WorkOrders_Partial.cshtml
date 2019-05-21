@@ -1,14 +1,14 @@
 ﻿@model BuildingFacilityManager.ViewModels.AssetsViewModel
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = ViewBag.AssetLabel;
-                Layout = "../Shared/_Layout.cshtml";
+    ViewBag.Title = ViewBag.AssetLabel;
+    Layout = "../Shared/_Layout.cshtml";
 }
 
 <h3>Work Orders for @ViewBag.AssetLabel</h3>
 
-<table class="table table-hover table-striped">
+<table class="table table-hover table-striped" id="assetsWorkOrder">
     <thead>
         <tr>
             <th>Id</th>
@@ -47,3 +47,16 @@
         }
     </tbody>
 </table>
+
+
+
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#assetsWorkOrder").DataTable();
+        });
+    </script>
+}

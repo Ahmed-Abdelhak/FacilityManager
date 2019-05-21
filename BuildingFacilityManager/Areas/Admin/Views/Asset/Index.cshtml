@@ -8,3 +8,13 @@
 
 @Html.Partial("Assets_Table_Partial")
 @Html.Partial("Add_Assets_Partial")
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#assetsTable").DataTable();
+        });
+    </script>
+}

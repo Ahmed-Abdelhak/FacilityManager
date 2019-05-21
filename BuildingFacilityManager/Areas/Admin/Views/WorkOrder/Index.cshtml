@@ -9,3 +9,16 @@
 
 @Html.Partial("WorkOrder_Partial")
 @Html.Partial("Add_WorkOrder_Partial")
+
+
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function() {
+            $("#workOrderTable").DataTable();
+            $("#assetsWorkOrder").DataTable();
+        });
+    </script>
+}
