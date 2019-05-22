@@ -75,13 +75,29 @@ span.field-validation-error {
 
 .nested-nav-ul {
     padding-left: 5px;
+   
 }
 
 ul.nested-nav-ul a {
     font-size: 14px;
     padding-bottom: 5px;
+    padding-left: 20px;
 }
 
 ul#nav {
     padding-left: 15px;
+    list-style-type: none;
+}
+
+h4#buildingTree {
+    margin-left: 30px;
+    margin-bottom: 5px;
+}
+
+i.fas.fa-warehouse {
+    color: #ce8d16;
+}
+
+ul#nav li {
+    list-style-type: none;
 }

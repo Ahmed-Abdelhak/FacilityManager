@@ -9,10 +9,11 @@
 <h3>Spaces</h3>
 
 
-<table class="table table-hover table-striped">
+<table class="table table-hover table-striped" id="spaces">
     <thead>
         <tr>
             <th>Label</th>
+            <th>Id</th>
             <th>Description</th>
             <th>Type</th>
             <th>Storey</th>
@@ -24,7 +25,10 @@
             {
 
                 <tr id="id-@space.Id">
-
+                    
+                    <td>
+                        @space.Id
+                    </td>
                     <td>
                         @space.Label
                     </td>

@@ -33,5 +33,7 @@ namespace BuildingFacilityManager.Models.Assets
         public int? Fk_AssetId { get; set; }
 
         public List<WorkOrder> WorkOrders { get; set; }
+
+        // specifications as PDF attachement
     }
 }
