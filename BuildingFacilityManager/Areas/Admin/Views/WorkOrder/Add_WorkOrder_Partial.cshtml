@@ -1,4 +1,5 @@
 ﻿@using BuildingFacilityManager.Models.Assets.Enums
+@using BuildingFacilityManager.Models.Building_Models
 @using BuildingFacilityManager.Models.Work_Order.Enums
 @model BuildingFacilityManager.ViewModels.WorkOrderViewModel
 
@@ -27,6 +28,8 @@
                     <div class="modal-body">
                         <div>
                             @Html.HiddenFor(s => s.WorkOrder.Id)
+                            @Html.HiddenFor(e => e.WorkOrder.Date, new { Value = @DateTime.Now })
+
 
                         </div>
 
@@ -45,14 +48,50 @@
 
                         </div>
 
-                        <div>
-                            @Html.LabelFor(e => e.WorkOrder.AssetId)
-                            @Html.DropDownListFor(e => e.WorkOrder.AssetId,  new SelectList(Model.Assets, "Id","Label"),
+                        <div class="form-group">
+                            @Html.LabelFor(e => e.WorkOrder.WorkOrderType)
+                            @Html.DropDownListFor(e => e.WorkOrder.WorkOrderType, EnumHelper.GetSelectList(typeof(WorkOrderType)) ,
                                 "Select Type", new { @class = "form-control" })
-                            @Html.ValidationMessageFor(e => e.WorkOrder.AssetId)
+                            @Html.ValidationMessageFor(e => e.WorkOrder.WorkOrderType)
 
                         </div>
 
+                        <div>
+                            <label for="">Storey</label>
+                            <select class="form-control" id="WorkOrder_Asset_Space_Storey_Id">
+                                <option value="">Select Storey</option>
+                                @foreach (var storey in @Model.Stories)
+                                {
+                                    <option value="@storey.Id">@storey.Label</option>
+
+                                }
+                            </select>
+
+                        </div>
+                        @*<div>
+                                @Html.LabelFor(e => e.WorkOrder.Asset.Space.Storey.Id, "Storey")
+                                @Html.DropDownListFor(e => e.WorkOrder.Asset.Space.Storey.Id,  new SelectList(Model.Stories, "Id","Label"),
+                                    "Select Storey", new { @class = "form-control"})
+                                @Html.ValidationMessageFor(e => e.WorkOrder.Asset.Space.Storey.Id)
+
+                            </div>*@
+                        <div>
+                            <label for="WorkOrder_Asset_SpaceId">Space</label>
+                            <select class="form-control" data-val="true" data-val-number="The field SpaceId must be a number." data-val-required="The SpaceId field is required." id="WorkOrder_Asset_SpaceId">
+                                <option value="">Select Space</option>
+                            </select>
+                            @Html.ValidationMessageFor(e => e.WorkOrder.Asset.SpaceId)
+                        </div>
+
+                        <div>
+                            <label for="WorkOrder_AssetId">Asset</label>
+                            <select class="form-control" data-val="true" data-val-number="The field AssetId must be a number." data-val-required="The AssetId field is required." id="WorkOrder_AssetId" name="WorkOrder.AssetId">
+                                <option value="">Select Type</option>
+
+                            </select>
+                            @Html.ValidationMessageFor(e => e.WorkOrder.AssetId)
+
+                        </div>
 
                     </div>
 
@@ -70,10 +109,26 @@
 }
 
 
+<div class="loading-indicator">
+    <div class="sk-circle">
+        <div class="sk-circle1 sk-child"></div>
+        <div class="sk-circle2 sk-child"></div>
+        <div class="sk-circle3 sk-child"></div>
+        <div class="sk-circle4 sk-child"></div>
+        <div class="sk-circle5 sk-child"></div>
+        <div class="sk-circle6 sk-child"></div>
+        <div class="sk-circle7 sk-child"></div>
+        <div class="sk-circle8 sk-child"></div>
+        <div class="sk-circle9 sk-child"></div>
+        <div class="sk-circle10 sk-child"></div>
+        <div class="sk-circle11 sk-child"></div>
+        <div class="sk-circle12 sk-child"></div>
+    </div>
+</div>
+
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
-
 }
 
 

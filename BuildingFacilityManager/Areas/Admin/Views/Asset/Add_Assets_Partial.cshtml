@@ -79,6 +79,12 @@
 
                         </div>
                         <div>
+                            @Html.LabelFor(e => e.Asset.PurchaseDate)
+                            @Html.TextBoxFor(e => e.Asset.PurchaseDate, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Asset.PurchaseDate)
+
+                        </div>
+                        <div>
                             @Html.LabelFor(e => e.Asset.Vendor)
                             @Html.TextBoxFor(e => e.Asset.Vendor, new { @class = "form-control" })
                             @Html.ValidationMessageFor(e => e.Asset.Vendor)
@@ -88,6 +94,12 @@
                             @Html.LabelFor(e => e.Asset.Warranty)
                             @Html.TextBoxFor(e => e.Asset.Warranty, new { @class = "form-control" })
                             @Html.ValidationMessageFor(e => e.Asset.Warranty)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Asset.ExpectedLife)
+                            @Html.TextBoxFor(e => e.Asset.ExpectedLife, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Asset.ExpectedLife)
 
                         </div>
                         

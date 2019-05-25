@@ -37,7 +37,8 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
                     .Include(w=>w.Asset.Space.Storey)
                     .ToList(),
                 Assets = _context.Assets.ToList(),
-                Spaces = _context.Spaces.ToList()
+                Spaces = _context.Spaces.ToList(),
+                Stories = _context.Stories.ToList()
             };
             return View(workModel);
         }
@@ -51,7 +52,9 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
                     .Include(w => w.Asset.Space.Storey)
                     .ToList(),
                 Assets = _context.Assets.ToList(),
-                Spaces = _context.Spaces.ToList()
+                Spaces = _context.Spaces.ToList(),
+                Stories = _context.Stories.ToList()
+
             };
 
             if (workOrder.Description != null && workOrder.WorkOrderStatus != 0 && workOrder.AssetId != 0 )
@@ -65,7 +68,9 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
                         .Include(w => w.Asset.Space.Storey)
                         .ToList(),
                     Assets = _context.Assets.ToList(),
-                    Spaces = _context.Spaces.ToList()
+                    Spaces = _context.Spaces.ToList(),
+                    Stories = _context.Stories.ToList()
+
                 };
                 return View("Index", workMod);
 

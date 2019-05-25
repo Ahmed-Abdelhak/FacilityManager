@@ -23,7 +23,10 @@ namespace BuildingFacilityManager.Models.Assets
         public DateTime? InstallationDate { get; set; }
         public DateTime? ManufacturedDate { get; set; }
         public float Price { get; set; }
+        public string PurchaseDate { get; set; }
         public string Warranty { get; set; }
+        public string ExpectedLife { get; set; }
+
 
         public virtual ICollection<Asset> RelatedAssets { get; set; }
 
@@ -35,5 +38,6 @@ namespace BuildingFacilityManager.Models.Assets
         public List<WorkOrder> WorkOrders { get; set; }
 
         // specifications as PDF attachement
+
     }
 }

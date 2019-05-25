@@ -10,15 +10,88 @@
 @Html.Partial("WorkOrder_Partial")
 @Html.Partial("Add_WorkOrder_Partial")
 
+@section styles
+{
+    <link href="~/Content/loading-indicator.css" rel="stylesheet" />
+    <style>
+        .p-m-1 {
+            margin-top: 1rem;
+            padding-top: 1rem;
+        }
+
+        .addNew {
+            padding-right: 0px;
+        }
+    </style>
+}
 
 
 
 @section scripts
 {
     <script>
-        $(document).ready(function() {
+
+
+        $(document).ready(function () {
             $("#workOrderTable").DataTable();
             $("#assetsWorkOrder").DataTable();
         });
+
+        $(document).ajaxStart(function () {
+            $(".loading-indicator").css("display", "flex");
+        });
+
+        $(document).ajaxStop(function () {
+            $(".loading-indicator").hide();
+        });
+
+
+        var storyList = $('#WorkOrder_Asset_Space_Storey_Id');
+        var spaceList = $('#WorkOrder_Asset_SpaceId');
+        var assetsList = $('#WorkOrder_AssetId');
+
+        storyList.on("change",
+            function () {
+                $.ajax({
+                    url: `/API/CoreApi/GetSpacesByStoryId/${storyList.val()}`,
+                    type: "GET",
+                    contentType: "application/json",
+                    success: function (spaces) {
+
+                        spaceList.empty();
+                        spaceList.append(`<option value="">Choose Space</option>`);
+                        spaces.forEach(function (el) {
+                            spaceList.append(`<option value="${el.Id}">${el.Label}</option>`);
+                        });
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+            });
+
+        spaceList.on("change",
+            function () {
+
+                $.ajax({
+                    url: `/API/CoreApi/GetAssetsBySpaceId/${spaceList.val()}`,
+                    type: "GET",
+                    contentType: "application/json",
+                    success: function (assets) {
+
+                        assetsList.empty();
+                        assetsList.append(`<option value="">Choose Asset</option>`);
+                        assets.forEach(function (el) {
+                            assetsList.append(`<option value="${el.Id}">${el.Label}</option>`);
+                        });
+                    },
+                    error: function (err) {
+                        console.log(err);
+                    }
+                });
+
+            });
+
+
     </script>
 }

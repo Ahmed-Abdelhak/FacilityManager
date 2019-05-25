@@ -4,7 +4,7 @@
     {
         Active = 1,
         OnHold = 2,
-        Finished = 3
+        Completed = 3
 
     }
 }

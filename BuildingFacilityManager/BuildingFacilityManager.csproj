@@ -49,12 +49,21 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
+    </Reference>
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Http, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.5.2.3\lib\net45\System.Web.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.5.2.3\lib\net45\System.Web.Http.WebHost.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.Extensions" />
@@ -170,6 +179,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\AssetController.cs" />
     <Compile Include="Areas\Admin\Controllers\BuildingController.cs" />
@@ -185,6 +195,7 @@
     <Compile Include="Areas\Org\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Org\Controllers\WorkOrderController.cs" />
     <Compile Include="Areas\Org\OrgAreaRegistration.cs" />
+    <Compile Include="Controllers\APIControllers\CoreAPIController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Migrations\201905180001234_WorkOrderTable.cs" />
     <Compile Include="Migrations\201905180001234_WorkOrderTable.Designer.cs">
@@ -198,6 +209,23 @@
     <Compile Include="Migrations\201905201104207_AddAssets.Designer.cs">
       <DependentUpon>201905201104207_AddAssets.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905221016180_AddPurchaseDateColumnToAssetsTable.cs" />
+    <Compile Include="Migrations\201905221016180_AddPurchaseDateColumnToAssetsTable.Designer.cs">
+      <DependentUpon>201905221016180_AddPurchaseDateColumnToAssetsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905221431289_AddDateColumnForWorkOrderTable.cs" />
+    <Compile Include="Migrations\201905221431289_AddDateColumnForWorkOrderTable.Designer.cs">
+      <DependentUpon>201905221431289_AddDateColumnForWorkOrderTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905231446355_smallUpdate.cs" />
+    <Compile Include="Migrations\201905231446355_smallUpdate.Designer.cs">
+      <DependentUpon>201905231446355_smallUpdate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905232057598_AddColumnWorkOrderTypeInWorkOrderTable.cs" />
+    <Compile Include="Migrations\201905232057598_AddColumnWorkOrderTypeInWorkOrderTable.Designer.cs">
+      <DependentUpon>201905232057598_AddColumnWorkOrderTypeInWorkOrderTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Work Order\Enums\WorkOrderType.cs" />
     <Compile Include="Models\Work Order\WorkOrder.cs" />
     <Compile Include="Models\Work Order\Enums\WorkOrderStatus.cs" />
     <Compile Include="ViewModels\BuildingTreeViewModel.cs" />
@@ -347,6 +375,7 @@
     <Content Include="Content\fontawesome\font-awesome.css" />
     <Content Include="Content\fontawesome\font-awesome.min.css" />
     <Content Include="Content\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\loading-indicator.css" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -406,6 +435,10 @@
     <Content Include="Content\fonts\fontawesome-webfont.woff" />
     <Content Include="Content\fonts\fontawesome-webfont.ttf" />
     <Content Include="Content\fonts\fontawesome-webfont.eot" />
+    <Content Include="Areas\Admin\Views\Asset\Add_WorKOrder_Asset_Details_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Asset\Add_WorKOrder_SpaceAssets_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Asset\AddWorkOrderFromSpaceAssetsForm.cshtml" />
+    <Content Include="Areas\Admin\Views\Asset\AddAssetsFromSpaceAssets.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -553,6 +586,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905201104207_AddAssets.resx">
       <DependentUpon>201905201104207_AddAssets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905221016180_AddPurchaseDateColumnToAssetsTable.resx">
+      <DependentUpon>201905221016180_AddPurchaseDateColumnToAssetsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905221431289_AddDateColumnForWorkOrderTable.resx">
+      <DependentUpon>201905221431289_AddDateColumnForWorkOrderTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905231446355_smallUpdate.resx">
+      <DependentUpon>201905231446355_smallUpdate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905232057598_AddColumnWorkOrderTypeInWorkOrderTable.resx">
+      <DependentUpon>201905232057598_AddColumnWorkOrderTypeInWorkOrderTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

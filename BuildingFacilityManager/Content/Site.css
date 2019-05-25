@@ -35,19 +35,19 @@ textarea {
     padding-top: 55px;
 }
 
-/* The navigation menu links */
-.sidenav a {
-    /*padding: 6px 8px 6px 16px;*/
-    text-decoration: none;
-    font-size: 18px;
-    color: #818181;
-    display: block;
-}
+    /* The navigation menu links */
+    .sidenav a {
+        /*padding: 6px 8px 6px 16px;*/
+        text-decoration: none;
+        font-size: 18px;
+        color: #818181;
+        display: block;
+    }
 
-/* When you mouse over the navigation links, change their color */
-.sidenav a:hover {
-    color: #f1f1f1;
-}
+        /* When you mouse over the navigation links, change their color */
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
 
 /* Style page content */
 .main {
@@ -57,7 +57,9 @@ textarea {
 
 /* On smaller screens, where height is less than 450px, change the style of the sidebar (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-    .sidenav a {font-size: 18px;}
+    .sidenav a {
+        font-size: 18px;
+    }
 }
 
 span.field-validation-error {
@@ -75,7 +77,6 @@ span.field-validation-error {
 
 .nested-nav-ul {
     padding-left: 5px;
-   
 }
 
 ul.nested-nav-ul a {
@@ -100,4 +101,34 @@ i.fas.fa-warehouse {
 
 ul#nav li {
     list-style-type: none;
+}
+
+.asset-details-data {
+    color: #317eac;
+    font-size: 15px;
+}
+
+hr {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 0;
+    border-top: 1px solid #eeeeee;
+}
+
+
+.parent-box-asset-data {
+    display: flex;
+    flex-direction: row;
+}
+
+.row-extended {
+    width: 600px;
+    padding-left: 30px;
+}
+.row-extended-div {
+    width: 50px;
+}
+
+.row-extended-details {
+    width: 400px;
 }

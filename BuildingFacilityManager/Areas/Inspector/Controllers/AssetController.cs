@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using BuildingFacilityManager.Controllers;
 using BuildingFacilityManager.Models;
+using BuildingFacilityManager.Models.Work_Order;
 using BuildingFacilityManager.ViewModels;
 
 namespace BuildingFacilityManager.Areas.Inspector.Controllers
@@ -51,5 +52,10 @@ namespace BuildingFacilityManager.Areas.Inspector.Controllers
 
             return PartialView("Assets_WorkOrders_Partial", assetMod);
         }
+
+        //public ActionResult AddWorkOrderFromAssetDetails(WorkOrder workOrder)
+        //{
+
+        //}
     }
 }

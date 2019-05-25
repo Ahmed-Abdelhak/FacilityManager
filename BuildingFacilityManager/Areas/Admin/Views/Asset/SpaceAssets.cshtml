@@ -7,6 +7,8 @@
 }
 
 <h2>@ViewBag.spaceLabel Assets</h2>
+@Html.ActionLink("Add", "AddAssetsFromSpaceAssets", new { id = ViewBag.SpaceId , name= ViewBag.spaceLabel }, new { @class = "btn btn-primary", Style = "float:right;" })
+
 
 <table class="table table-hover table-striped" id="assets">
     <thead>
@@ -38,6 +40,7 @@
                 </td>
                 <td>
                     @Html.ActionLink("View Details", "AssetsDetails", new { id = asset.Id }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Add Work Order", "AddWorkOrderFromSpaceAssetsForm", new { id = asset.Id }, new { @class = "btn btn-danger" })
                 </td>
             </tr>
         }
@@ -48,7 +51,7 @@
 @section scripts
 {
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#assets").DataTable();
         });
     </script>

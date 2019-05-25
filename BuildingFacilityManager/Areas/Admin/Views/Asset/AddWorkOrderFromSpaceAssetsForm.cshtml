@@ -1,0 +1,70 @@
+﻿@using BuildingFacilityManager.Models.Assets.Enums
+@using BuildingFacilityManager.Models.Work_Order.Enums
+@model BuildingFacilityManager.ViewModels.WorkOrderViewModel
+
+
+@{
+    ViewBag.Title = "Add Work Order to" + " " + @Model.Asset.Label;
+}
+
+
+<style type="text/css">
+    .black-color {
+        color: black
+    }
+</style>
+
+
+<h3><span class="black-color">Add Work Order for:</span>      <strong>@Model.Asset.Label</strong></h3>
+<H4><span class="black-color">location:</span>  @Model.Asset.Space.Label - @Model.Asset.Space.Storey.Label storey</H4>
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+@using (Html.BeginForm("AddWorkOrderFromSpaceAssets", "Asset", FormMethod.Post))
+{
+    <div class="form-group">
+
+        @Html.HiddenFor(e => e.WorkOrder.AssetId, new { Value = ViewBag.AssetId })
+        @Html.HiddenFor(e => e.WorkOrder.Date, new { Value = @DateTime.Now })
+
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(e => e.WorkOrder.Description)
+        @Html.TextAreaFor(e => e.WorkOrder.Description, new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.WorkOrder.Description)
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(e => e.WorkOrder.WorkOrderStatus)
+        @Html.DropDownListFor(e => e.WorkOrder.WorkOrderStatus, EnumHelper.GetSelectList(typeof(WorkOrderStatus)) ,
+            "Select Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.WorkOrder.WorkOrderStatus)
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(e => e.WorkOrder.WorkOrderType)
+        @Html.DropDownListFor(e => e.WorkOrder.WorkOrderType, EnumHelper.GetSelectList(typeof(WorkOrderType)) ,
+            "Select Type", new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.WorkOrder.WorkOrderType)
+
+    </div>
+
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Add" class="btn btn-primary" />
+
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+
