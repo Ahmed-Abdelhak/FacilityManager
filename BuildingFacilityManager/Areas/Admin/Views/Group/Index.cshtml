@@ -1,1 +1,118 @@
-﻿
+﻿@model BuildingFacilityManager.ViewModels.GroupsViewModel
+<br />
+
+<button type="button" class="btn btn-success" style="float: right" data-toggle="modal" data-target="#myModal-AddSpace">
+    Add
+</button>
+
+<br />
+
+<h3>Inspectors</h3>
+<div class="thumbnail">
+
+    <div class="caption">
+        <table class="table table-hover table-striped" id="Inspectors">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Shift Type</th>
+                </tr>
+            </thead>
+            <tbody>
+                <div id="Inspectors-table">
+                    @foreach (var inspector in Model.Inspectors)
+                    {
+
+                        <tr id="id-@inspector.Id">
+
+                            <td>
+                                @inspector.FirstName
+                            </td>
+                            <td>
+                                @inspector.LastName
+                            </td>
+                            <td>
+                                @inspector.Email
+                            </td>
+                            <td>
+                                @inspector.PhoneNumber
+                            </td>
+                            <td>
+                                @inspector.ShiftType
+                            </td>
+
+                        </tr>
+                    }
+                </div>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<br />
+<hr />
+
+<h3>Organization</h3>
+<div class="thumbnail">
+
+    <div class="caption">
+        <table class="table table-hover table-striped" id="Organization">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Shift Type</th>
+                    <th>Department</th>
+                </tr>
+            </thead>
+            <tbody>
+                <div id="Organization-table">
+                    @foreach (var org in Model.OrganizationUsers)
+                    {
+
+                        <tr id="id-@org.Id">
+
+                            <td>
+                                @org.FirstName
+                            </td>
+                            <td>
+                                @org.LastName
+                            </td>
+                            <td>
+                                @org.Email
+                            </td>
+                            <td>
+                                @org.PhoneNumber
+                            </td>
+                            <td>
+                                @org.ShiftType
+                            </td>
+                            <td>
+                                @org.Department
+                            </td>
+                        </tr>
+                    }
+                </div>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#Inspectors").DataTable();
+            $("#Organization").DataTable();
+        });
+    </script>
+}

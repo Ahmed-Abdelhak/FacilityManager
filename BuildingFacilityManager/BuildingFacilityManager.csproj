@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.IdentityModel" />
     <Reference Include="System.Net.Http.Formatting, Version=5.2.3.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.5.2.3\lib\net45\System.Net.Http.Formatting.dll</HintPath>
     </Reference>
@@ -227,11 +228,18 @@
     <Compile Include="Migrations\201905232057598_AddColumnWorkOrderTypeInWorkOrderTable.Designer.cs">
       <DependentUpon>201905232057598_AddColumnWorkOrderTypeInWorkOrderTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905282138442_CreateColumnsUserNameAndDepartmentAndShiftTypeInUsersTable.cs" />
+    <Compile Include="Migrations\201905282138442_CreateColumnsUserNameAndDepartmentAndShiftTypeInUsersTable.Designer.cs">
+      <DependentUpon>201905282138442_CreateColumnsUserNameAndDepartmentAndShiftTypeInUsersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Enums\Department.cs" />
+    <Compile Include="Models\Enums\ShiftType.cs" />
     <Compile Include="Models\SystemRoles.cs" />
     <Compile Include="Models\Work Order\Enums\WorkOrderType.cs" />
     <Compile Include="Models\Work Order\WorkOrder.cs" />
     <Compile Include="Models\Work Order\Enums\WorkOrderStatus.cs" />
     <Compile Include="ViewModels\BuildingTreeViewModel.cs" />
+    <Compile Include="ViewModels\GroupsViewModel.cs" />
     <Compile Include="ViewModels\WorkOrderViewModel.cs" />
     <Compile Include="ViewModels\AssetsViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -603,6 +611,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905232057598_AddColumnWorkOrderTypeInWorkOrderTable.resx">
       <DependentUpon>201905232057598_AddColumnWorkOrderTypeInWorkOrderTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905282138442_CreateColumnsUserNameAndDepartmentAndShiftTypeInUsersTable.resx">
+      <DependentUpon>201905282138442_CreateColumnsUserNameAndDepartmentAndShiftTypeInUsersTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
