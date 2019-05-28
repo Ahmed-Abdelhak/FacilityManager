@@ -4,16 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BuildingFacilityManager.Controllers;
+using BuildingFacilityManager.Models;
 
 namespace BuildingFacilityManager.Areas.Admin.Controllers
 {
-    public class DashboardController : AdminAuthorizationController
+    [Authorize(Roles = SystemRoles.Admin)]
+    public class AdminAuthorizationController : BaseController
     {
-        public ActionResult Index()
-        {
-            return View();
-        }
-
-        
+      
     }
 }

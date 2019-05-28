@@ -7,13 +7,13 @@ using BuildingFacilityManager.Controllers;
 
 namespace BuildingFacilityManager.Areas.Admin.Controllers
 {
-    public class DashboardController : AdminAuthorizationController
+    public class GroupController : AdminAuthorizationController
     {
+        // GET: Admin/Group
         public ActionResult Index()
         {
+
             return View();
         }
-
-        
     }
 }

@@ -11,7 +11,7 @@ using BuildingFacilityManager.ViewModels;
 
 namespace BuildingFacilityManager.Areas.Admin.Controllers
 {
-    public class WorkOrderController : BaseController
+    public class WorkOrderController : AdminAuthorizationController
     {
         private readonly ApplicationDbContext _context;
 

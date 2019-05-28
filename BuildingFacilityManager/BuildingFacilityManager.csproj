@@ -181,9 +181,11 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AdminAuthorizationController.cs" />
     <Compile Include="Areas\Admin\Controllers\AssetController.cs" />
     <Compile Include="Areas\Admin\Controllers\BuildingController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Admin\Controllers\GroupController.cs" />
     <Compile Include="Areas\Admin\Controllers\WorkOrderController.cs" />
     <Compile Include="Areas\Inspector\Controllers\AssetController.cs" />
     <Compile Include="Areas\Inspector\Controllers\BuildingController.cs" />
@@ -225,6 +227,7 @@
     <Compile Include="Migrations\201905232057598_AddColumnWorkOrderTypeInWorkOrderTable.Designer.cs">
       <DependentUpon>201905232057598_AddColumnWorkOrderTypeInWorkOrderTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Models\SystemRoles.cs" />
     <Compile Include="Models\Work Order\Enums\WorkOrderType.cs" />
     <Compile Include="Models\Work Order\WorkOrder.cs" />
     <Compile Include="Models\Work Order\Enums\WorkOrderStatus.cs" />
@@ -439,6 +442,7 @@
     <Content Include="Areas\Admin\Views\Asset\Add_WorKOrder_SpaceAssets_Partial.cshtml" />
     <Content Include="Areas\Admin\Views\Asset\AddWorkOrderFromSpaceAssetsForm.cshtml" />
     <Content Include="Areas\Admin\Views\Asset\AddAssetsFromSpaceAssets.cshtml" />
+    <Content Include="Areas\Admin\Views\Group\Index.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.js" />
     <Content Include="Scripts\DataTables\autoFill.bootstrap.min.js" />
@@ -554,6 +558,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Models\" />
+    <Folder Include="Areas\Admin\Views\AdminAuthorization\" />
     <Folder Include="Areas\Inspector\Models\" />
     <Folder Include="Areas\Org\Models\" />
     <Folder Include="Views\Base\" />

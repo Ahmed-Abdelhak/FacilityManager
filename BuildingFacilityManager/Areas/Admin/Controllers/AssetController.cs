@@ -12,7 +12,7 @@ using BuildingFacilityManager.ViewModels;
 
 namespace BuildingFacilityManager.Areas.Admin.Controllers
 {
-    public class AssetController : BaseController
+    public class AssetController : AdminAuthorizationController
     {
         private readonly ApplicationDbContext _context;
 
