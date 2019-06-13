@@ -1,16 +1,10 @@
-﻿@model BuildingFacilityManager.ViewModels.AssetsViewModel
-@{
-    /**/
+﻿<h3>Today's new Work Orders</h3>
 
-    ViewBag.Title = ViewBag.AssetLabel;
-    Layout = "../Shared/_Layout.cshtml";
-}
 
-<h3>Work Orders for @ViewBag.AssetLabel</h3>
 <div class="thumbnail">
 
     <div class="caption">
-        <table class="table table-hover table-bordered" id="assetsWorkOrder">
+        <table class="table table-hover table-bordered" id="workOrderTableToday">
             <thead>
                 <tr>
                     <th>Id</th>
@@ -53,17 +47,5 @@
                 }
             </tbody>
         </table>
-
-
     </div>
 </div>
-
-
-@section scripts
-{
-    <script>
-        $(document).ready(function () {
-            $("#assetsWorkOrder").DataTable();
-        });
-    </script>
-}

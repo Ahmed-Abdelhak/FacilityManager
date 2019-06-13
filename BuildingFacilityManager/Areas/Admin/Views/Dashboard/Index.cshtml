@@ -1,5 +1,94 @@
-﻿@{
+﻿@model BuildingFacilityManager.ViewModels.DashBoardViewModel
+@{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Dashboard";
+}
+<style type="text/css">.col-xl-3.col-sm-6.mb-3 {
+     padding-bottom: 5px;
+ }</style>
+
+<h3>Today's new Stats</h3>
+
+<div class="row">
+    <div class="col-sm-4 mb-3">
+        <div class="card text-white bg-danger o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fas fa-fw fa-list"></i>
+                </div>
+                <div class="mr-5">(@Model.WorkOrders.Count) new Work Orders!</div>
+            </div>
+            <a class="card-footer text-white clearfix small z-1" href="#workOrderTableToday">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-sm-4 mb-3">
+        <div class="card text-white bg-success o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fas fa-fw fa-shopping-cart"></i>
+                </div>
+                <div class="mr-5">123 new Purchase Orders!</div>
+            </div>
+            <a class="card-footer text-white clearfix small z-1" href="#">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <div class="col-sm-4 mb-3">
+        <div class="card text-white bg-primary o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fas fa-fw fa-life-ring"></i>
+                </div>
+                <div class="mr-5">(@Model.Assets.Count) new Installed Assets!</div>
+            </div>
+            <a class="card-footer text-white clearfix small z-1" href="#assetsWorkOrderToday">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+</div>
+
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+@Html.Partial("newWorkOrdersToday_Partial")
+<br/>
+<hr/>
+@Html.Partial("newWorkAssetsToday_Partial")
+
+
+@section styles {
+    @Styles.Render("~/Content/sb-adminCustom.css")
+    @Styles.Render("~/Content/fonts/all.css")
 }
 
-<h2>Admin Dashboard</h2>
+@section Scripts {
+
+    @Scripts.Render("~/Scripts/jquery.easing.min.js");
+    
+    <script>
+
+        $(document).ready(function () {
+            $("#workOrderTableToday").DataTable();
+            $("#assetsWorkOrderToday").DataTable();
+        });
+    </script>
+}
