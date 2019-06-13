@@ -34,7 +34,7 @@
 
                         <div>
                             @Html.LabelFor(e => e.WorkOrder.Description)
-                            @Html.TextBoxFor(e => e.WorkOrder.Description, new { @class = "form-control" })
+                            @Html.TextAreaFor(e => e.WorkOrder.Description, new { @class = "form-control", style = "width: 100%; max-width: 100%;" })
                             @Html.ValidationMessageFor(e => e.WorkOrder.Description)
 
                         </div>

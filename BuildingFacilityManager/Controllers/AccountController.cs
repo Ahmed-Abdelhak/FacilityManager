@@ -1,14 +1,18 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using BuildingFacilityManager.Models;
+using BuildingFacilityManager.ViewModels;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace BuildingFacilityManager.Controllers
 {
@@ -17,15 +21,19 @@ namespace BuildingFacilityManager.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationRoleManager _roleManager;
+
+
 
         public AccountController()
         {
         }
 
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
+        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            RoleManager = roleManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -34,9 +42,9 @@ namespace BuildingFacilityManager.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -49,6 +57,18 @@ namespace BuildingFacilityManager.Controllers
             private set
             {
                 _userManager = value;
+            }
+        }
+
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
             }
         }
 
@@ -68,6 +88,9 @@ namespace BuildingFacilityManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
+            var user = UserManager.Users.SingleOrDefault(u => u.Email == model.Email);
+            var userRole = RoleManager.Roles.SingleOrDefault(r => r.Users.Any(u => u.UserId == user.Id));
+
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -79,6 +102,23 @@ namespace BuildingFacilityManager.Controllers
             switch (result)
             {
                 case SignInStatus.Success:
+
+                    // if you used User.IsInRole(), it won't work !
+                    //                                              because the method is Async
+                                                                 // still no data about the User
+
+                    if (userRole.Name == "Admin")
+                    {
+                        return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
+                    }
+                    else if (userRole.Name == "Inspector")
+                    {
+                        return RedirectToAction("Index", "Dashboard", new { area = "Inspector" });
+                    }
+                    else if (userRole.Name == "Organization")
+                    {
+                        return RedirectToAction("Index", "Dashboard", new { area = "Org" });
+                    }
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -120,7 +160,7 @@ namespace BuildingFacilityManager.Controllers
             // If a user enters incorrect codes for a specified amount of time then the user account 
             // will be locked out for a specified amount of time. 
             // You can configure the account lockout settings in IdentityConfig
-            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent:  model.RememberMe, rememberBrowser: model.RememberBrowser);
+            var result = await SignInManager.TwoFactorSignInAsync(model.Provider, model.Code, isPersistent: model.RememberMe, rememberBrowser: model.RememberBrowser);
             switch (result)
             {
                 case SignInStatus.Success:
@@ -142,6 +182,45 @@ namespace BuildingFacilityManager.Controllers
             return View();
         }
 
+        public ActionResult AddUser()
+        {
+            List<SelectListItem> list = new List<SelectListItem>();
+            foreach (var role in RoleManager.Roles)
+                list.Add(new SelectListItem() { Value = role.Name, Text = role.Name });
+            ViewBag.RoleName = list;
+
+            return View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> AddUser(RegisterFromAdminViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = new ApplicationUser
+                {
+                    FirstName = model.FirstName,
+                    LastName = model.LastName,
+                    Department = model.Department,
+                    ShiftType = model.ShiftType,
+                    PhoneNumber = model.PhoneNumber,
+                    UserName = model.Email,
+                    Email = model.Email
+                };
+
+                var result = await UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    result = await UserManager.AddToRoleAsync(user.Id, model.RoleName);
+                }
+            }
+
+
+
+            return RedirectToAction("Index", "Group", new { area = "Admin" });
+        }
+
         //
         // POST: /Account/Register
         [HttpPost]
@@ -151,12 +230,12 @@ namespace BuildingFacilityManager.Controllers
         {
             if (ModelState.IsValid)
             {
-                var user = new ApplicationUser { UserName = model.Email, Email = model.Email };
+                var user = new ApplicationUser { UserName = model.Email, Email = model.Email, Roles = { } };
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)
                 {
-                    await SignInManager.SignInAsync(user, isPersistent:false, rememberBrowser:false);
-                    
+                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+
                     // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=320771
                     // Send an email with this link
                     // string code = await UserManager.GenerateEmailConfirmationTokenAsync(user.Id);
@@ -417,6 +496,12 @@ namespace BuildingFacilityManager.Controllers
                 {
                     _signInManager.Dispose();
                     _signInManager = null;
+                }
+
+                if (_roleManager != null)
+                {
+                    _roleManager.Dispose();
+                    _roleManager = null;
                 }
             }
 

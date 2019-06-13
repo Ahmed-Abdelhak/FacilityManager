@@ -9,6 +9,7 @@ using BuildingFacilityManager.Models;
 using BuildingFacilityManager.ViewModels;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using Microsoft.AspNet.Identity.Owin;
 
 namespace BuildingFacilityManager.Areas.Admin.Controllers
 {
@@ -16,10 +17,12 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
     {
         private readonly ApplicationDbContext _context;
 
+
         public GroupController()
         {
             _context = new ApplicationDbContext();
         }
+
 
         protected override void Dispose(bool disposing)
         {
@@ -31,6 +34,7 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
         {
             var groups = new GroupsViewModel()
             {
+                Admins = _context.Users.Where(u => u.Roles.Any(r => r.RoleId == "1")).ToList(),
                 Inspectors = _context.Users.Where(u => u.Roles.Any(r => r.RoleId == "2")).ToList(),
                 OrganizationUsers = _context.Users.Where(u => u.Roles.Any(r => r.RoleId == "3")).ToList()
 
@@ -38,5 +42,10 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
 
             return View(groups);
         }
+
     }
+
+
 }
+
+    

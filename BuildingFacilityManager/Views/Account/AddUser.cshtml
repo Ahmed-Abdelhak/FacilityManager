@@ -1,0 +1,90 @@
+﻿@using BuildingFacilityManager.Models.Enums
+@model BuildingFacilityManager.Models.RegisterFromAdminViewModel
+
+@{
+    ViewBag.Title = "Add New User";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+
+@using (Html.BeginForm("AddUser", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Create a new account.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.FirstName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.FirstName, new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(m => m.FirstName)
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.LastName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.LastName, new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(m => m.LastName)
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.PhoneNumber, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.PhoneNumber, new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(m => m.PhoneNumber)
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.RoleName, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownList("RoleName", new SelectList(ViewBag.RoleName,"Value","Text"), new { @class = "form-control" }) 
+
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.ShiftType, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(e => e.ShiftType, EnumHelper.GetSelectList(typeof(ShiftType)) ,
+                "Select Type", new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(m => m.ShiftType)
+
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(m => m.Department, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(e => e.Department, EnumHelper.GetSelectList(typeof(Department)) ,
+                "Select Type", new { @class = "form-control" })
+        </div>
+        @Html.ValidationMessageFor(m => m.Department)
+
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Add" />
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

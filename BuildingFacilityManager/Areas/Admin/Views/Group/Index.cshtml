@@ -1,11 +1,56 @@
 ﻿@model BuildingFacilityManager.ViewModels.GroupsViewModel
 <br />
 
-<button type="button" class="btn btn-success" style="float: right" data-toggle="modal" data-target="#myModal-AddSpace">
-    Add
-</button>
+@Html.ActionLink("Add", "AddUser", "Account", new { area = "" }, new { @class = "btn btn-success", Style = "float:right;" })
+
 
 <br />
+
+<h3>Admins</h3>
+<div class="thumbnail">
+
+    <div class="caption">
+        <table class="table table-hover table-striped" id="Admins">
+            <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+            </tr>
+            </thead>
+            <tbody>
+            <div id="Admins-table">
+                @foreach (var admin in Model.Admins)
+                {
+
+                    <tr id="id-@admin.Id">
+
+                        <td>
+                            @admin.FirstName
+                        </td>
+                        <td>
+                            @admin.LastName
+                        </td>
+                        <td>
+                            @admin.Email
+                        </td>
+                        <td>
+                            @admin.PhoneNumber
+                        </td>
+
+                    </tr>
+                }
+            </div>
+
+            </tbody>
+        </table>
+
+    </div>
+</div>
+<br />
+<hr />
+
 
 <h3>Inspectors</h3>
 <div class="thumbnail">
@@ -111,6 +156,7 @@
 {
     <script>
         $(document).ready(function () {
+            $("#Admins").DataTable();
             $("#Inspectors").DataTable();
             $("#Organization").DataTable();
         });

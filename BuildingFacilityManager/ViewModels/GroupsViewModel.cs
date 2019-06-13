@@ -8,6 +8,7 @@ namespace BuildingFacilityManager.ViewModels
 {
     public class GroupsViewModel
     {
+        public IEnumerable<ApplicationUser> Admins { get; set; }
         public IEnumerable<ApplicationUser> Inspectors { get; set; }
         public IEnumerable<ApplicationUser> OrganizationUsers { get; set; }
 
