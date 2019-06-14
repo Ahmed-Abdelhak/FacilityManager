@@ -20,6 +20,8 @@
                     <th>Location</th>
                     <th>Storey</th>
                     <th>Date</th>
+                    <th>Reporter</th>
+                    <th>Fixer</th>
                 </tr>
             </thead>
             <tbody>
@@ -48,6 +50,27 @@
                         </td>
                         <td>
                             @work.Date
+                        </td>
+                        <td>
+                            @{
+
+                                string space = " ";
+                                if (@work.Reporter != null)
+                                {
+                                    @work.Reporter.FirstName @space @work.Reporter.LastName
+                                }
+                            }
+
+
+                        </td>
+                        <td>
+                            @{
+                                if (@work.Fixer != null)
+                                {
+                                    @work.Fixer.FirstName @space @work.Fixer.LastName
+
+                                }
+                            }
                         </td>
                     </tr>
                 }

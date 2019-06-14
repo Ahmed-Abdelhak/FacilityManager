@@ -24,13 +24,31 @@ namespace BuildingFacilityManager.Models.Work_Order
         public int AssetId { get; set; }
 
 
+        public ApplicationUser Reporter { get; set; }
+        [ForeignKey("Reporter")]
+        public string ReporterId { get; set; }
+
+
+        public ApplicationUser Fixer { get; set; }
+        [ForeignKey("Fixer")]
+        public string FixerId { get; set; }
+
+
         /*
      1-   Attachments Property
-     2-   I need to add Properties of the "Reporter"
-      3-  I need to add Properties of the "AssignedEmployee" in a Crew and Shift is (Day or Night) 
-                       Based on the Organization Crews that match the Asset Type (Crew will have departments )
-       
-      4- Add Materials, Services, Tools used while doing the Work Order by the Organization
+     
+         */
+
+
+        /*
+         
+        1- Run end 2 end Tests
+           2- New Rule (Organization Manager)
+           3- Assign of Work Orders to a Fixer is based on the department ( Type of Asset )
+           4- Assign of Work Orders is based on Availability and Shift type ( Night or Today ) 
+           5- Split the Work Order to ( Internal Tasks , Associate Materials, Tools and Services )
+           
+           
 
          */
     }

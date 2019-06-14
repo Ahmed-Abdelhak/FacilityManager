@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Security.Claims;
 using System.Threading.Tasks;
@@ -16,8 +18,16 @@ namespace BuildingFacilityManager.Models
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        [NotMapped]
+        public string Fullname { get { return string.Concat(FirstName + " " + LastName); } }
         public ShiftType? ShiftType { get; set; }
         public Department? Department { get; set; }
+
+        [InverseProperty("Reporter")]
+        public ICollection<WorkOrder> WorkOrders_Reported { get; set; }
+
+        [InverseProperty("Fixer")]
+        public ICollection<WorkOrder> WorkOrders_Fixed { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)

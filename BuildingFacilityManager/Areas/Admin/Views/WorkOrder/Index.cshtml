@@ -8,6 +8,8 @@
 <h2>Work Orders</h2>
 
 @Html.Partial("WorkOrder_Partial")
+@Html.Partial("AssignFixer_Partial")
+@Html.Partial("ChangeStatus_Partial")
 @Html.Partial("Add_WorkOrder_Partial")
 
 @section styles
@@ -30,7 +32,6 @@
 @section scripts
 {
     <script>
-
 
         $(document).ready(function () {
             $("#workOrderTable").DataTable();

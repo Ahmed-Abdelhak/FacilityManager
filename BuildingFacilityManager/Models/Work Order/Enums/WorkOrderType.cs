@@ -13,7 +13,8 @@ namespace BuildingFacilityManager.Models.Work_Order.Enums
         EventReport = 4,
         PreventiveMaintenance = 5,
         DownTime = 6,
-        ServiceRequest = 7
+        ServiceRequest = 7,
+        GeneralMaintenance = 8
 
     }
 }

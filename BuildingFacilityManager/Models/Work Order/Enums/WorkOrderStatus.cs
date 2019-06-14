@@ -3,7 +3,7 @@
     public enum WorkOrderStatus
     {
         Active = 1,
-        OnHold = 2,
+        In_Progress = 2,
         Completed = 3
 
     }

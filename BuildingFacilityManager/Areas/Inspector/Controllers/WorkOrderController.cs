@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Ajax;
 using BuildingFacilityManager.Controllers;
 using BuildingFacilityManager.Models;
 using BuildingFacilityManager.Models.Work_Order;
@@ -76,5 +77,7 @@ namespace BuildingFacilityManager.Areas.Inspector.Controllers
             return View("Index", workModel);
 
         }
+
+        
     }
 }

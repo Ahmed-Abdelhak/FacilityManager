@@ -1,0 +1,53 @@
+﻿@using BuildingFacilityManager.Models.Work_Order.Enums
+@using Microsoft.AspNet.Identity
+@model BuildingFacilityManager.ViewModels.WorkOrderViewModel
+
+@{
+
+    using (Html.BeginForm("AssignWorkOrderToFixer", "WorkOrder", new AjaxOptions()
+    {
+        HttpMethod = "Post",
+        OnSuccess = "$('.close').click();"
+
+    }))
+    {
+
+
+        <div class="modal fade" id="Assign-Fixer" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Assign the Work Order to a Fixer</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input id="work-Id-assign" name="WorkOrder.Id" type="hidden" value="">
+
+                        @Html.DropDownListFor(c => c.WorkOrder.FixerId, new SelectList(@Model.Fixers, "Id", "Fullname"), "Select a Fixer",new { @class = "form-control" })
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Assign" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+
+    }
+}
+
+
+
+    <script>
+        let editId;
+
+        function WorkIdForAssignFixer(id) {
+            editId = id;
+            document.getElementById("work-Id-assign").value = editId;
+
+        }
+    </script>

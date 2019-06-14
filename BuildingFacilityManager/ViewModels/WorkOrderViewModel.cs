@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using BuildingFacilityManager.Models;
 using BuildingFacilityManager.Models.Assets;
 using BuildingFacilityManager.Models.Building_Models;
 using BuildingFacilityManager.Models.Work_Order;
@@ -13,5 +14,7 @@ namespace BuildingFacilityManager.ViewModels
         public List<Storey> Stories { get; set; }
         public List<Space> Spaces { get; set; }
         public Asset Asset { get; set; }
+        public List<ApplicationUser> Users { get; set; }
+        public List<ApplicationUser> Fixers { get; set; }
     }
 }

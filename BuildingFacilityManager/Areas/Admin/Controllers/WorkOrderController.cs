@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Ajax;
 using BuildingFacilityManager.Controllers;
 using BuildingFacilityManager.Models;
 using BuildingFacilityManager.Models.Work_Order;
@@ -32,28 +33,61 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
         {
             var workModel = new WorkOrderViewModel()
             {
-                WorkOrders = _context.WorkOrders.Include(w=>w.Asset)
+                WorkOrders = _context.WorkOrders
+                    .Include(w => w.Reporter)
+                    .Include(w => w.Fixer)
+                    .Include(w=>w.Asset)
                     .Include(w=>w.Asset.Space)
                     .Include(w=>w.Asset.Space.Storey)
                     .ToList(),
                 Assets = _context.Assets.ToList(),
                 Spaces = _context.Spaces.ToList(),
-                Stories = _context.Stories.ToList()
+                Stories = _context.Stories.ToList(),
+                Users = _context.Users.ToList(),
+                Fixers = _context.Users.Where(u => u.Roles.Any(r => r.RoleId == "3")).ToList()
             };
             return View(workModel);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AssignWorkOrderToFixer(WorkOrder workOrder)
+        {
+            var myWork = _context.WorkOrders.SingleOrDefault(w => w.Id == workOrder.Id);
+            if (myWork != null && workOrder.FixerId != null) myWork.FixerId = workOrder.FixerId;
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeStatusWorkOrder(WorkOrder workOrder)
+        {
+            var myWork = _context.WorkOrders.SingleOrDefault(w => w.Id == workOrder.Id);
+            if (myWork != null && workOrder.WorkOrderStatus != 0) myWork.WorkOrderStatus = workOrder.WorkOrderStatus;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
         }
 
         public ActionResult AddWork(WorkOrder workOrder)
         {
             var workModel = new WorkOrderViewModel()
             {
-                WorkOrders = _context.WorkOrders.Include(w => w.Asset)
+                WorkOrders = _context.WorkOrders
+                    .Include(w => w.Reporter)
+                    .Include(w => w.Fixer)
+                    .Include(w => w.Asset)
                     .Include(w => w.Asset.Space)
                     .Include(w => w.Asset.Space.Storey)
                     .ToList(),
                 Assets = _context.Assets.ToList(),
                 Spaces = _context.Spaces.ToList(),
-                Stories = _context.Stories.ToList()
+                Stories = _context.Stories.ToList(),
+                Fixers = _context.Users.Where(u => u.Roles.Any(r => r.RoleId == "3")).ToList()
 
             };
 
@@ -63,13 +97,17 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
                 _context.SaveChanges();
                 var workMod = new WorkOrderViewModel()
                 {
-                    WorkOrders = _context.WorkOrders.Include(w => w.Asset)
+                    WorkOrders = _context.WorkOrders
+                        .Include(w => w.Reporter)
+                        .Include(w => w.Fixer)
+                        .Include(w => w.Asset)
                         .Include(w => w.Asset.Space)
                         .Include(w => w.Asset.Space.Storey)
                         .ToList(),
                     Assets = _context.Assets.ToList(),
                     Spaces = _context.Spaces.ToList(),
-                    Stories = _context.Stories.ToList()
+                    Stories = _context.Stories.ToList(),
+                    Fixers = _context.Users.Where(u => u.Roles.Any(r => r.RoleId == "3")).ToList()
 
                 };
                 return View("Index", workMod);
@@ -77,5 +115,7 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
             }
             return View("Index",workModel);
         }
+
+       
     }
 }

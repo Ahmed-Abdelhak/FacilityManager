@@ -41,5 +41,9 @@ namespace BuildingFacilityManager.Areas.Org.Controllers
             return View(workModel);
         }
 
+        public ActionResult CompleteOrder()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -108,6 +108,8 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
                 WorkOrders = _context.WorkOrders.Where(w => w.AssetId == id)
                     .Include(w => w.Asset.Space)
                     .Include(w => w.Asset.Space.Storey)
+                    .Include(w => w.Reporter)
+                    .Include(w => w.Fixer)
                     .ToList()
 
             };

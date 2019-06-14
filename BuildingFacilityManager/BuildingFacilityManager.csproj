@@ -232,6 +232,10 @@
     <Compile Include="Migrations\201905282138442_CreateColumnsUserNameAndDepartmentAndShiftTypeInUsersTable.Designer.cs">
       <DependentUpon>201905282138442_CreateColumnsUserNameAndDepartmentAndShiftTypeInUsersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906140925285_ReporterAndFixerColumnsInWorkOrderTable.cs" />
+    <Compile Include="Migrations\201906140925285_ReporterAndFixerColumnsInWorkOrderTable.Designer.cs">
+      <DependentUpon>201906140925285_ReporterAndFixerColumnsInWorkOrderTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Enums\Department.cs" />
     <Compile Include="Models\Enums\ShiftType.cs" />
     <Compile Include="Models\SystemRoles.cs" />
@@ -469,6 +473,8 @@
     <Content Include="Areas\Admin\Views\Group\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\newWorkOrdersToday_Partial.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\newWorkAssetsToday_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\WorkOrder\AssignFixer_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\WorkOrder\ChangeStatus_Partial.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Chart.bundle.js" />
     <Content Include="Scripts\Chart.bundle.min.js" />
@@ -643,6 +649,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905282138442_CreateColumnsUserNameAndDepartmentAndShiftTypeInUsersTable.resx">
       <DependentUpon>201905282138442_CreateColumnsUserNameAndDepartmentAndShiftTypeInUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906140925285_ReporterAndFixerColumnsInWorkOrderTable.resx">
+      <DependentUpon>201906140925285_ReporterAndFixerColumnsInWorkOrderTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
