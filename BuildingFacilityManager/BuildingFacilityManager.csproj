@@ -501,6 +501,8 @@
     <Content Include="Areas\Admin\Views\Asset\SingleAssetDetailsOrderTable_Partial.cshtml" />
     <Content Include="Areas\Admin\Views\Asset\AssignFixer_Partial.cshtml" />
     <Content Include="Areas\Admin\Views\Asset\ChangeStatus_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\IconCardsTodayStats_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\PieCharts_Partial.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Chart.bundle.js" />
     <Content Include="Scripts\Chart.bundle.min.js" />

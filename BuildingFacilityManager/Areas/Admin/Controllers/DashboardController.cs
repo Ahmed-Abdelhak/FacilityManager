@@ -6,6 +6,7 @@ using System.Web;
 using System.Web.Mvc;
 using BuildingFacilityManager.Controllers;
 using BuildingFacilityManager.Models;
+using BuildingFacilityManager.Models.Work_Order.Enums;
 using BuildingFacilityManager.ViewModels;
 
 namespace BuildingFacilityManager.Areas.Admin.Controllers
@@ -41,6 +42,46 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
                    .Include(w => w.Asset)
                    .Include(w => w.Asset.Space)
                    .Include(w => w.Asset.Space.Storey).ToList(),
+
+                TodayActiveWorkOrders = _context.WorkOrders.Where(w =>
+                DbFunctions.TruncateTime(w.Date)
+                == DbFunctions.TruncateTime(DateTime.Today)
+
+                &&
+
+                w.WorkOrderStatus == WorkOrderStatus.Active
+
+                )
+                .Include(w => w.Asset)
+                .Include(w => w.Asset.Space)
+                .Include(w => w.Asset.Space.Storey).ToList(),
+
+                TodayCompletedWorkOrders = _context.WorkOrders.Where(w =>
+                DbFunctions.TruncateTime(w.Date)
+                == DbFunctions.TruncateTime(DateTime.Today)
+
+                &&
+
+                w.WorkOrderStatus == WorkOrderStatus.Completed
+
+                )
+                .Include(w => w.Asset)
+                .Include(w => w.Asset.Space)
+                .Include(w => w.Asset.Space.Storey).ToList(),
+
+
+                TodayInProgressWorkOrders = _context.WorkOrders.Where(w =>
+                        DbFunctions.TruncateTime(w.Date)
+                        == DbFunctions.TruncateTime(DateTime.Today)
+
+                        &&
+
+                        w.WorkOrderStatus == WorkOrderStatus.In_Progress
+
+                    )
+                    .Include(w => w.Asset)
+                    .Include(w => w.Asset.Space)
+                    .Include(w => w.Asset.Space.Storey).ToList(),
 
                 Assets = _context.Assets.Where(a =>
                             DbFunctions.TruncateTime(a.InstallationDate)

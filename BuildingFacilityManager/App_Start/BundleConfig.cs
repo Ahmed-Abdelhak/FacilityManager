@@ -15,6 +15,10 @@ namespace BuildingFacilityManager
                 
                 ));
 
+            bundles.Add(new ScriptBundle("~/bundles/charts").Include(
+                "~/Scripts/Chart.bundle.min.js"
+            ));
+
             bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
                         "~/Scripts/jquery.validate*"));
 
