@@ -5,128 +5,16 @@
 
 }
 
-<h2>@Model.Asset.Label Details</h2>
-
-<div class="parent-box-asset-data">
-
-    <div class="row-extended-details" id="@Model.Asset.Id-details">
-        <div class="col-md-12">
+@Html.Partial("SingleAssetDetails_Partial", Model)
 
 
+@Html.Partial("SingleAssetDetailsOrderTable_Partial", Model)
 
-            <div class="thumbnail">
-
-                <div class="caption">
-
-                    <span class="asset-details-data">Id</span>: <span>@Model.Asset.Id</span>
-                    <hr />
-                    <span class="asset-details-data">Space</span>: <span>@Model.Asset.Space.Label</span>
-                    <hr />
-                    <span class="asset-details-data">Status</span>: <span>@Model.Asset.AssetStatus</span>
-                    <hr />
-                    <span class="asset-details-data">Type</span>: <span>@Model.Asset.AssetType</span>
-                    <hr />
-                    <span class="asset-details-data">Installation Date</span>: <span>@Model.Asset.InstallationDate</span>
-                    <hr />
-                    <span class="asset-details-data">Vendor</span>: <span>@Model.Asset.Vendor</span>
-                    <hr />
-                    <span class="asset-details-data">Manufactured Date</span>: <span>@Model.Asset.ManufacturedDate</span>
-                    <hr />
-                    <span class="asset-details-data">Warranty</span>: <span>@Model.Asset.Warranty</span>
-                    <hr />
-                    <span class="asset-details-data">Expected Life</span>: <span>@Model.Asset.ExpectedLife</span>
-                    <hr />
-                    <span class="asset-details-data">Purchase Date</span>: <span>@Model.Asset.PurchaseDate</span>
-                    <hr />
-                    <span class="asset-details-data">Price</span>: <span>@Model.Asset.Price EGP</span>
-
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row-extended-div"></div>
-    <div class="row-extended" id="@Model.Asset.Id-details">
-        <div class="mw-90">
-
-
-
-            <div class="thumbnail">
-
-                <div class="caption">
-
-                    <h5>
-                        the Image of the Asset will appear here
-                    </h5>
-                </div>
-            </div>
-        </div>
-    </div>
-
-</div>
-
-
-
-@*this is the Work Order Table*@
-
-<h3>@Model.Asset.Label WorkOrders</h3>
-<div class="thumbnail">
-
-    <div class="caption">
-
-
-
-        <button type="button" class="btn btn-success" style="float: right" data-toggle="modal" data-target="#myModal-AddWork">
-            Add
-        </button>
-
-        <table class="table table-hover table-bordered" id="workOrderTable">
-            <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                    <th>Asset</th>
-                    <th>Location</th>
-                    <th>Storey</th>
-                    <th>Date</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var work in Model.Asset.WorkOrders)
-                {
-
-                <tr id="id-@work.Id">
-
-                    <td>
-                        @work.Id
-                    </td>
-                    <td>
-                        @work.Description
-                    </td>
-                    <td>
-                        @work.WorkOrderStatus
-                    </td>
-                    <td>
-                        @work.Asset.Label
-                    </td>
-                    <td>
-                        @work.Asset.Space.Label
-                    </td>
-                    <td>
-                        @work.Asset.Space.Storey.Label
-                    </td>
-                    <td>
-                        @work.Date
-                    </td>
-                </tr>
-                }
-            </tbody>
-        </table>
-
-    </div>
-</div>
 
 @Html.Partial("Add_WorKOrder_Asset_Details_Partial")
+
+@Html.Partial("AssignFixer_Partial")
+@Html.Partial("ChangeStatus_Partial")
 
 @section scripts
 {

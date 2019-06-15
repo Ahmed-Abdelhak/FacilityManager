@@ -141,12 +141,17 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
                     .Include(a => a.Space.Storey)
                     .Include(a => a.WorkOrders)
                     .SingleOrDefault(a => a.Id == id),
-                WorkOrders = _context.WorkOrders.Include(w => w.Asset)
+                WorkOrders = _context.WorkOrders
+                    .Include(w => w.Reporter)
+                    .Include(w => w.Fixer)
+                    .Include(w => w.Asset)
                     .Include(w => w.Asset.Space)
                     .Include(w => w.Asset.Space.Storey)
                     .ToList(),
                 Assets = _context.Assets.ToList(),
                 Spaces = _context.Spaces.ToList(),
+                Fixers = _context.Users.Where(u => u.Roles.Any(r => r.RoleId == "3")).ToList()
+
             };
 
             return View(workModel);
@@ -156,43 +161,13 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
 
         public ActionResult AddWorkOrderFromAssetDetails(WorkOrder workOrder)
         {
-            var workModel = new WorkOrderViewModel()
-            {
-                WorkOrders = _context.WorkOrders.Include(w => w.Asset)
-                    .Include(w => w.Asset.Space)
-                    .Include(w => w.Asset.Space.Storey)
-                    .ToList(),
-                Assets = _context.Assets.ToList(),
-                Spaces = _context.Spaces.ToList(),
-                Asset = _context.Assets.Include(a => a.Space)
-                    .Include(a => a.RelatedAssets)
-                    .Include(a => a.Space.Storey)
-                    .Include(a => a.WorkOrders)
-                    .SingleOrDefault(a => a.Id == workOrder.AssetId)
-            };
-
             if (workOrder.Description != null && workOrder.WorkOrderStatus != 0 && workOrder.AssetId != 0)
             {
                 _context.WorkOrders.Add(workOrder);
                 _context.SaveChanges();
-                var workMod = new WorkOrderViewModel()
-                {
-                    WorkOrders = _context.WorkOrders.Include(w => w.Asset)
-                        .Include(w => w.Asset.Space)
-                        .Include(w => w.Asset.Space.Storey)
-                        .ToList(),
-                    Assets = _context.Assets.ToList(),
-                    Spaces = _context.Spaces.ToList(),
-                    Asset = _context.Assets.Include(a => a.Space)
-                        .Include(a => a.RelatedAssets)
-                        .Include(a => a.Space.Storey)
-                        .Include(a => a.WorkOrders)
-                        .SingleOrDefault(a => a.Id == workOrder.AssetId)
-                };
-                return View("AssetsDetails", workMod);
 
             }
-            return View("AssetsDetails", workModel);
+            return RedirectToAction("AssetsDetails", new {id = workOrder.AssetId});
         }
 
 
@@ -213,6 +188,7 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
                     .ToList(),
                 Assets = _context.Assets.ToList(),
                 Spaces = _context.Spaces.ToList(),
+                Fixers = _context.Users.Where(u => u.Roles.Any(r => r.RoleId == "3")).ToList()
             };
             return View(workModel);
         }
@@ -222,75 +198,39 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddWorkOrderFromSpaceAssets(WorkOrder workOrder)
         {
-            var workModel = new WorkOrderViewModel()
-            {
-                WorkOrders = _context.WorkOrders.Include(w => w.Asset)
-                    .Include(w => w.Asset.Space)
-                    .Include(w => w.Asset.Space.Storey)
-                    .ToList(),
-                Assets = _context.Assets.ToList(),
-                Spaces = _context.Spaces.ToList(),
-                Asset = _context.Assets.Include(a => a.Space)
-                    .Include(a => a.RelatedAssets)
-                    .Include(a => a.Space.Storey)
-                    .Include(a => a.WorkOrders)
-                    .SingleOrDefault(a => a.Id == workOrder.AssetId)
-            };
-
             if (workOrder.Description != null && workOrder.WorkOrderStatus != 0 && workOrder.AssetId != 0)
             {
                 _context.WorkOrders.Add(workOrder);
                 _context.SaveChanges();
-                var workMod = new WorkOrderViewModel()
-                {
-                    WorkOrders = _context.WorkOrders.Include(w => w.Asset)
-                        .Include(w => w.Asset.Space)
-                        .Include(w => w.Asset.Space.Storey)
-                        .ToList(),
-                    Assets = _context.Assets.ToList(),
-                    Spaces = _context.Spaces.ToList(),
-                    Asset = _context.Assets.Include(a => a.Space)
-                        .Include(a => a.RelatedAssets)
-                        .Include(a => a.Space.Storey)
-                        .Include(a => a.WorkOrders)
-                        .SingleOrDefault(a => a.Id == workOrder.AssetId)
-                };
-                return View("AssetsDetails", workMod);
-
             }
-            return View("AssetsDetails", workModel);
+            return RedirectToAction("AssetsDetails", new { id = workOrder.AssetId });
+
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AssignWorkOrderToFixer(WorkOrder workOrder)
+        {
+            var myWork = _context.WorkOrders.SingleOrDefault(w => w.Id == workOrder.Id);
+            if (myWork != null && workOrder.FixerId != null) myWork.FixerId = workOrder.FixerId;
+            _context.SaveChanges();
 
+            return RedirectToAction("AssetsDetails", new { id = workOrder.AssetId });
 
+        }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ChangeStatusWorkOrder(WorkOrder workOrder)
+        {
+            var myWork = _context.WorkOrders.SingleOrDefault(w => w.Id == workOrder.Id);
+            if (myWork != null && workOrder.WorkOrderStatus != 0) myWork.WorkOrderStatus = workOrder.WorkOrderStatus;
 
-        /// <summary>
-        ///  Deprecated, since i used a plugin called Datatables
-        /// </summary>
+            _context.SaveChanges();
 
-        //public ActionResult SpaceAssetsSort(string sortOrder, int id)
-        //{
-        //    ViewBag.NameSortParm = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
-        //    ViewBag.IdSortParm = !string.IsNullOrEmpty(sortOrder) ? "id_sort" : "";
-        //    ViewBag.StatusSortParm = !string.IsNullOrEmpty(sortOrder) ? "status_sort" : "";
-        //    ViewBag.TypeSortParm = !string.IsNullOrEmpty(sortOrder) ? "Type_sort" : "";
+            return RedirectToAction("AssetsDetails", new { id = workOrder.AssetId });
 
+        }
 
-        //    var space = _context.Spaces.Include(s => s.Assets).SingleOrDefault(s => s.Id == id);
-        //    var spaceAssets = new List<Asset>();
-        //    if (space != null)
-        //        foreach (var asset in space.Assets)
-        //            spaceAssets.Add(asset);
-
-
-        //    spaceAssets.Sort((a, b) => String.Compare(a.Label, b.Label, StringComparison.Ordinal));
-
-
-        //    if (space != null) ViewBag.spaceLabel = space.Label;
-        //    ViewBag.SpaceId = id;
-
-        //    return View("SpaceAssets", spaceAssets); // return the View of the SpaceAssets Action
-        //}
     }
 }

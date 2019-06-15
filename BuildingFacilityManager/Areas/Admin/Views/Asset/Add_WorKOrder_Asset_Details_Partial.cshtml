@@ -1,5 +1,6 @@
 ﻿@using BuildingFacilityManager.Models.Assets.Enums
 @using BuildingFacilityManager.Models.Work_Order.Enums
+@using Microsoft.AspNet.Identity
 @model BuildingFacilityManager.ViewModels.WorkOrderViewModel
 
 
@@ -28,6 +29,7 @@
                         <div>
 
                             @Html.HiddenFor(e => e.WorkOrder.AssetId, new { Value = ViewBag.AssetId })
+                            @Html.HiddenFor(s => s.WorkOrder.ReporterId, new { Value = @User.Identity.GetUserId() })
                             @Html.HiddenFor(e => e.WorkOrder.Date, new { Value = @DateTime.Now })
 
                         </div>
@@ -51,6 +53,14 @@
                             @Html.DropDownListFor(e => e.WorkOrder.WorkOrderType, EnumHelper.GetSelectList(typeof(WorkOrderType)) ,
                                 "Select Type", new { @class = "form-control" })
                             @Html.ValidationMessageFor(e => e.WorkOrder.WorkOrderType)
+
+                        </div>
+                        
+                        <div>
+                            @Html.LabelFor(e => e.WorkOrder.FixerId)
+                            @Html.DropDownListFor(c => c.WorkOrder.FixerId, new SelectList(@Model.Fixers, "Id", "Fullname"), "Select a Fixer" , new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.WorkOrder.FixerId)
+
 
                         </div>
 

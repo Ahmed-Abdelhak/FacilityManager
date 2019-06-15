@@ -417,6 +417,7 @@
     <Content Include="Content\fonts\svg-with-js.min.css" />
     <Content Include="Content\fonts\v4-shims.css" />
     <Content Include="Content\fonts\v4-shims.min.css" />
+    <Content Include="Content\Images\HomePage.jpg" />
     <Content Include="Content\loading-indicator.css" />
     <Content Include="Content\sb-adminCustom.css" />
     <Content Include="Content\sb-admin.css" />
@@ -496,6 +497,10 @@
     <Content Include="Areas\Admin\Views\Task\CompletedTasks_Partial.cshtml" />
     <Content Include="Areas\Admin\Views\Task\PausedTasks_Partial.cshtml" />
     <Content Include="Areas\Admin\Views\Task\ChangeTaskStatus_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Asset\SingleAssetDetails_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Asset\SingleAssetDetailsOrderTable_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Asset\AssignFixer_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Asset\ChangeStatus_Partial.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Chart.bundle.js" />
     <Content Include="Scripts\Chart.bundle.min.js" />

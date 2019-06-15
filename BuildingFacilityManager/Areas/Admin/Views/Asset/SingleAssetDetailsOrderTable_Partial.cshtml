@@ -1,0 +1,98 @@
+﻿@model BuildingFacilityManager.ViewModels.WorkOrderViewModel
+
+<h3>@Model.Asset.Label WorkOrders</h3>
+<div class="thumbnail">
+
+    <div class="caption">
+
+
+
+        <button type="button" class="btn btn-success" style="float: right" data-toggle="modal" data-target="#myModal-AddWork">
+            Add
+        </button>
+
+        <table class="table table-hover table-bordered" id="workOrderTable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Description</th>
+                    <th>Status</th>
+                    <th>Asset</th>
+                    <th>Location</th>
+                    <th>Storey</th>
+                    <th>Date</th>
+                    <th>Reporter</th>
+                    <th>Fixer</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var work in Model.Asset.WorkOrders)
+                {
+
+                    <tr id="id-@work.Id">
+
+                        <td>
+                            @work.Id
+                        </td>
+                        <td>
+                            @work.Description
+                        </td>
+                        <td>
+                            @work.WorkOrderStatus
+                        </td>
+                        <td>
+                            @work.Asset.Label
+                        </td>
+                        <td>
+                            @work.Asset.Space.Label
+                        </td>
+                        <td>
+                            @work.Asset.Space.Storey.Label
+                        </td>
+                        <td>
+                            @work.Date
+                        </td>
+
+                        <td>
+                            @{
+
+
+                                if (@work.Reporter != null)
+                                {
+                                    @work.Reporter.Fullname
+                                }
+                            }
+
+
+                        </td>
+                        <td>
+                            @{
+                                if (@work.Fixer != null)
+                                {
+                                    @work.Fixer.Fullname
+
+                                }
+                            }
+                        </td>
+                        <td>
+                            <button type="button" title="Assign to a Fixer" style="background-color: skyblue; background-repeat: no-repeat; border: none;cursor: pointer; overflow: hidden; outline: none;" data-toggle="modal" data-target="#Assign-Fixer" onclick="WorkIdForAssignFixer(@work.Id)">
+                                <span class="fas fa-user-tag" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" title="Change Status" style="background-color: #dda0dd; background-repeat: no-repeat; border: none;cursor: pointer; overflow: hidden; outline: none;" data-toggle="modal" data-target="#Change-Status" onclick="WorkIdForStatusChange(@work.Id)">
+                                <span class="far fa-edit" aria-hidden="true"></span>
+                            </button>
+                            <br />
+                            <br />
+                            <button type="button" title="Purchase Request" style="background-color: #66cdaa; background-repeat: no-repeat; border: none;cursor: pointer; overflow: hidden; outline: none;" data-toggle="modal" data-target="#">
+                                <span class="fas fa-shopping-cart" aria-hidden="true"></span>
+                            </button>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+
+    </div>
+</div>
