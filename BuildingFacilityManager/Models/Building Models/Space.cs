@@ -3,6 +3,7 @@ using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using BuildingFacilityManager.Models.Assets;
 using BuildingFacilityManager.Models.Building_Models.Enums;
+using BuildingFacilityManager.Models.Tasks;
 
 namespace BuildingFacilityManager.Models.Building_Models
 {
@@ -19,6 +20,5 @@ namespace BuildingFacilityManager.Models.Building_Models
         public int StoreyId { get; set; }
 
         public List<Asset> Assets { get; set; }
-
     }
 }

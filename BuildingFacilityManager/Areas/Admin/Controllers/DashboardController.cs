@@ -31,12 +31,24 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
         {
             var model = new DashBoardViewModel()
             {
-                WorkOrders = _context.WorkOrders.Where(w => w.Date >= DateTime.Today)
+                WorkOrders = _context.WorkOrders.Where(w=>
+                        DbFunctions.TruncateTime(w.Date)
+                        == DbFunctions.TruncateTime(DateTime.Today)
+
+                             //w => w.Date >= DateTime.Today
+
+                             )
                    .Include(w => w.Asset)
                    .Include(w => w.Asset.Space)
                    .Include(w => w.Asset.Space.Storey).ToList(),
 
-                Assets = _context.Assets.Where(a => a.InstallationDate >= DateTime.Today)
+                Assets = _context.Assets.Where(a =>
+                            DbFunctions.TruncateTime(a.InstallationDate)
+                            == DbFunctions.TruncateTime(DateTime.Today)
+                        //a.InstallationDate >= DateTime.Today
+                        )
+
+
                     .Include(a => a.Space)
                     .Include(a => a.RelatedAssets)
                     .ToList()

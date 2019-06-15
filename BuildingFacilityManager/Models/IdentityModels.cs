@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using BuildingFacilityManager.Models.Assets;
 using BuildingFacilityManager.Models.Building_Models;
 using BuildingFacilityManager.Models.Enums;
+using BuildingFacilityManager.Models.Tasks;
 using BuildingFacilityManager.Models.Work_Order;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -28,6 +29,8 @@ namespace BuildingFacilityManager.Models
 
         [InverseProperty("Fixer")]
         public ICollection<WorkOrder> WorkOrders_Fixed { get; set; }
+
+        public ICollection<InspectionTask> Tasks { get; set; }
 
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
@@ -51,6 +54,7 @@ namespace BuildingFacilityManager.Models
         public virtual DbSet<Space> Spaces { get; set; }
         public virtual DbSet<Asset> Assets { get; set; }
         public virtual DbSet<WorkOrder> WorkOrders { get; set; }
+        public virtual DbSet<InspectionTask> InspectionTasks { get; set; }
 
 
         public static ApplicationDbContext Create()

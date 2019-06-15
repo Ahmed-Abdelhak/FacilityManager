@@ -1,0 +1,43 @@
+﻿@model BuildingFacilityManager.ViewModels.TaskViewModel
+@{
+    ViewBag.Title = "Tasks";
+    Layout = "../Shared/_Layout.cshtml";
+}
+
+<br />
+<br />
+<button type="button" class="btn btn-success" style="float: right" data-toggle="modal" data-target="#Add-Task">
+    Add
+</button>
+
+
+
+@Html.Partial("TodaysTasks_Partial")
+<br />
+<hr />
+@Html.Partial("ScheduledTasks_Partial")
+<br />
+<hr />
+@Html.Partial("CompletedTasks_Partial")
+<br />
+<hr />
+@Html.Partial("PausedTasks_Partial")
+@Html.Partial("AddTasks_Partial")
+@Html.Partial("ChangeTaskStatus_Partial")
+
+
+
+@section scripts
+{
+    <script>
+
+        $(document).ready(function () {
+            $("#TodayTasksTable").DataTable();
+            $("#ScheduledTasksTable").DataTable();
+            $("#CompletedTasksTable").DataTable();
+            $("#PausedTasksTable").DataTable();
+        });
+
+
+    </script>
+}

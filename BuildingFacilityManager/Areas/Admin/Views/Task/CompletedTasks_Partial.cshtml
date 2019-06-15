@@ -1,0 +1,77 @@
+﻿@model BuildingFacilityManager.ViewModels.TaskViewModel
+
+<h3>Completed Tasks</h3>
+
+<div class="thumbnail">
+
+    <div class="caption">
+        <table class="table table-hover table-bordered" id="CompletedTasksTable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Description</th>
+                    <th>Inspector</th>
+                    <th>Status</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Periodic Inspection</th>
+                    <th>Inspection Type</th>
+                    <th>Location</th>
+
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var task in Model.CompletedInspectionTasks)
+                {
+
+                    <tr id="id-@task.Id">
+
+                        <td>
+                            @task.Id
+                        </td>
+                        <td>
+                            @task.Description
+                        </td>
+                        <td>
+                            @{
+                                if (task.Inspector != null)
+                                {
+                                    @task.Inspector.Fullname
+
+                                }
+
+                            }
+                        </td>
+                        <td>
+                            @task.InspectionStatus
+
+                        </td>
+                        <td>
+                            @task.StartDate
+                        </td>
+                        <td>
+                            @task.EndDate
+                        </td>
+                        <td>
+                            @task.PeriodicInspection
+                        </td>
+                        <td>
+                            @task.InspectionType
+                        </td>
+                        <td>
+                            @{
+                                if (@task.StoreyInspection != null)
+                                {
+                                    @task.StoreyInspection.Label
+
+                                }
+
+                            }
+                        </td>
+                       
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -187,6 +187,7 @@
     <Compile Include="Areas\Admin\Controllers\BuildingController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\GroupController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TaskController.cs" />
     <Compile Include="Areas\Admin\Controllers\WorkOrderController.cs" />
     <Compile Include="Areas\Inspector\Controllers\AssetController.cs" />
     <Compile Include="Areas\Inspector\Controllers\BuildingController.cs" />
@@ -236,15 +237,28 @@
     <Compile Include="Migrations\201906140925285_ReporterAndFixerColumnsInWorkOrderTable.Designer.cs">
       <DependentUpon>201906140925285_ReporterAndFixerColumnsInWorkOrderTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906141859087_AddTasksTable.cs" />
+    <Compile Include="Migrations\201906141859087_AddTasksTable.Designer.cs">
+      <DependentUpon>201906141859087_AddTasksTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906150759451_AddTasksTable1.cs" />
+    <Compile Include="Migrations\201906150759451_AddTasksTable1.Designer.cs">
+      <DependentUpon>201906150759451_AddTasksTable1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Enums\Department.cs" />
     <Compile Include="Models\Enums\ShiftType.cs" />
     <Compile Include="Models\SystemRoles.cs" />
+    <Compile Include="Models\Tasks\Enums\InspectionStatus.cs" />
+    <Compile Include="Models\Tasks\InspectionTask.cs" />
+    <Compile Include="Models\Tasks\Enums\InspectionType.cs" />
+    <Compile Include="Models\Tasks\Enums\PeriodicInspection.cs" />
     <Compile Include="Models\Work Order\Enums\WorkOrderType.cs" />
     <Compile Include="Models\Work Order\WorkOrder.cs" />
     <Compile Include="Models\Work Order\Enums\WorkOrderStatus.cs" />
     <Compile Include="ViewModels\BuildingTreeViewModel.cs" />
     <Compile Include="ViewModels\DashBoardViewModel.cs" />
     <Compile Include="ViewModels\GroupsViewModel.cs" />
+    <Compile Include="ViewModels\TaskViewModel.cs" />
     <Compile Include="ViewModels\WorkOrderViewModel.cs" />
     <Compile Include="ViewModels\AssetsViewModel.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -475,6 +489,13 @@
     <Content Include="Areas\Admin\Views\Dashboard\newWorkAssetsToday_Partial.cshtml" />
     <Content Include="Areas\Admin\Views\WorkOrder\AssignFixer_Partial.cshtml" />
     <Content Include="Areas\Admin\Views\WorkOrder\ChangeStatus_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\TodaysTasks_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\AddTasks_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\ScheduledTasks_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\CompletedTasks_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\PausedTasks_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Task\ChangeTaskStatus_Partial.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Chart.bundle.js" />
     <Content Include="Scripts\Chart.bundle.min.js" />
@@ -652,6 +673,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906140925285_ReporterAndFixerColumnsInWorkOrderTable.resx">
       <DependentUpon>201906140925285_ReporterAndFixerColumnsInWorkOrderTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906141859087_AddTasksTable.resx">
+      <DependentUpon>201906141859087_AddTasksTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906150759451_AddTasksTable1.resx">
+      <DependentUpon>201906150759451_AddTasksTable1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

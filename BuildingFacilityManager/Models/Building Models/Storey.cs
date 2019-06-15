@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using BuildingFacilityManager.Models.Tasks;
 
 namespace BuildingFacilityManager.Models.Building_Models
 {
@@ -15,5 +16,7 @@ namespace BuildingFacilityManager.Models.Building_Models
         public int BuildingId { get; set; }
 
         public List<Space> Spaces { get; set; }
+
+        public ICollection<InspectionTask> InspectionTasks { get; set; }    
     }
 }

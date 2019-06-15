@@ -1,0 +1,101 @@
+﻿@using BuildingFacilityManager.Models.Tasks.Enums
+@model BuildingFacilityManager.ViewModels.TaskViewModel
+
+@{
+
+    using (Ajax.BeginForm("AddInspectionTask", "Task", new AjaxOptions()
+    {
+        Confirm = "Are you Sure ?",
+        HttpMethod = "Post",
+        OnSuccess = "$('.close').click();"
+
+    }))
+    {
+
+
+        <div class="modal fade" id="Add-Task" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add a new Task</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            @Html.HiddenFor(s => s.InspectionTask.Id)
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(e => e.InspectionTask.Description)
+                            @Html.TextAreaFor(e => e.InspectionTask.Description, new { @class = "form-control", style = "width: 100%; max-width: 100%;" })
+                            @Html.ValidationMessageFor(e => e.InspectionTask.Description)
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(e => e.InspectionTask.InspectorId)
+                            @Html.DropDownListFor(c => c.InspectionTask.InspectorId, new SelectList(@Model.Inspectors, "Id", "Fullname"), "Select an Inspector", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.InspectionTask.InspectorId)
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(e => e.InspectionTask.InspectionStatus)
+                            @Html.DropDownListFor(e => e.InspectionTask.InspectionStatus, EnumHelper.GetSelectList(typeof(InspectionStatus)) ,
+                                "Select Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.InspectionTask.InspectionStatus)
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(e => e.InspectionTask.StartDate)
+                            @Html.TextBoxFor(c => c.InspectionTask.StartDate, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.InspectionTask.StartDate)
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(e => e.InspectionTask.EndDate)
+                            @Html.TextBoxFor(c => c.InspectionTask.EndDate, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.InspectionTask.EndDate)
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(e => e.InspectionTask.PeriodicInspection)
+                            @Html.DropDownListFor(e => e.InspectionTask.PeriodicInspection, EnumHelper.GetSelectList(typeof(PeriodicInspection)) ,
+                                "Select Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.InspectionTask.PeriodicInspection)
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(e => e.InspectionTask.InspectionType)
+                            @Html.DropDownListFor(e => e.InspectionTask.InspectionType, EnumHelper.GetSelectList(typeof(InspectionType)) ,
+                                "Select Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.InspectionTask.InspectionType)
+                        </div>
+                        
+                        <div class="form-group">
+                            @Html.LabelFor(e => e.InspectionTask.StoreyInspectionId)
+                            @Html.DropDownListFor(c => c.InspectionTask.StoreyInspectionId, new SelectList(@Model.Stories, "Id", "Label"), "Select an Location", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.InspectionTask.StoreyInspectionId)
+
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Add" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+
+    }
+}
+
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+}
