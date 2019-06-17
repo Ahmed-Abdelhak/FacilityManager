@@ -20,9 +20,23 @@ namespace BuildingFacilityManager.Models.Assets
         public int SpaceId { get; set; }
 
         public string Vendor { get; set; }
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyy}", ApplyFormatInEditMode = true)]
         public DateTime? InstallationDate { get; set; }
+
+
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyy}", ApplyFormatInEditMode = true)]
         public DateTime? ManufacturedDate { get; set; }
+
+
         public float Price { get; set; }
+
+
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:MM-dd-yyy}", ApplyFormatInEditMode = true)]
         public string PurchaseDate { get; set; }
         public string Warranty { get; set; }
         public string ExpectedLife { get; set; }

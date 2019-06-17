@@ -43,7 +43,7 @@ namespace BuildingFacilityManager.Models.Work_Order
         /*
          
         1- Run end 2 end Tests
-           2- New Rule (Organization Manager)
+           2- New Rule (Fixer Manager)
            3- Assign of Work Orders to a Fixer is based on the department ( Type of Asset )
            4- Assign of Work Orders is based on Availability and Shift type ( Night or Today ) 
            5- Split the Work Order to ( Internal Tasks , Associate Materials, Tools and Services )

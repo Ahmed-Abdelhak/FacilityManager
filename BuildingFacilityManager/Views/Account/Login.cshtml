@@ -5,52 +5,61 @@
     ViewBag.Title = "Log in";
     Layout = "../Shared/_LayoutCustom.cshtml";
 }
+<style type="text/css">.bg-blue-login {
+     background-color: #286ca7 !important;
+ }
 
+</style>
 
-<body class="bg-dark">
+<body background="~/Content/Images/background.jpg" class="bg-blue-login">
+    <img style=" display:block; margin:auto;" src="~/Content/Images/sign-logo.png"/>
 
-    <div class="container">
-        <div class="card card-login mx-auto mt-5">
-            <div class="card-header">Login</div>
-            <div class="card-body">
-                @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                {
-                    @Html.AntiForgeryToken()
-                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <h3 class="btn btn-info" style="margin-left: 430px;">Facility Manager System Login</h3>
+<div class="container">
+    <div class="card card-login mx-auto mt-5">
+        <div class="card-header">Login</div>
+        <div class="card-body">
+            @using (Html.BeginForm("Login", "Account", new {ReturnUrl = ViewBag.ReturnUrl}, FormMethod.Post, new {@class = "form-horizontal", role = "form"}))
+            {
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
 
-                    <div class="form-group">
-                        <div class="form-label-group">
-                            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", @placeholder = "Email address", @autofocus = "autofocus" })
-                            @Html.ValidationMessageFor(m => m.Email, "", new { @class = "text-danger" })
-                            <label for="Email">Email address</label>
-                        </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        @Html.TextBoxFor(m => m.Email, new {@class = "form-control", @placeholder = "Email address", @autofocus = "autofocus"})
+                        @Html.ValidationMessageFor(m => m.Email, "", new {@class = "text-danger"})
+                        <label for="Email">Email address</label>
                     </div>
-                    <div class="form-group">
-                        <div class="form-label-group">
-                            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-                            @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
-                            <label for="Password">Password</label>
-                        </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-label-group">
+                        @Html.PasswordFor(m => m.Password, new {@class = "form-control"})
+                        @Html.ValidationMessageFor(m => m.Password, "", new {@class = "text-danger"})
+                        <label for="Password">Password</label>
                     </div>
-                    <div class="form-group">
-                        <div class="checkbox">
-                            @Html.CheckBoxFor(m => m.RememberMe)
-                            @Html.LabelFor(m => m.RememberMe)
-                        </div>
+                </div>
+                <div class="form-group">
+                    <div class="checkbox">
+                        @Html.CheckBoxFor(m => m.RememberMe)
+                        @Html.LabelFor(m => m.RememberMe)
                     </div>
-                    <input type="submit" value="Log in" class="btn btn-primary btn-block" />
+                </div>
+                <input type="submit" value="Log in" class="btn btn-primary btn-block"/>
 
-                }
+            }
 
-            </div>
         </div>
     </div>
+</div>
 
 
 
 </body>
 
-
+<br />
+<br />
+<br />
+<br />
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

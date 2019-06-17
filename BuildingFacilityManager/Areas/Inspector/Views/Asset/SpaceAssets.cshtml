@@ -1,0 +1,56 @@
+﻿@using Antlr.Runtime.Tree
+@model List<BuildingFacilityManager.Models.Assets.Asset>
+@{
+    ViewBag.Title = ViewBag.spaceLabel;
+    Layout = "../Shared/_Layout.cshtml";
+
+}
+
+<h2>@ViewBag.spaceLabel Assets</h2>
+
+<table class="table table-hover table-striped" id="assets">
+    <thead>
+        <tr>
+            <th>Id</th>
+            <th>Label</th>
+            <th>Status</th>
+            <th>Type</th>
+            <th>Details</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var asset in Model)
+        {
+
+            <tr id="id-@asset.Id">
+
+                <td>
+                    @asset.Id
+                </td>
+                <td>
+                    @asset.Label
+                </td>
+                <td>
+                    @asset.AssetStatus
+                </td>
+                <td>
+                    @asset.AssetType
+                </td>
+                <td>
+                    @Html.ActionLink("View Details", "AssetsDetails", new { id = asset.Id }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Add Work Order", "AddWorkOrderFromSpaceAssetsForm", new { id = asset.Id }, new { @class = "btn btn-danger" })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#assets").DataTable();
+        });
+    </script>
+}

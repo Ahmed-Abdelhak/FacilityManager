@@ -89,6 +89,7 @@ namespace BuildingFacilityManager.Controllers
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
             var user = UserManager.Users.SingleOrDefault(u => u.Email == model.Email);
+
             var userRole = RoleManager.Roles.SingleOrDefault(r => r.Users.Any(u => u.UserId == user.Id));
 
             if (!ModelState.IsValid)
@@ -103,22 +104,25 @@ namespace BuildingFacilityManager.Controllers
             {
                 case SignInStatus.Success:
 
+
+
                     // if you used User.IsInRole(), it won't work !
                     //                                              because the method is Async
-                                                                 // still no data about the User
-
-                    if (userRole.Name == "Admin")
+                    // still no data about the User
+                    
+                    if (userRole.Name == SystemRoles.Admin)
                     {
                         return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
                     }
-                    else if (userRole.Name == "Inspector")
+                    else if (userRole.Name == SystemRoles.Inspector)
                     {
                         return RedirectToAction("Index", "Dashboard", new { area = "Inspector" });
                     }
-                    else if (userRole.Name == "Organization")
+                    else if (userRole.Name == SystemRoles.Fixer)
                     {
                         return RedirectToAction("Index", "Dashboard", new { area = "Org" });
                     }
+
                     return RedirectToLocal(returnUrl);
                 case SignInStatus.LockedOut:
                     return View("Lockout");
@@ -187,9 +191,14 @@ namespace BuildingFacilityManager.Controllers
             List<SelectListItem> list = new List<SelectListItem>();
             foreach (var role in RoleManager.Roles)
                 list.Add(new SelectListItem() { Value = role.Name, Text = role.Name });
-            ViewBag.RoleName = list;
+            //ViewBag.RoleName = list;
 
-            return View();
+            var model = new RegisterFromAdminViewModel()
+            {
+                Roles = list
+            };
+
+            return View(model);
         }
 
         [HttpPost]

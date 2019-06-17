@@ -52,7 +52,8 @@
     <div class="form-group">
         @Html.LabelFor(m => m.RoleName, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownList("RoleName", new SelectList(ViewBag.RoleName,"Value","Text"), new { @class = "form-control" }) 
+            @*@Html.DropDownList("RoleName", new SelectList(ViewBag.RoleName,"Value","Text",null, null,"Admin"), new { @class = "form-control" })*@ 
+            @Html.DropDownList("RoleName", new SelectList(@Model.Roles.Where(x=>x.Value != "Admin"),"Value","Text"), new { @class = "form-control" }) 
 
         </div>
     </div>

@@ -2,7 +2,7 @@
 {
     public enum InspectionType
     {
-        Location_Inspection = 1,
-        Asset_Inspection = 2
+        ByLocation = 1,
+        SpecialAssetInspection = 2
     }
 }

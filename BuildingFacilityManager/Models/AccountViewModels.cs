@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 using BuildingFacilityManager.Models.Enums;
 
 namespace BuildingFacilityManager.Models
@@ -86,6 +87,8 @@ namespace BuildingFacilityManager.Models
         public Department? Department { get; set; }
 
         public string RoleName { get; set; }
+
+        public List<SelectListItem> Roles { get; set; }
     }
 
     public class RegisterViewModel
@@ -103,7 +106,7 @@ namespace BuildingFacilityManager.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -122,7 +125,7 @@ namespace BuildingFacilityManager.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }

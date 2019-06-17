@@ -1,7 +1,39 @@
-﻿
+﻿@model BuildingFacilityManager.ViewModels.DashBoardViewModel
 @{
-    ViewBag.Title = "Inspector Dashboard";
-    Layout = "../Shared/_Layout.cshtml";
+    Layout = "~/Areas/Inspector/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Dashboard";
+}
+<style type="text/css">
+    .col-xl-3.col-sm-6.mb-3 {
+        padding-bottom: 5px;
+    }
+</style>
+
+@Html.Partial("IconCardsTodayStats_Partial")
+
+@Html.Partial("MyNewTasksToday_Partial")
+@Html.Partial("ChangeTaskStatus_Partial")
+
+@Html.Partial("MyScheduledTasks_Partial")
+@Html.Partial("MyTodayWorkOrders_Partial")
+
+
+@section styles {
+    @Styles.Render("~/Content/sb-adminCustom.css")
+    @Styles.Render("~/Content/fonts/all.css")
 }
 
-<h2>Inspector Dashboard</h2>
+@section Scripts {
+
+    @Scripts.Render("~/Scripts/jquery.easing.min.js");
+    @Scripts.Render("~/bundles/jquery");
+    @Scripts.Render("~/bundles/charts");
+    <script>
+        $(document).ready(function () {
+            $("#TodayTasksTable").DataTable();
+            $("#ScheduledTasksTable").DataTable();
+            $("#workOrderTable").DataTable();
+        });
+
+    </script>
+}

@@ -12,7 +12,7 @@ using BuildingFacilityManager.ViewModels;
 
 namespace BuildingFacilityManager.Areas.Inspector.Controllers
 {
-    public class WorkOrderController : BaseController
+    public class WorkOrderController : InspectorAuthorizationController
     {
         private readonly ApplicationDbContext _context;
 

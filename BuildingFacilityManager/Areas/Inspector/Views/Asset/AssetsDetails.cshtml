@@ -1,0 +1,26 @@
+﻿@model BuildingFacilityManager.ViewModels.WorkOrderViewModel
+@{
+    ViewBag.Title = @Model.Asset.Label + " " + "Details";
+    Layout = "../Shared/_Layout.cshtml";
+
+}
+
+@Html.Partial("SingleAssetDetails_Partial", Model)
+
+
+@Html.Partial("SingleAssetDetailsOrderTable_Partial", Model)
+
+
+@Html.Partial("Add_WorKOrder_Asset_Details_Partial")
+
+@Html.Partial("AssignFixer_Partial")
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#workOrderTable").DataTable();
+            $("#assetsWorkOrder").DataTable();
+        });
+    </script>
+}

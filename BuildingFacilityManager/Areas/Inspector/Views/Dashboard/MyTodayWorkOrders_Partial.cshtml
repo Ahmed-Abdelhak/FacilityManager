@@ -1,20 +1,18 @@
-﻿@model BuildingFacilityManager.ViewModels.AssetsViewModel
-@{
-    /**/
+﻿@model BuildingFacilityManager.ViewModels.DashBoardViewModel
 
-    ViewBag.Title = ViewBag.AssetLabel;
-    Layout = "../Shared/_Layout.cshtml";
-}
+<hr/>
+<br/>
+<h3>My Today's Reported Work Orders</h3>
 
-<h3>Work Orders for @ViewBag.AssetLabel</h3>
 <div class="thumbnail">
 
     <div class="caption">
-        <table class="table table-hover table-bordered" id="assetsWorkOrder">
+        <table class="table table-hover table-bordered" id="workOrderTable">
             <thead>
                 <tr>
                     <th>Id</th>
                     <th>Description</th>
+                    <th>Type</th>
                     <th>Status</th>
                     <th>Asset</th>
                     <th>Location</th>
@@ -25,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach (var work in Model.WorkOrders)
+                @foreach (var work in Model.MyCreatedWorkOrdersToday)
                 {
 
                     <tr id="id-@work.Id">
@@ -37,7 +35,11 @@
                             @work.Description
                         </td>
                         <td>
+                            @work.WorkOrderType
+                        </td>
+                        <td>
                             @work.WorkOrderStatus
+
                         </td>
                         <td>
                             @work.Asset.Label
@@ -76,17 +78,5 @@
                 }
             </tbody>
         </table>
-
-
     </div>
 </div>
-
-
-@section scripts
-{
-    <script>
-        $(document).ready(function () {
-            $("#assetsWorkOrder").DataTable();
-        });
-    </script>
-}
