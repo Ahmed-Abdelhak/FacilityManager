@@ -4,8 +4,10 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Mvc.Ajax;
 using BuildingFacilityManager.Controllers;
 using BuildingFacilityManager.Models;
+using BuildingFacilityManager.Models.Tasks.Enums;
 using BuildingFacilityManager.Models.Work_Order.Enums;
 using BuildingFacilityManager.ViewModels;
 
@@ -30,6 +32,12 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
+            var today = DateTime.Today;
+            var todayLastWeek = today.AddDays(-7);
+            //var todayLastWeek = today.(-7);
+            var tomorrow = today.AddDays(1);
+            var yesterday = today.AddDays(-1);
+
             var model = new DashBoardViewModel()
             {
                 WorkOrders = _context.WorkOrders.Where(w=>
@@ -92,11 +100,45 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
 
                     .Include(a => a.Space)
                     .Include(a => a.RelatedAssets)
-                    .ToList()
+                    .ToList(),
+                DashBoardUsers = _context.Users.ToList(),
+               TodayInspectionTasks = _context.InspectionTasks
+                    .Where(t =>
+                        DbFunctions.TruncateTime(t.StartDate)
+                        == DbFunctions.TruncateTime(today) 
+                        ||
+                        DbFunctions.TruncateTime(today)
+                        <= DbFunctions.TruncateTime(t.EndDate) &&
+                        DbFunctions.TruncateTime(today)
+                        >= DbFunctions.TruncateTime(t.StartDate)
+                        /*  today <= t.EndDate && today >= t.StartDate */
+                        && t.PeriodicInspection == PeriodicInspection.Daily
+                       
+
+                        ||
+
+                        // Stupid Code starts from Here !
+
+                        today.Day == (t.StartDate.Value.Day + 7) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                       
+                        ||
+                        today.Day == (t.StartDate.Value.Day + 14) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                       
+                        ||
+                        today.Day == (t.StartDate.Value.Day + 21) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                     
+                        ||
+                        today.Day == (t.StartDate.Value.Day + 28) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                       
+                    )
+
+                    .Include(t => t.StoreyInspection)
+                    .ToList(),
             };
             return View(model);
         }
 
 
+      
     }
 }

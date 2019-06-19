@@ -1,4 +1,5 @@
-﻿<h3>Today's new Work Orders</h3>
+﻿@model BuildingFacilityManager.ViewModels.DashBoardViewModel
+<h3>Today's new Work Orders</h3>
 
 
 <div class="thumbnail">
@@ -14,36 +15,63 @@
                     <th>Location</th>
                     <th>Storey</th>
                     <th>Date</th>
+                    <th>Reporter</th>
+                    <th>Fixer</th>
+                    <th>Fixer Notes</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (var work in Model.WorkOrders)
                 {
 
-                    <tr id="id-@work.Id">
+                <tr id="id-@work.Id">
 
-                        <td>
-                            @work.Id
-                        </td>
-                        <td>
-                            @work.Description
-                        </td>
-                        <td>
-                            @work.WorkOrderStatus
-                        </td>
-                        <td>
-                            @work.Asset.Label
-                        </td>
-                        <td>
-                            @work.Asset.Space.Label
-                        </td>
-                        <td>
-                            @work.Asset.Space.Storey.Label
-                        </td>
-                        <td>
-                            @work.Date
-                        </td>
-                    </tr>
+                    <td>
+                        @work.Id
+                    </td>
+                    <td>
+                        @work.Description
+                    </td>
+                    <td>
+                        @work.WorkOrderStatus
+                    </td>
+                    <td>
+                        @work.Asset.Label
+                    </td>
+                    <td>
+                        @work.Asset.Space.Label
+                    </td>
+                    <td>
+                        @work.Asset.Space.Storey.Label
+                    </td>
+                    <td>
+                        @work.Date
+                    </td>
+                   
+                    <td>
+                        @{
+                            if (@work.Reporter != null)
+                            {
+                                @work.Reporter.Fullname
+
+                            }
+
+                        }
+                    </td>
+                    <td>
+                        @{
+                            if (@work.Fixer != null)
+                            {
+                                @work.Fixer.Fullname
+
+                            }
+
+                        }
+                    </td>
+                    <td>
+                        @work.FixerNotes
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

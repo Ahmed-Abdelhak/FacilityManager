@@ -33,6 +33,8 @@ namespace BuildingFacilityManager.Models.Tasks
         [Display(Name = "Location")]
         public int? StoreyInspectionId { get; set; }
 
+        public string InspectionNotes { get; set; }
+
 
         /*  This is for Emergency Assets like the Elevator and Plumping ... etc  */
         // public SpecialAsset SpecialAsset { get; set;} 

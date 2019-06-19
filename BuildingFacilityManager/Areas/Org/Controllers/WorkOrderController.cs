@@ -10,7 +10,7 @@ using BuildingFacilityManager.ViewModels;
 
 namespace BuildingFacilityManager.Areas.Org.Controllers
 {
-    public class WorkOrderController : BaseController
+    public class WorkOrderController : OrgAuthorizationController
     {
         private readonly ApplicationDbContext _context;
 

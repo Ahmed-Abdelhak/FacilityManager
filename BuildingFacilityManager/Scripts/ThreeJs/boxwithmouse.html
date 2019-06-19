@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>RSCEDIT - Test</title>
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        #main {
+            width: 100%;
+            height: 100%;
+            display: block;
+            padding: 0;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <canvas id="main"></canvas>
+    </div>
+
+    <script src="https://rscedit.io/assets/client/js/core/libraries/jquery.min.js"></script>
+
+    <script type="text/javascript" src="https://rscedit.io/assets/client/js/threejs/three.min.js"></script>
+    <script type="text/javascript" src="https://rscedit.io/assets/client/js/threejs/Detector.js"></script>
+    <script type="text/javascript" src="https://rscedit.io/assets/client/js/threejs/controls/OrbitControls.js"></script>
+    <script type="text/javascript" src="https://rscedit.io/assets/client/js/threejs/Projector.js"></script>
+    <script type="text/javascript" src="https://rscedit.io/assets/client/js/threejs/dat.gui.min.js"></script>
+
+    <script>
+
+        var canvas = document.getElementById('main');
+
+        var renderer = new THREE.WebGLRenderer({
+            canvas: canvas
+        });
+
+        var scene = new THREE.Scene();
+
+        var camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / canvas.clientHeight, 1, 100000);
+
+        var geometry = new THREE.Geometry();
+
+        var rayCaster = new THREE.Raycaster();
+
+        var controls;
+
+        var dragging = false;
+
+        var startPosition = {
+            x: 0,
+            y: 0
+        };
+
+        var vertexSize = 2;
+
+        onLoad();
+
+        function onLoad() {
+
+            canvas.onmousedown = onMouseDown;
+            canvas.onmousemove = onDrag;
+            canvas.onmouseup = onMouseUp;
+
+            renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+
+            camera.position.set(0, 0, 25.0);
+            scene.add(camera);
+
+            /*
+             * Create a Rectangle
+             */
+            geometry.vertices.push(new THREE.Vector3(-vertexSize, vertexSize, 0.0));
+            geometry.vertices.push(new THREE.Vector3(vertexSize, vertexSize, 0.0));
+            geometry.vertices.push(new THREE.Vector3(vertexSize, -vertexSize, 0.0));
+            geometry.vertices.push(new THREE.Vector3(-vertexSize, -vertexSize, 0.0));
+            geometry.faces.push(new THREE.Face3(0, 1, 2));
+            geometry.faces.push(new THREE.Face3(0, 2, 3));
+
+            var material = new THREE.MeshBasicMaterial({
+                color: 0xDB1E1E,
+                wireframe: true
+            });
+
+            var mesh = new THREE.Mesh(geometry, material);
+            mesh.rotation.x = Math.PI / 2;
+            scene.add(mesh);
+
+            var gridSize = 20;
+            var divisions = 20;
+            var gridHelper = new THREE.GridHelper(gridSize, divisions);
+            scene.add(gridHelper);
+
+            controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+            render();
+        }
+
+        function update(index, x, y) {
+            geometry.vertices[index].set(x, y, 0);
+            geometry.verticesNeedUpdate = true;
+        }
+
+        function render() {
+            requestAnimationFrame(render);
+            renderer.render(scene, camera);
+        }
+
+        function onMouseDown(e) {
+            var relative = get3DPosition(e);
+            if (!relative) {
+                return;
+            }
+            dragging = true;
+            startPosition.x = e.pageX;
+            startPosition.y = e.pageY;
+            scene.children[1].position.set(relative.x + vertexSize, relative.y, relative.z);
+            controls.enabled = false;
+        }
+
+        function onDrag(e) {
+            if (dragging) {
+                var clientX = (e.pageX - startPosition.x) / 50;
+                var clientY = (e.pageY - startPosition.y) / 50;
+                var vertices = geometry.vertices;
+                vertices[1].x = clientX;
+                vertices[2].x = clientX;
+                vertices[2].y = -clientY;
+                vertices[3].y = -clientY;
+                geometry.verticesNeedUpdate = true;
+            }
+        }
+
+        function onMouseUp(e) {
+            dragging = false;
+            controls.enabled = true;
+        }
+
+        function get3DPosition(event) {
+            var offset = $(canvas).offset();
+            var position = {
+                x: ((event.clientX - offset.left) / canvas.clientWidth) * 2 - 1,
+                y: -((event.clientY - offset.top) / canvas.clientHeight) * 2 + 1
+            };
+            rayCaster.setFromCamera(position, camera);
+            var intersects = rayCaster.intersectObjects(scene.children, true);
+            if (intersects.length > 0) {
+                return intersects[0].point;
+            }
+        }
+
+    </script>
+</body>
+</html> 

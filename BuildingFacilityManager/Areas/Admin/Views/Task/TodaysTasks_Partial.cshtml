@@ -17,6 +17,7 @@
                     <th>Periodic Inspection</th>
                     <th>Inspection Type</th>
                     <th>Location</th>
+                    <th>Inspection Notes</th>
                     <th>Actions</th>
 
                 </tr>
@@ -25,59 +26,62 @@
                 @foreach (var task in Model.TodayInspectionTasks)
                 {
 
-                    <tr id="id-@task.Id">
+                <tr id="id-@task.Id">
 
-                        <td>
-                            @task.Id
-                        </td>
-                        <td>
-                            @task.Description
-                        </td>
-                        <td>
-                            @{
-                                if (task.Inspector != null)
-                                {
-                                    @task.Inspector.Fullname
-
-                                }
+                    <td>
+                        @task.Id
+                    </td>
+                    <td>
+                        @task.Description
+                    </td>
+                    <td>
+                        @{
+                            if (task.Inspector != null)
+                            {
+                                @task.Inspector.Fullname
 
                             }
-                        </td>
-                        <td>
-                            @task.InspectionStatus
 
-                        </td>
-                        <td>
-                            @task.StartDate
-                        </td>
-                        <td>
-                            @task.EndDate
-                        </td>
-                        <td>
-                            @task.PeriodicInspection
-                        </td>
-                        <td>
-                            @task.InspectionType
-                        </td>
-                        <td>
-                            @{
-                                if (@task.StoreyInspection != null)
-                                {
-                                    @task.StoreyInspection.Label
+                        }
+                    </td>
+                    <td>
+                        @task.InspectionStatus
 
-                                }
+                    </td>
+                    <td>
+                        @task.StartDate
+                    </td>
+                    <td>
+                        @task.EndDate
+                    </td>
+                    <td>
+                        @task.PeriodicInspection
+                    </td>
+                    <td>
+                        @task.InspectionType
+                    </td>
+                    <td>
+                        @{
+                            if (@task.StoreyInspection != null)
+                            {
+                                @task.StoreyInspection.Label
 
                             }
-                        </td>
-                        <td>
 
-                            <button type="button" title="Change Status" style="background-color: skyblue; background-repeat: no-repeat; border: none;cursor: pointer; overflow: hidden; outline: none;" data-toggle="modal" data-target="#Change-Status" onclick="TaskIdForStatusChange(@task.Id)">
-                                <span class="far fa-edit" aria-hidden="true"></span>
-                            </button>
+                        }
+                    </td>
+                    <td>
+                        @task.InspectionNotes
+                    </td>
+                    <td>
+
+                        <button type="button" title="Change Status" style="background-color: skyblue; background-repeat: no-repeat; border: none;cursor: pointer; overflow: hidden; outline: none;" data-toggle="modal" data-target="#Change-Status" onclick="TaskIdForStatusChange(@task.Id)">
+                            <span class="far fa-edit" aria-hidden="true"></span>
+                        </button>
 
 
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                 }
             </tbody>
         </table>

@@ -1,0 +1,136 @@
+﻿@using BuildingFacilityManager.Models.Assets.Enums
+@model BuildingFacilityManager.ViewModels.AssetsViewModel
+
+
+@{
+
+    using (Ajax.BeginForm("AddAsset", "Asset", new AjaxOptions()
+    {
+        Confirm = "Are you Sure ?",
+        HttpMethod = "Post",
+        UpdateTargetId = "Asset-table",
+        InsertionMode = InsertionMode.InsertAfter,
+        OnSuccess = "$('.close').click();"
+
+    }))
+    {
+
+
+        <div class="modal fade" id="myModal-AddAsset" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add a new Asset</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            @Html.HiddenFor(s => s.Asset.Id)
+
+                        </div>
+
+                        <div>
+                            @Html.LabelFor(e => e.Asset.Label)
+                            @Html.TextBoxFor(e => e.Asset.Label, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Asset.Label)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Asset.SpaceId)
+                            @Html.DropDownListFor(e => e.Asset.SpaceId,  new SelectList(Model.Spaces, "Id","Label"),
+                                "Select Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Asset.SpaceId)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Asset.AssetStatus)
+                            @Html.DropDownListFor(e => e.Asset.AssetStatus, EnumHelper.GetSelectList(typeof(AssetStatus)) ,
+                                "Select Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Asset.AssetStatus)
+
+                        </div>
+                        
+                        <div>
+                            @Html.LabelFor(e => e.Asset.AssetType)
+                            @Html.DropDownListFor(e => e.Asset.AssetType, EnumHelper.GetSelectList(typeof(AssetType)) ,
+                                "Select Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Asset.AssetType)
+
+                        </div>
+                        
+                        <div>
+                            @Html.LabelFor(e => e.Asset.InstallationDate)
+                            @Html.TextBoxFor(e => e.Asset.InstallationDate, new { @class = "datepicker form-control", @type = "date" })
+                            @Html.ValidationMessageFor(e => e.Asset.InstallationDate)
+
+                        </div>
+                        
+                        <div>
+                            @Html.LabelFor(e => e.Asset.ManufacturedDate)
+                            @Html.TextBoxFor(e => e.Asset.ManufacturedDate, new { @class = "datepicker form-control", @type = "date" })
+                            @Html.ValidationMessageFor(e => e.Asset.ManufacturedDate)
+
+                        </div>
+                        
+                        <div>
+                            @Html.LabelFor(e => e.Asset.Price)
+                            @Html.TextBoxFor(e => e.Asset.Price, new { placeholder="Price is in EGP", @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Asset.Price)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Asset.PurchaseDate)
+                            @Html.TextBoxFor(e => e.Asset.PurchaseDate, new { @class = "datepicker form-control", @type = "date" })
+                            @Html.ValidationMessageFor(e => e.Asset.PurchaseDate)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Asset.Vendor)
+                            @Html.TextBoxFor(e => e.Asset.Vendor, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Asset.Vendor)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Asset.Warranty)
+                            @Html.TextBoxFor(e => e.Asset.Warranty, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Asset.Warranty)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Asset.ExpectedLife)
+                            @Html.TextBoxFor(e => e.Asset.ExpectedLife, new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Asset.ExpectedLife)
+
+                        </div>
+                        
+                        @*<div>
+                            @Html.LabelFor(e => e.Asset.RelatedAssets)
+                            @Html.DropDownListFor(e => e.Asset.RelatedAssets,  new SelectList(Model.Assets, "Id","Label"),
+                                "Select Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.Asset.RelatedAssets)
+
+                        </div>*@
+                       
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+
+    }
+}
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+

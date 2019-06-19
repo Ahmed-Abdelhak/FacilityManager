@@ -5,6 +5,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using BuildingFacilityManager.Models;
+using Newtonsoft.Json;
 
 namespace BuildingFacilityManager.Controllers.APIControllers
 {
@@ -44,6 +45,8 @@ namespace BuildingFacilityManager.Controllers.APIControllers
             }
             return Ok(assets);
         }
+
+       
 
     }
 }

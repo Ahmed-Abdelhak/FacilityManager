@@ -1,0 +1,18 @@
+namespace BuildingFacilityManager.Migrations
+{
+    using System;
+    using System.Data.Entity.Migrations;
+    
+    public partial class AddColumnFixerNotesToWorkOrderTable : DbMigration
+    {
+        public override void Up()
+        {
+            AddColumn("dbo.WorkOrders", "FixerNotes", c => c.String());
+        }
+        
+        public override void Down()
+        {
+            DropColumn("dbo.WorkOrders", "FixerNotes");
+        }
+    }
+}

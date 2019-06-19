@@ -33,6 +33,8 @@ namespace BuildingFacilityManager.Models.Work_Order
         [ForeignKey("Fixer")]
         public string FixerId { get; set; }
 
+        public string FixerNotes { get; set; }
+
 
         /*
      1-   Attachments Property

@@ -26,6 +26,8 @@ namespace BuildingFacilityManager.Areas.Inspector.Controllers
         {
             var mytask = _context.InspectionTasks.SingleOrDefault(w => w.Id == inspectionTask.Id);
             if (mytask != null && inspectionTask.InspectionStatus != 0) mytask.InspectionStatus = inspectionTask.InspectionStatus;
+            if (mytask != null && inspectionTask.InspectionNotes != null) mytask.InspectionNotes = inspectionTask.InspectionNotes;
+
 
             _context.SaveChanges();
             return RedirectToAction("Index","Dashboard");

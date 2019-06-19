@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 using System.Security.Claims;
@@ -21,9 +22,6 @@ namespace BuildingFacilityManager.Models
         public string LastName { get; set; }
         [NotMapped]
         public string Fullname { get { return string.Concat(FirstName + " " + LastName); } }
-
-        public int? FirstLogin { get; set; } = 1;
-
 
         public ShiftType? ShiftType { get; set; }
         public Department? Department { get; set; }
@@ -65,5 +63,6 @@ namespace BuildingFacilityManager.Models
         {
             return new ApplicationDbContext();
         }
+
     }
 }

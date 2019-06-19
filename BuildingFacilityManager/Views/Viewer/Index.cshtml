@@ -1,0 +1,41 @@
+﻿@model BuildingFacilityManager.ViewModels.BuildingViewerViewModel
+@using System.Web.Script.Serialization
+@using Newtonsoft.Json
+@using Newtonsoft.Json.Serialization
+
+@{
+    ViewBag.Title = "title";
+}
+
+<h2>title</h2>
+
+@{
+
+
+    var assetsList = JsonConvert.SerializeObject(@Model.Assets,
+        Formatting.Indented,
+        new JsonSerializerSettings()
+        {
+            ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore,
+            ContractResolver = new CamelCasePropertyNamesContractResolver()
+        });
+
+
+    
+}
+
+
+    <div id="webgl"></div>
+
+
+@section scripts{
+    <script>
+
+        Assets = @Html.Raw(@assetsList) 
+
+        
+       
+    </script>  
+    
+   
+}

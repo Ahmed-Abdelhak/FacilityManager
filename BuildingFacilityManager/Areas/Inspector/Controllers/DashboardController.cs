@@ -88,6 +88,8 @@ namespace BuildingFacilityManager.Areas.Inspector.Controllers
                     .Include(w => w.Asset.Space)
                     .Include(w => w.Asset.Space.Storey)
                     .ToList(),
+                DashBoardUsers = _context.Users.ToList(),
+                
                 
             };
             return View(model);

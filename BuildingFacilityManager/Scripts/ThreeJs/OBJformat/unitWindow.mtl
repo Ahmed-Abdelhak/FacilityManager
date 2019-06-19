@@ -1,0 +1,127 @@
+
+newmtl 1_Shady_window_Definition1
+Kd 0.854901969432831 0.890196084976196 0.878431379795074
+d 0.15
+Tr 0.85
+Tf 0.400000035763 0.400000035763 0.400000035763 
+illum 2
+newmtl 1_Shady_window_Definition2
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition3
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition4
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition5
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition6
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition7
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition8
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition9
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition10
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition11
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition12
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition13
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition14
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition15
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition16
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition17
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition18
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition19
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition20
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition21
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition22
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition23
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition24
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition25
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition26
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition27
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition28
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition29
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition30
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1
+newmtl 1_Shady_window_Definition31
+Kd 0.533333361148834 0.388235300779343 0.215686276555061
+map_Kd unit_Window_mtl_res\Woods_&_Plastics.Finish_Carpentry.Wood.Red_Birch.png
+d 1

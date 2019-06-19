@@ -1,0 +1,25 @@
+
+newmtl 1_Unit_wall_Definition1
+Kd 0.458823531866074 0.458823531866074 0.427450984716415
+map_Kd Unit_wall_mtl_res\CMU_Running_200x400_Gray.png
+d 1
+newmtl 1_Unit_wall_Definition2
+Kd 0.458823531866074 0.458823531866074 0.427450984716415
+map_Kd Unit_wall_mtl_res\CMU_Running_200x400_Gray.png
+d 1
+newmtl 1_Unit_wall_Definition3
+Kd 0.458823531866074 0.458823531866074 0.427450984716415
+map_Kd Unit_wall_mtl_res\CMU_Running_200x400_Gray.png
+d 1
+newmtl 1_Unit_wall_Definition4
+Kd 0.458823531866074 0.458823531866074 0.427450984716415
+map_Kd Unit_wall_mtl_res\CMU_Running_200x400_Gray.png
+d 1
+newmtl 1_Unit_wall_Definition5
+Kd 0.458823531866074 0.458823531866074 0.427450984716415
+map_Kd Unit_wall_mtl_res\CMU_Running_200x400_Gray.png
+d 1
+newmtl 1_Unit_wall_Definition6
+Kd 0.458823531866074 0.458823531866074 0.427450984716415
+map_Kd Unit_wall_mtl_res\CMU_Running_200x400_Gray.png
+d 1

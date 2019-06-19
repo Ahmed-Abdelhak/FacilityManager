@@ -1,0 +1,28 @@
+﻿@using BuildingFacilityManager.Models.Building_Models
+@using BuildingFacilityManager.ViewModels
+@{
+    var building = (BuildingTreeViewModel)ViewBag.BuildingTreeViewModel;
+
+}
+<div class="sidenav">
+    <h4 class="btn btn-primary" id="buildingTree">My Building</h4>
+    <ul id="nav">
+
+        @foreach (var storey in building.Stories)
+        {
+            <li>
+                <a style="color: #ce8d16;" href="#"><i class="fas fa-warehouse"></i> @storey.Label Storey</a>
+                <ul class="nested-nav-ul">
+                    @foreach (var space in @storey.Spaces)
+                    {
+                        <li>@Html.ActionLink(" " + space.Label, "SpaceAssets", "Asset", new { id = space.Id }, new { @class = "fas fa-building" })</li>
+                    }
+                </ul>
+            </li>
+        }
+
+
+
+    </ul>
+    <img src="~/Content/Images/arrow-sidebar-Org.png"/>
+</div>

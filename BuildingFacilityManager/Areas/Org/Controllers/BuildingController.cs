@@ -7,7 +7,7 @@ using BuildingFacilityManager.Controllers;
 
 namespace BuildingFacilityManager.Areas.Org.Controllers
 {
-    public class BuildingController : BaseController
+    public class BuildingController : OrgAuthorizationController
     {
         // GET: Org/Building
         public ActionResult Index()

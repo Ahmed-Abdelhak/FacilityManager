@@ -1,0 +1,43 @@
+﻿@model BuildingFacilityManager.ViewModels.DashBoardViewModel
+
+<br/>
+
+
+<div class="row">
+  
+    
+    <div class="col-sm-4 mb-3">
+        <div class="card text-white bg-danger o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fas fa-fw fa-list"></i>
+                </div>
+                <div class="mr-5">(@Model.MyAssignedWorkOrdersToday.Count) My Today's Work Orders</div>
+            </div>
+            <a class="card-footer text-white clearfix small z-1" href="#workOrderTableToday">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+    
+    <div class="col-sm-4 mb-3">
+        <div class="card text-white bg-success o-hidden h-100">
+            <div class="card-body">
+                <div class="card-body-icon">
+                    <i class="fas fa-fw fa-list"></i>
+                </div>
+                <div class="mr-5">(@Model.MyAssignedWorkOrdersTotal.Count) Total Assigned Work Orders</div>
+            </div>
+            <a class="card-footer text-white clearfix small z-1" href="#workOrderTableAll">
+                <span class="float-left">View Details</span>
+                <span class="float-right">
+                    <i class="fas fa-angle-right"></i>
+                </span>
+            </a>
+        </div>
+    </div>
+
+</div>

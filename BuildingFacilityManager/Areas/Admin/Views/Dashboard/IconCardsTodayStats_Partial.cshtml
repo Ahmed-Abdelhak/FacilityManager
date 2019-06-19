@@ -1,8 +1,9 @@
-﻿<h3>Today's new Stats</h3>
+﻿@model BuildingFacilityManager.ViewModels.DashBoardViewModel
+<h3>Today's new Stats</h3>
 
 <div class="row">
     <div class="col-sm-4 mb-3">
-        <div class="card text-white bg-primary o-hidden h-100">
+        <div class="card text-white bg-danger o-hidden h-100">
             <div class="card-body">
                 <div class="card-body-icon">
                     <i class="fas fa-fw fa-list"></i>
@@ -24,7 +25,7 @@
                 <div class="card-body-icon">
                     <i class="fas fa-fw fa-shopping-cart"></i>
                 </div>
-                <div class="mr-5">3 new Purchase Orders</div>
+                <div class="mr-5">(0) new Purchase Orders</div>
             </div>
             <a class="card-footer text-white clearfix small z-1" href="#">
                 <span class="float-left">View Details</span>
@@ -36,14 +37,14 @@
     </div>
 
     <div class="col-sm-4 mb-3">
-        <div class="card text-white bg-danger o-hidden h-100">
+        <div class="card text-white bg-primary o-hidden h-100">
             <div class="card-body">
                 <div class="card-body-icon">
-                    <i class="fas fa-fw fa-life-ring"></i>
+                    <i class="fas fa-tasks"></i>
                 </div>
-                <div class="mr-5">(0) Emergency Work Orders</div>
+                <div class="mr-5">(@Model.TodayInspectionTasks.Count) Today's Inspection Tasks</div>
             </div>
-            <a class="card-footer text-white clearfix small z-1" href="#assetsWorkOrderToday">
+            <a class="card-footer text-white clearfix small z-1" href="#TodayTasksTable">
                 <span class="float-left">View Details</span>
                 <span class="float-right">
                     <i class="fas fa-angle-right"></i>

@@ -1,0 +1,106 @@
+﻿@using BuildingFacilityManager.Models.Work_Order.Enums
+@using Microsoft.AspNet.Identity
+@model BuildingFacilityManager.ViewModels.DashBoardViewModel
+
+<hr/>
+<br/>
+<h3>My Today's Work Orders</h3>
+
+<div class="thumbnail">
+
+    <div class="caption">
+        <table class="table table-hover table-bordered" id="workOrderTableToday">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Description</th>
+                    <th>Type</th>
+                    <th>Status</th>
+                    <th>Asset</th>
+                    <th>Location</th>
+                    <th>Storey</th>
+                    <th>Date</th>
+                    <th>Reporter</th>
+                    <th>Fixer</th>
+                    <th>Fixer Notes</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var work in Model.MyAssignedWorkOrdersToday)
+                {
+
+                <tr id="id-@work.Id">
+
+                    <td>
+                        @work.Id
+                    </td>
+                    <td>
+                        @work.Description
+                    </td>
+                    <td>
+                        @work.WorkOrderType
+                    </td>
+                    <td>
+                        @work.WorkOrderStatus
+
+                    </td>
+                    <td>
+                        @work.Asset.Label
+                    </td>
+                    <td>
+                        @work.Asset.Space.Label
+                    </td>
+                    <td>
+                        @work.Asset.Space.Storey.Label
+                    </td>
+                    <td>
+                        @work.Date
+                    </td>
+                    <td>
+                        @{
+
+                            string space = " ";
+                            if (@work.Reporter != null)
+                            {
+                                @work.Reporter.FirstName @space @work.Reporter.LastName
+                            }
+                        }
+
+
+                    </td>
+                    <td>
+                        @{
+                            if (@work.Fixer != null)
+                            {
+                                @work.Fixer.FirstName @space @work.Fixer.LastName
+
+                            }
+                        }
+                    </td>
+                    <td>
+                        @work.FixerNotes
+                    </td>
+                    <td>
+                        @{
+
+                            if (User.Identity.GetUserId() == @work.FixerId && @work.WorkOrderStatus != WorkOrderStatus.Completed)
+                            {
+                                <button type="button" title="Change Status" style="background-color: #dda0dd; background-repeat: no-repeat; border: none;cursor: pointer; overflow: hidden; outline: none;" data-toggle="modal" data-target="#Change-Status" onclick="WorkIdForStatusChange(@work.Id)">
+                                    <span class="far fa-edit" aria-hidden="true"></span>
+                                </button>
+                                <br />
+                                <br />
+                                <button type="button" title="Purchase Request" style="background-color: #66cdaa; background-repeat: no-repeat; border: none;cursor: pointer; overflow: hidden; outline: none;" data-toggle="modal" data-target="#">
+                                    <span class="fas fa-shopping-cart" aria-hidden="true"></span>
+                                </button>
+                            }
+                        }
+
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

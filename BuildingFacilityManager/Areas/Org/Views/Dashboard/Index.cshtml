@@ -1,4 +1,38 @@
-﻿@{
+﻿@model BuildingFacilityManager.ViewModels.DashBoardViewModel
+@{
+    Layout = "~/Areas/org/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Dashboard";
-    Layout = "../Shared/_Layout.cshtml";
+}
+<style type="text/css">
+    .col-xl-3.col-sm-6.mb-3 {
+        padding-bottom: 5px;
+    }
+</style>
+
+@Html.Partial("IconCardsTodayStats_Partial")
+
+
+@Html.Partial("ChangeStatus_Partial")
+
+@Html.Partial("MyTodayWorkOrders_Partial")
+@Html.Partial("MyAllWorkOrders_Partial")
+
+
+@section styles {
+    @Styles.Render("~/Content/sb-adminCustom.css")
+    @Styles.Render("~/Content/fonts/all.css")
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/Scripts/jquery.easing.min.js");
+    @Scripts.Render("~/bundles/jquery");
+    @Scripts.Render("~/bundles/charts");
+    <script>
+        $(document).ready(function () {
+            $("#workOrderTableAll").DataTable();
+            $("#workOrderTableToday").DataTable();
+        });
+
+    </script>
 }
