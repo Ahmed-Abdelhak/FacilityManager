@@ -15,6 +15,11 @@ namespace BuildingFacilityManager.Models.Building_Models
         [ForeignKey("Building")]
         public int BuildingId { get; set; }
 
+        public float? Width { get; set; }
+        public float? Length { get; set; }
+        public float? Level { get; set; }
+
+
         public List<Space> Spaces { get; set; }
 
         public ICollection<InspectionTask> InspectionTasks { get; set; }    

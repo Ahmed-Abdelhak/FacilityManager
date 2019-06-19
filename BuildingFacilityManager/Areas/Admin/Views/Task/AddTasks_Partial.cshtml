@@ -49,13 +49,13 @@
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(e => e.InspectionTask.StartDate)
-                            @Html.TextBoxFor(c => c.InspectionTask.StartDate, new { @class = "datepicker form-control", @type = "date" })
+                            @Html.TextBoxFor(c => c.InspectionTask.StartDate, new { @class = "datepicker form-control", @type = "datetime-local" })
                             @Html.ValidationMessageFor(e => e.InspectionTask.StartDate)
 
                         </div>
                         <div class="form-group">
                             @Html.LabelFor(e => e.InspectionTask.EndDate)
-                            @Html.TextBoxFor(c => c.InspectionTask.EndDate, new { @class = "datepicker form-control", @type = "date" })
+                            @Html.TextBoxFor(c => c.InspectionTask.EndDate, new { @class = "datepicker form-control", @type = "datetime-local" })
                             @Html.ValidationMessageFor(e => e.InspectionTask.EndDate)
 
                         </div>
@@ -98,4 +98,6 @@
 @section scripts
 {
     @Scripts.Render("~/bundles/jqueryval")
+    
+   
 }

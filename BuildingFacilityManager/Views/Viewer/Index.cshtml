@@ -4,10 +4,9 @@
 @using Newtonsoft.Json.Serialization
 
 @{
-    ViewBag.Title = "title";
+    ViewBag.Title = "Building Viewer";
 }
 
-<h2>title</h2>
 
 @{
 
@@ -25,16 +24,12 @@
 }
 
 
-    <div id="webgl"></div>
+    <div style="margin-left: -190px" id="webgl"></div>
 
 
 @section scripts{
     <script>
-
         Assets = @Html.Raw(@assetsList) 
-
-        
-       
     </script>  
     
    

@@ -23,9 +23,11 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Facility Manager", "Index", "Dashboard", new { area = "Inspector" }, new { @class = "navbar-brand" })
-            </div>
+           
+                </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Building Viewer", "Index", "Viewer", new {area = ""}, null)</li>
                 </ul>
                 @Html.Partial("_LoginPartial")
             </div>
