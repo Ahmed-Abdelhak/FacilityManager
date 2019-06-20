@@ -7,7 +7,7 @@ class Room {
         this.floorId = floorId;
         this.id = id;
         this.label = label;
-        this.elevation = (floors.find(e => e.id == this.floorId)).elevation;
+        this.elevation = (Stories.find(e => e.id == this.floorId)).elevation;
     }
 
     create() {

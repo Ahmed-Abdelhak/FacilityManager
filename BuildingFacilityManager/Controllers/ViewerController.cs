@@ -17,6 +17,7 @@ namespace BuildingFacilityManager.Controllers
         {
             _Context = new ApplicationDbContext();
         }
+        [NoCache]
         public ActionResult Index()
         {
             var viewer = new BuildingViewerViewModel()

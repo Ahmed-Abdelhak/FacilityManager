@@ -5,9 +5,10 @@
 }
 
 @Html.Partial("Building_Partial")
-
+<br />
 @Html.Partial("Stories_Partial")
 @Html.Partial("Add_Storey_Partial")
+<br />
 
 @Html.Partial("Spaces_Partial")
 @Html.Partial("Add_Space_Partial")
@@ -21,8 +22,9 @@
 @section scripts
 {
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $("#spaces").DataTable();
+            $("#stories").DataTable();
         });
     </script>
 }

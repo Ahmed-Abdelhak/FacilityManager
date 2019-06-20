@@ -44,7 +44,7 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddStorey(Storey storey)
         {
-            if (storey.Label != null)
+            if (storey.Label != null && storey.Width != null && storey.Length != null && storey.Level != null && storey.Width > 0 && storey.Length > 0 && storey.Level >= 0)
             {
                 _context.Stories.Add(storey);
                 _context.SaveChanges();

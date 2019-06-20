@@ -289,8 +289,13 @@
     <Compile Include="Migrations\201906191703586_AddDimentionsAndLevelColumnsToTheStoriesTable.Designer.cs">
       <DependentUpon>201906191703586_AddDimentionsAndLevelColumnsToTheStoriesTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906201559517_AddWidthLnegthWallsHeightAndPositionForTheSpaceTable.cs" />
+    <Compile Include="Migrations\201906201559517_AddWidthLnegthWallsHeightAndPositionForTheSpaceTable.Designer.cs">
+      <DependentUpon>201906201559517_AddWidthLnegthWallsHeightAndPositionForTheSpaceTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Enums\Department.cs" />
     <Compile Include="Models\Enums\ShiftType.cs" />
+    <Compile Include="Models\NoCache.cs" />
     <Compile Include="Models\SystemRoles.cs" />
     <Compile Include="Models\Tasks\Enums\InspectionStatus.cs" />
     <Compile Include="Models\Tasks\InspectionTask.cs" />
@@ -683,7 +688,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\ThreeJS\boxwithmouse.html" />
-    <Content Include="Scripts\ThreeJS\Classes\Floor.js" />
+    <Content Include="Scripts\ThreeJS\Classes\Storey.js" />
     <Content Include="Scripts\ThreeJS\Classes\Helper.js" />
     <Content Include="Scripts\ThreeJS\Classes\Room.js" />
     <Content Include="Scripts\ThreeJS\index.html" />
@@ -1170,6 +1175,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906191703586_AddDimentionsAndLevelColumnsToTheStoriesTable.resx">
       <DependentUpon>201906191703586_AddDimentionsAndLevelColumnsToTheStoriesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906201559517_AddWidthLnegthWallsHeightAndPositionForTheSpaceTable.resx">
+      <DependentUpon>201906201559517_AddWidthLnegthWallsHeightAndPositionForTheSpaceTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

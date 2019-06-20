@@ -1,18 +1,18 @@
-class Floor {
+class Storey {
 
-    constructor(width, length, elevation, id, label) {
+    constructor(width, length, level, id, label) {
         this.width = width;
         this.length = length;
-        this.elevation = elevation;
+        this.level = level;
         this.id = id;
         this.label = label;
     }
 
     create() {
         let meshFloor = Helper.getBox(this.length, 0.2, this.width, floorMaterial);
-        meshFloor.name = "MeshFloor"
+        meshFloor.name = "MeshFloor";       
 
-        meshFloor.position.y = this.elevation;
+        meshFloor.position.y = this.level*6;
 
         return meshFloor;
     }

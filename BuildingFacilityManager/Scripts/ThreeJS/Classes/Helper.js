@@ -5,9 +5,9 @@ var floorMaterial = new THREE.MeshBasicMaterial({
 var roomMaterial = new THREE.MeshBasicMaterial({
     color: '#00FFEA'
 })
-var floors = [],
-    rooms = [],
-    assets = [];
+//var Stories = [],
+//    rooms = [],
+//    assets = [];
 
 class Helper {
     static getBox(w, h, d, material) {

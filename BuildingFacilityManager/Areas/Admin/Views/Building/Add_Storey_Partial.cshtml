@@ -48,6 +48,24 @@
                             @Html.ValidationMessageFor(e => e.Storey.Description)
 
                         </div>
+                        <div>
+                            @Html.LabelFor(e => e.Storey.Length)
+                            @Html.TextBoxFor(e => e.Storey.Length, new {@class = "form-control", placeholder = "Enter length in Meter"})
+                            @Html.ValidationMessageFor(e => e.Storey.Length)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Storey.Width)
+                            @Html.TextBoxFor(e => e.Storey.Width, new {@class = "form-control", placeholder = "Enter Width in Meter"})
+                            @Html.ValidationMessageFor(e => e.Storey.Width)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Storey.Level)
+                            @Html.TextBoxFor(e => e.Storey.Level, new {@class = "form-control", placeholder="Enter the Level of the Storey in Meter"})
+                            @Html.ValidationMessageFor(e => e.Storey.Level)
+
+                        </div>
                     </div>
 
                 </div>

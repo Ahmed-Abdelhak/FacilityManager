@@ -24,6 +24,8 @@
                         <h4 class="modal-title" id="myModalLabel">Add a new Space</h4>
                     </div>
                     <div class="modal-body">
+
+                        <img src="/Content/Images/arrow-sidebar-Org.png" style="float: right">
                         <div>
                             @Html.HiddenFor(s => s.Space.Id)
 
@@ -43,8 +45,8 @@
                         </div>
                         <div>
                             @Html.LabelFor(e => e.Space.SpaceType)
-                            @Html.DropDownListFor(e => e.Space.SpaceType, EnumHelper.GetSelectList(typeof(SpaceType)) , 
-                                "Select Type", new { @class = "form-control" })
+                            @Html.DropDownListFor(e => e.Space.SpaceType, EnumHelper.GetSelectList(typeof(SpaceType)),
+                                "Select Type", new {@class = "form-control"})
                             @Html.ValidationMessageFor(e => e.Space.SpaceType)
 
                         </div>
@@ -52,6 +54,36 @@
                             @Html.LabelFor(e => e.Space.Storey)
                             @Html.DropDownListFor(e => e.Space.StoreyId, new SelectList(Model.Stories, "Id", "label"), "Select Storey", new { @class = "form-control" })
                             @Html.ValidationMessageFor(e => e.Space.Storey)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Space.Width)
+                            @Html.TextBoxFor(e => e.Space.Width, new { @class = "form-control", placeholder="Please Enter Width in Meter" })
+                            @Html.ValidationMessageFor(e => e.Space.Width)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Space.Length)
+                            @Html.TextBoxFor(e => e.Space.Length, new { @class = "form-control", placeholder = "Please Enter Length in Meter" })
+                            @Html.ValidationMessageFor(e => e.Space.Length)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Space.WallsHeight)
+                            @Html.TextBoxFor(e => e.Space.WallsHeight, new { @class = "form-control", placeholder = "Please Enter Walls Height in Meter" })
+                            @Html.ValidationMessageFor(e => e.Space.WallsHeight)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Space.PositionX)
+                            @Html.TextBoxFor(e => e.Space.PositionX, new { @class = "form-control", placeholder = "Please Enter Position in Meter" })
+                            @Html.ValidationMessageFor(e => e.Space.PositionX)
+
+                        </div>
+                        <div>
+                            @Html.LabelFor(e => e.Space.PositionY)
+                            @Html.TextBoxFor(e => e.Space.PositionY, new { @class = "form-control", placeholder = "Please Enter Position in Meter" })
+                            @Html.ValidationMessageFor(e => e.Space.PositionY)
 
                         </div>
                     </div>

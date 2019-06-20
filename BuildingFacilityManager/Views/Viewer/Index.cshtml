@@ -20,16 +20,188 @@
         });
 
 
+    var storiesList = JsonConvert.SerializeObject(@Model.Stories,
+        Formatting.Indented,
+        new JsonSerializerSettings()
+        {
+            ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore,
+            ContractResolver = new CamelCasePropertyNamesContractResolver()
+        });
+
     
 }
 
-
-    <div style="margin-left: -190px" id="webgl"></div>
+<div style="margin-left: -190px" id="webgl"></div>
 
 
 @section scripts{
+    <script src="../../Scripts/ThreeJs/Libraries/three.js"></script>
+    <script type="module" src="../../Scripts/ThreeJs/main.js"></script>
+    <script src="../../Scripts/ThreeJS/Classes/Helper.js"></script>
+    <script src="../../Scripts/ThreeJS/Classes/Storey.js"></script>
+    <script src="../../Scripts/ThreeJS/Classes/Room.js"></script>
+    <script src="../../Scripts/ThreeJs/Libraries/OBJLoader.js"></script>
+    <script src="../../Scripts/ThreeJs/Libraries/dat.gui.min.js"></script>
+    <script src="../../Scripts/ThreeJs/Libraries/threex.domevents.js"></script>
+    <script src="../../Scripts/ThreeJs/Libraries/threex.linkify.js"></script>
+    <script src="../../Scripts/ThreeJs/Libraries/OrbitControls.js"></script>
+    
     <script>
-        Assets = @Html.Raw(@assetsList) 
+
+
+        function init() {
+            //Scene
+
+            var scene = new THREE.Scene(); //creating the scene object 
+
+
+
+
+            //Camera                       
+            var camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 1, 1000);
+            camera.position.x = 200;
+            camera.position.y = 200;
+            camera.position.z = 200;
+            camera.lookAt(new THREE.Vector3(0, 0, 0)); //lookat could take scene and position
+
+
+
+            //grid
+            var size = 200;
+            var divisions = 100;
+            var gridHelper = new THREE.GridHelper(size, divisions);
+            scene.add(gridHelper);
+
+
+            // GridHelper(size=10, divisions=10,colorGrid=0x00FF37)
+
+
+
+            // scene.add(plane);
+
+
+            //var gui = new dat.GUI();
+
+            ////Light folder
+
+            //var boxPointLight = gui.addFolder('Light');
+            //boxPointLight.add(pointLight, 'intensity', 0, 3); //pass the object you want to control the properties of it and the property name and optionally the range >> min and max alue of that property
+            //boxPointLight.add(pointLight.position, 'y', 0, 7); //we declared the y ass we used the position property then the range
+
+
+            //Renderer
+
+
+            var renderer = new THREE.WebGLRenderer();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setClearColor('rgb (250, 250, 250)');
+            document.getElementById('webgl').appendChild(renderer.domElement);
+
+
+
+            //DomEvent
+
+            // var domEvents = new THREEx.DomEvents(camera, renderer.domElement) 
+            // domEvents.addEventListener(trashcan, 'click', function(event){
+            //     return url, linkify;
+            //     //alert("You Clicked on the box!");
+            // }, false)
+
+            //                                     //Backend Links 
+            // var trashcanUrl = 'https://dictionary.cambridge.org/dictionary/english/plane'
+            // var linkify	= THREEx.Linkify(domEvents, trashcan, trashcanUrl, true)
+
+
+            // var boxUrl	= 'https://www.merriam-webster.com/dictionary/box'
+            // var linkify	= THREEx.Linkify(domEvents, box, boxUrl, true)
+            // //box.scale.x+=
+
+            //                                     //Mosue Over
+
+            // domEvents.addEventListener(box, 'mouseover', function(event){
+            //     return action;
+            // }, false)           
+            // var action = function runEvent(e)  {
+            //     console.log('eventtype'+e.type);
+            // }                              
+            // instantiate a loader
+
+            //Controls Orbit Control
+
+            var controls = new THREE.OrbitControls(camera, renderer.domElement); //use the camera and the renderer as args and the nwe will pass this  var  in the update 
+            controls.enableKeys = true; //enabling keyboard
+            controls.enableZoom = true; //enabling zoom by mouse
+
+            scene.background = new THREE.Color(0xaaaaaa);
+
+            //// input from hussein
+            //let floor = new Storey(8,6,3,1,'floor1');
+            //let floor2 = new Storey(10,8,7,2,'floor2');
+            //let floor3 = new Storey(8,8,11,3,'floor3');
+
+            //Stories.push(floor);
+            //Stories.push(floor2);
+            //Stories.push(floor3);
+
+            //let position1 =new Point2D(0,0)
+            //let room1=new Room(2,1.5,1.2,position1,1,1,"room1")
+            //let room2=new Room(2,1.5,1.2,position1,2,2,"room2")
+            //let room3=new Room(2,1.5,1.2,position1,3,3,"room3")
+            //rooms.push(room1)
+            //rooms.push(room2)
+            //rooms.push(room3)
+
+            // draw elements
+
+
+            //for(let i=0;i<rooms.length;i++)
+            //{
+            //   let mesh= rooms[i].create();
+            //   scene.add(mesh) 
+            //}
+
+
+            //scene.add(floor.create())
+
+
+            //scene.add(room1.create())
+
+
+
+
+
+
+
+
+            //Calling the functions
+            update(renderer, scene, camera, controls); //calling the function with the same arguments and the renderer object   
+
+            return scene;
+        }
+
+
+
+        //Update Funtion             
+
+        function  update(renderer, scene, camera, controls) {
+            renderer.render(scene,camera);
+            controls.update(); //calling the update method on the controls object
+            requestAnimationFrame(function() {update(renderer, scene, camera, controls);})  //using the same argumentswith a call back function and this will be the update functon  (being called bac)
+        } 
+
+
+        let scene = init();
+
+
+        Stories = @Html.Raw(@storiesList);
+
+        for(let i=0;i<Stories.length;i++)
+        {
+            let s = new Storey(Stories[i].width, Stories[i].length, Stories[i].level, Stories[i].id, Stories[i].label)
+            let mesh= s.create();
+            scene.add(mesh);
+        }
+
     </script>  
     
    
