@@ -1,12 +1,35 @@
-﻿<div class="row">
-    <div class="col-lg-4">
-        <div class="card mb-3">
-            <div class="card-header">
-                <i class="fas fa-chart-pie"></i>
-                Today's Work Orders Stats
+﻿
+<style type="text/css">
+    .charts-center {
+        display: flex;
+        -o-justify-content: center;
+        -webkit-justify-content: center;
+        justify-content: center
+    }
+</style>
+
+<div class="row">
+    <div class="charts-center">
+        <div class="col-lg-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-chart-pie"></i>
+                    Today's Work Orders Stats
+                </div>
+                <div class="card-body">
+                    <canvas id="myPieChart" width="300" height="300"></canvas>
+                </div>
             </div>
-            <div class="card-body">
-                <canvas id="myPieChart" width="300" height="300"></canvas>
+        </div>
+        <div class="col-lg-4">
+            <div class="card mb-3">
+                <div class="card-header">
+                    <i class="fas fa-chart-pie"></i>
+                    Today's Tasks Stats
+                </div>
+                <div class="card-body">
+                    <canvas id="myPieChartTasks" width="300" height="300"></canvas>
+                </div>
             </div>
         </div>
     </div>

@@ -293,6 +293,14 @@
     <Compile Include="Migrations\201906201559517_AddWidthLnegthWallsHeightAndPositionForTheSpaceTable.Designer.cs">
       <DependentUpon>201906201559517_AddWidthLnegthWallsHeightAndPositionForTheSpaceTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906211817334_EditSpaceColumnsNames.cs" />
+    <Compile Include="Migrations\201906211817334_EditSpaceColumnsNames.Designer.cs">
+      <DependentUpon>201906211817334_EditSpaceColumnsNames.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906211859330_PurchaseDateOfAssetsIsDateTimeType.cs" />
+    <Compile Include="Migrations\201906211859330_PurchaseDateOfAssetsIsDateTimeType.Designer.cs">
+      <DependentUpon>201906211859330_PurchaseDateOfAssetsIsDateTimeType.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Enums\Department.cs" />
     <Compile Include="Models\Enums\ShiftType.cs" />
     <Compile Include="Models\NoCache.cs" />
@@ -467,6 +475,7 @@
     <Content Include="Content\fonts\svg-with-js.min.css" />
     <Content Include="Content\fonts\v4-shims.css" />
     <Content Include="Content\fonts\v4-shims.min.css" />
+    <Content Include="Content\Images\arrow-sidebar-admin.png" />
     <Content Include="Content\Images\arrow-sidebar-Org.png" />
     <Content Include="Content\Images\arrow-sidebar.png" />
     <Content Include="Content\Images\background.jpg" />
@@ -603,6 +612,7 @@
     <Content Include="Areas\Org\Views\Dashboard\MyTodayWorkOrders_Partial.cshtml" />
     <Content Include="Areas\Org\Views\Dashboard\MyAllWorkOrders_Partial.cshtml" />
     <Content Include="Areas\Org\Views\Dashboard\ChangeStatus_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Dashboard\newInstalledAssetsToday_Partial.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Chart.bundle.js" />
     <Content Include="Scripts\Chart.bundle.min.js" />
@@ -1178,6 +1188,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906201559517_AddWidthLnegthWallsHeightAndPositionForTheSpaceTable.resx">
       <DependentUpon>201906201559517_AddWidthLnegthWallsHeightAndPositionForTheSpaceTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906211817334_EditSpaceColumnsNames.resx">
+      <DependentUpon>201906211817334_EditSpaceColumnsNames.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906211859330_PurchaseDateOfAssetsIsDateTimeType.resx">
+      <DependentUpon>201906211859330_PurchaseDateOfAssetsIsDateTimeType.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

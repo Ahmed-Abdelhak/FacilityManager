@@ -16,9 +16,12 @@ namespace BuildingFacilityManager.ViewModels
         public ICollection<WorkOrder> TodayActiveWorkOrders { get; set; }
         public ICollection<WorkOrder> TodayInProgressWorkOrders { get; set; }
         public ICollection<WorkOrder> MyCreatedWorkOrdersToday { get; set; }
-        public ICollection<Asset> Assets { get; set; }
+        public ICollection<Asset> TodayInstalledAssets { get; set; }
 
         public ICollection<InspectionTask> TodayInspectionTasks { get; set; }
+        public ICollection<InspectionTask> TodayInspectionTasksActive { get; set; }
+        public ICollection<InspectionTask> TodayInspectionTasksCompleted { get; set; }
+        public ICollection<InspectionTask> TodayInspectionTasksPartiallyCompleted { get; set; }
         public ICollection<InspectionTask> ScheduledInspectionTasks { get; set; }
         public InspectionTask InspectionTask { get; set; }
         public ICollection<ApplicationUser> DashBoardUsers { get; set; }

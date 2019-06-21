@@ -36,18 +36,27 @@
                     <hr />
                     <span class="asset-details-data">Manufactured Date</span>: <span>
                         @{
-                            if(Model.Asset.ManufacturedDate != null)
+                            if (Model.Asset.ManufacturedDate != null)
                             {
                                 @Model.Asset.ManufacturedDate.Value.ToShortDateString()
                             }
                         }
-                      </span>
+                    </span>
                     <hr />
                     <span class="asset-details-data">Warranty</span>: <span>@Model.Asset.Warranty</span>
                     <hr />
                     <span class="asset-details-data">Expected Life</span>: <span>@Model.Asset.ExpectedLife</span>
                     <hr />
-                    <span class="asset-details-data">Purchase Date</span>: <span>@Model.Asset.PurchaseDate</span>
+                    <span class="asset-details-data">Purchase Date</span>: <span>
+
+                        @{
+                            if (Model.Asset.PurchaseDate != null)
+                            {
+                                @Model.Asset.PurchaseDate.Value.ToShortDateString()
+                            }
+                        }
+
+                    </span>
                     <hr />
                     <span class="asset-details-data">Price</span>: <span>@Model.Asset.Price EGP</span>
 

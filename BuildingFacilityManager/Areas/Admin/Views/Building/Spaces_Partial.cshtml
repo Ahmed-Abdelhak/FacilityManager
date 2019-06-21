@@ -19,6 +19,11 @@
             <th>Description</th>
             <th>Type</th>
             <th>Storey</th>
+            <th>Length</th>
+            <th>Width</th>
+            <th>Walls Height</th>
+            <th>Position X</th>
+            <th>Position Y</th>
         </tr>
     </thead>
     <tbody>
@@ -42,7 +47,22 @@
                     </td>
 
                     <td>
-                        @space.Storey.Label
+                        @space.Storey.Label Storey
+                    </td>
+                    <td>
+                        @space.Length m
+                    </td>
+                    <td>
+                        @space.Width m
+                    </td>
+                    <td>
+                        @space.WallsHeight m
+                    </td>
+                    <td>
+                       +@space.PositionX m in X dir
+                    </td>
+                    <td>
+                        +@space.PositionY m in Y dir
                     </td>
                 </tr>
             }

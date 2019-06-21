@@ -44,7 +44,7 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddStorey(Storey storey)
         {
-            if (storey.Label != null && storey.Width != null && storey.Length != null && storey.Level != null && storey.Width > 0 && storey.Length > 0 && storey.Level >= 0)
+            if (storey.Label != null && storey.Width > 0 && storey.Length > 0 && storey.Level >= 0)
             {
                 _context.Stories.Add(storey);
                 _context.SaveChanges();
@@ -57,8 +57,9 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddSpace(Space space)
         {
-           
-            if (space.Label != null && space.StoreyId != 0 && space.SpaceType != 0)
+           // I need to validate the Intersect of Lines of the Room, by the PositionX and PositionY
+
+            if (space.Label != null && space.StoreyId != 0 && space.SpaceType != 0 && space.Length > 0 && space.Width >0 && space.WallsHeight >0 && space.PositionX >= 0 && space.PositionY >= 0)
             {
                 _context.Spaces.Add(space);
                 _context.SaveChanges();

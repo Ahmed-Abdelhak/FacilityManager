@@ -1,0 +1,72 @@
+﻿@model BuildingFacilityManager.ViewModels.DashBoardViewModel
+
+<h3>Today's Installed Assets</h3>
+<div class="thumbnail">
+
+    <div class="caption">
+        <table class="table table-hover table-bordered" id="InstalledAssetsToday">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Label</th>
+                    <th>Space Location</th>
+                    <th>Status</th>
+                    <th>Type</th>
+                    <th>InstallationDate</th>
+                    <th>ManufacturedDate</th>
+                    <th>Price</th>
+                    <th>Vendor</th>
+                    <th>Warranty</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var asset in Model.TodayInstalledAssets)
+                {
+
+                    <tr id="id-@asset.Id">
+
+                        <td>
+                            @asset.Id
+                        </td>
+                        <td>
+                            @asset.Label
+                        </td>
+                        <td>
+                            @asset.Space.Label
+                        </td>
+                        <td>
+                            @asset.AssetStatus
+                        </td>
+                        <td>
+                            @asset.AssetType
+                        </td>
+                        <td>
+                            @if (asset.InstallationDate != null)
+                            {
+                                @asset.InstallationDate.Value.ToShortDateString()
+                            }
+                        </td>
+                        <td>
+                            @if (asset.ManufacturedDate != null)
+                            {
+                                @asset.ManufacturedDate.Value.ToShortDateString()
+                            }
+                        </td>
+                        <td>
+                            @asset.Price EGP
+                        </td>
+                        <td>
+                            @asset.Vendor
+                        </td>
+                        <td>
+                            @asset.Warranty
+                        </td>
+
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+

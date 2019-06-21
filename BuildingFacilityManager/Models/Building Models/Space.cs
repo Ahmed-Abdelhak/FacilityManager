@@ -24,11 +24,11 @@ namespace BuildingFacilityManager.Models.Building_Models
         public List<Asset> Assets { get; set; }
 
 
-        public float? PositionX { get; set; }
-        public float? PositionY { get; set; }
-        public float? Width { get; set; }
-        public float? Length { get; set; }
-        public float? WallsHeight { get; set; }
+        public float PositionX { get; set; }
+        public float PositionY { get; set; }
+        public float Width { get; set; }
+        public float Length { get; set; }
+        public float WallsHeight { get; set; }
        
     }
 }

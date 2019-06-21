@@ -161,7 +161,7 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
 
         public ActionResult AddWorkOrderFromAssetDetails(WorkOrder workOrder)
         {
-            if (workOrder.Description != null && workOrder.WorkOrderStatus != 0 && workOrder.AssetId != 0)
+            if (workOrder.Description != null && workOrder.WorkOrderStatus != 0 && workOrder.AssetId != 0 && workOrder.FixerId != null)
             {
                 _context.WorkOrders.Add(workOrder);
                 _context.SaveChanges();
@@ -198,7 +198,7 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddWorkOrderFromSpaceAssets(WorkOrder workOrder)
         {
-            if (workOrder.Description != null && workOrder.WorkOrderStatus != 0 && workOrder.AssetId != 0)
+            if (workOrder.Description != null && workOrder.WorkOrderStatus != 0 && workOrder.AssetId != 0 && workOrder.FixerId != null)
             {
                 _context.WorkOrders.Add(workOrder);
                 _context.SaveChanges();

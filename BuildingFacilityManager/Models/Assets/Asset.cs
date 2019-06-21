@@ -41,7 +41,7 @@ namespace BuildingFacilityManager.Models.Assets
         [JsonIgnore]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyy}", ApplyFormatInEditMode = true)]
-        public string PurchaseDate { get; set; }
+        public DateTime? PurchaseDate { get; set; }
         [JsonIgnore]
         public string Warranty { get; set; }
 

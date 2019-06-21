@@ -91,10 +91,9 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
                     .Include(w => w.Asset.Space)
                     .Include(w => w.Asset.Space.Storey).ToList(),
 
-                Assets = _context.Assets.Where(a =>
+                TodayInstalledAssets = _context.Assets.Where(a =>
                             DbFunctions.TruncateTime(a.InstallationDate)
                             == DbFunctions.TruncateTime(DateTime.Today)
-                        //a.InstallationDate >= DateTime.Today
                         )
 
 
@@ -130,6 +129,103 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
                         ||
                         today.Day == (t.StartDate.Value.Day + 28) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
                        
+                    )
+
+                    .Include(t => t.StoreyInspection)
+                    .ToList(),
+                TodayInspectionTasksActive  = _context.InspectionTasks
+                .Where(t =>
+                DbFunctions.TruncateTime(t.StartDate)
+                == DbFunctions.TruncateTime(today) && t.InspectionStatus == InspectionStatus.Active
+                ||
+                DbFunctions.TruncateTime(today)
+                <= DbFunctions.TruncateTime(t.EndDate) &&
+                DbFunctions.TruncateTime(today)
+                >= DbFunctions.TruncateTime(t.StartDate)
+                /*  today <= t.EndDate && today >= t.StartDate */
+                && t.PeriodicInspection == PeriodicInspection.Daily
+                && t.InspectionStatus == InspectionStatus.Active
+
+                ||
+
+                // Stupid Code starts from Here !
+
+                today.Day == (t.StartDate.Value.Day + 7) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                && t.InspectionStatus == InspectionStatus.Active
+                ||
+                today.Day == (t.StartDate.Value.Day + 14) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                && t.InspectionStatus == InspectionStatus.Active
+                ||
+                today.Day == (t.StartDate.Value.Day + 21) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                && t.InspectionStatus == InspectionStatus.Active
+                ||
+                today.Day == (t.StartDate.Value.Day + 28) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                && t.InspectionStatus == InspectionStatus.Active
+                )
+
+                .Include(t => t.StoreyInspection)
+                .ToList(),
+
+                TodayInspectionTasksCompleted = _context.InspectionTasks
+                    .Where(t =>
+                        DbFunctions.TruncateTime(t.StartDate)
+                        == DbFunctions.TruncateTime(today) && t.InspectionStatus == InspectionStatus.Completed
+                        ||
+                        DbFunctions.TruncateTime(today)
+                        <= DbFunctions.TruncateTime(t.EndDate) &&
+                        DbFunctions.TruncateTime(today)
+                        >= DbFunctions.TruncateTime(t.StartDate)
+                        /*  today <= t.EndDate && today >= t.StartDate */
+                        && t.PeriodicInspection == PeriodicInspection.Daily
+                        && t.InspectionStatus == InspectionStatus.Completed
+
+                        ||
+
+                        // Stupid Code starts from Here !
+
+                        today.Day == (t.StartDate.Value.Day + 7) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                        && t.InspectionStatus == InspectionStatus.Completed
+                        ||
+                        today.Day == (t.StartDate.Value.Day + 14) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                        && t.InspectionStatus == InspectionStatus.Completed
+                        ||
+                        today.Day == (t.StartDate.Value.Day + 21) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                        && t.InspectionStatus == InspectionStatus.Completed
+                        ||
+                        today.Day == (t.StartDate.Value.Day + 28) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                        && t.InspectionStatus == InspectionStatus.Completed
+                    )
+
+                    .Include(t => t.StoreyInspection)
+                    .ToList(),
+                TodayInspectionTasksPartiallyCompleted = _context.InspectionTasks
+                    .Where(t =>
+                        DbFunctions.TruncateTime(t.StartDate)
+                        == DbFunctions.TruncateTime(today) && t.InspectionStatus == InspectionStatus.PartiallyCompleted
+                        ||
+                        DbFunctions.TruncateTime(today)
+                        <= DbFunctions.TruncateTime(t.EndDate) &&
+                        DbFunctions.TruncateTime(today)
+                        >= DbFunctions.TruncateTime(t.StartDate)
+                        /*  today <= t.EndDate && today >= t.StartDate */
+                        && t.PeriodicInspection == PeriodicInspection.Daily
+                        && t.InspectionStatus == InspectionStatus.PartiallyCompleted
+
+                        ||
+
+                        // Stupid Code starts from Here !
+
+                        today.Day == (t.StartDate.Value.Day + 7) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                        && t.InspectionStatus == InspectionStatus.PartiallyCompleted
+                        ||
+                        today.Day == (t.StartDate.Value.Day + 14) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                        && t.InspectionStatus == InspectionStatus.PartiallyCompleted
+                        ||
+                        today.Day == (t.StartDate.Value.Day + 21) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                        && t.InspectionStatus == InspectionStatus.PartiallyCompleted
+                        ||
+                        today.Day == (t.StartDate.Value.Day + 28) && today <= t.EndDate && t.PeriodicInspection == PeriodicInspection.Weekly
+                        && t.InspectionStatus == InspectionStatus.PartiallyCompleted
                     )
 
                     .Include(t => t.StoreyInspection)

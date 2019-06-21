@@ -7,7 +7,7 @@
 <div class="sidenav">
     <h4 class="btn btn-primary" id="buildingTree">My Building</h4>
     <ul id="nav">
-         
+
         @foreach (var storey in building.Stories)
         {
             <li>
@@ -15,7 +15,7 @@
                 <ul class="nested-nav-ul">
                     @foreach (var space in @storey.Spaces)
                     {
-                        <li>@Html.ActionLink(" " + space.Label, "SpaceAssets", "Asset", new { id = space.Id }, new {@class = "fas fa-building" })</li>
+                        <li>@Html.ActionLink(" " + space.Label, "SpaceAssets", "Asset", new { id = space.Id }, new { @class = "fas fa-building" })</li>
                     }
                 </ul>
             </li>
@@ -24,4 +24,6 @@
 
 
     </ul>
+    <img src="~/Content/Images/arrow-sidebar-admin.png" />
+
 </div>

@@ -3,19 +3,24 @@
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Dashboard";
 }
-<style type="text/css">.col-xl-3.col-sm-6.mb-3 {
-     padding-bottom: 5px;
- }</style>
+<style type="text/css">
+    .col-xl-3.col-sm-6.mb-3 {
+        padding-bottom: 5px;
+    }
+</style>
 
 @Html.Partial("IconCardsTodayStats_Partial")
 
-<br/>
+<br />
 @Html.Partial("PieCharts_Partial")
 
 @Html.Partial("newWorkOrdersToday_Partial")
-<br/>
-<hr/>
+<br />
+<hr />
 @Html.Partial("newInspectionTasksToday_Partial")
+<br />
+<hr />
+@Html.Partial("newInstalledAssetsToday_Partial")
 
 
 @section styles {
@@ -32,6 +37,7 @@
         $(document).ready(function () {
             $("#workOrderTableToday").DataTable();
             $("#TodayTasksTable").DataTable();
+            $("#InstalledAssetsToday").DataTable();
         });
 
 
@@ -49,6 +55,19 @@
                 labels: ["In Progress", "Active", "Completed"],
                 datasets: [{
                     data: [@Model.TodayInProgressWorkOrders.Count,@Model.TodayActiveWorkOrders.Count,  @Model.TodayCompletedWorkOrders.Count],
+                    backgroundColor: ['#007bff', '#dc3545',  '#28a745']
+                }]
+            }
+        });
+
+
+        var ctxTasks = document.getElementById("myPieChartTasks");
+        var myPieChartTasks = new Chart(ctxTasks, {
+            type: 'pie',
+            data: {
+                labels: ["Active", "Completed", "Partially Completed"],
+                datasets: [{
+                    data: [@Model.TodayInspectionTasksActive.Count,@Model.TodayInspectionTasksCompleted.Count,  @Model.TodayInspectionTasksPartiallyCompleted.Count],
                     backgroundColor: ['#007bff', '#dc3545',  '#28a745']
                 }]
             }
