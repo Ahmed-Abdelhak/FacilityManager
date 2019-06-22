@@ -47,15 +47,17 @@
     <script src="../../Scripts/ThreeJS/Classes/Helper.js"></script>
     <script src="../../Scripts/ThreeJS/Classes/Storey.js"></script>
     <script src="../../Scripts/ThreeJS/Classes/Space.js"></script>
+    <script src="../../Scripts/ThreeJS/Classes/Asset.js"></script>
     <script src="../../Scripts/ThreeJs/Libraries/OBJLoader.js"></script>
     <script src="../../Scripts/ThreeJs/Libraries/dat.gui.min.js"></script>
     <script src="../../Scripts/ThreeJs/Libraries/threex.domevents.js"></script>
     <script src="../../Scripts/ThreeJs/Libraries/threex.linkify.js"></script>
     <script src="../../Scripts/ThreeJs/Libraries/OrbitControls.js"></script>
-    <script src="//unpkg.com/three-spritetext" asp-append-version="true"></script>
+
+    @*script to render the Axis and write on the Canvas*@
+    @*<script src="//unpkg.com/three-spritetext" asp-append-version="true"></script>*@
 
     <script>
-
 
         function init() {
             //Scene
@@ -130,7 +132,7 @@
         }
 
 
-        //Update Funtion
+        //Update Function
 
         function  update(renderer, scene, camera, controls) {
             renderer.render(scene,camera);
@@ -140,6 +142,7 @@
 
 
         let scene = init();
+
 
 
         Stories = @Html.Raw(@storiesList);
@@ -163,7 +166,18 @@
 
             scene.add(mesh);
         }
+        
 
+        let Assets = @Html.Raw(@assetsList);
+
+        for (let i = 0; i < Assets.length; i++) {
+
+
+            let s = new Asset(Assets[i].id, Assets[i].label, Assets[i].assetType, Assets[i].spaceId, Spaces, Stories);
+            let mesh = s.create();
+
+            scene.add(mesh);
+        }
 
 
     </script>

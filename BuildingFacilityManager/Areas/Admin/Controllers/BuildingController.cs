@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.EnterpriseServices;
 using System.Linq;
 using System.Web;
 using System.Web.Hosting;
@@ -16,11 +17,12 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
     {
 
         private readonly ApplicationDbContext _context;
+      
 
         public BuildingController()
         {
             _context = new ApplicationDbContext();
-             }
+        }
         protected override void Dispose(bool disposing)
         {
             base.Dispose(disposing);
@@ -30,6 +32,10 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
         // GET: Admin/Building
         public ActionResult Index()
         {
+
+            ViewBag.DimentionAlert = Convert.ToInt32(TempData["dimensionAlert"]);
+            ViewBag.SpaceConflict = Convert.ToInt32(TempData["SpaceConflict"]);
+
             var buildingModel = new BuildingViewModel
             {
                 Buildings = _context.Buildings.ToList(),
@@ -58,7 +64,7 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddSpace(Space space)
         {
-           // I need to validate the Intersect of Lines of the Space, by the PositionX and PositionY
+            // I need to validate the Intersect of Lines of the Space, by the PositionX and PositionY
             var spaces = _context.Spaces.Where(s => s.StoreyId == space.StoreyId).ToList();
             var storey = _context.Stories.SingleOrDefault(s => s.Id == space.StoreyId);
 
@@ -77,9 +83,18 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
                 {
                     flag = true;
                 }
+                else
+                {
+                    TempData["SpaceConflict"] = 1;
+                }
             }
 
-            if (flag == true && storey != null && (space.Label != null && space.StoreyId != 0 && space.SpaceType != 0 && space.Length > 0 && space.Width >0 && space.WallsHeight >0 && space.PositionX >= 0 && space.PositionY >= 0 && space.Width + space.PositionX <= storey.Width && space.Length + space.PositionY <= storey.Length) )
+            if (storey != null && (space.Length + space.PositionX > storey.Length || space.Width + space.PositionY > storey.Width))
+            {
+                TempData["dimensionAlert"] = 1;
+            }
+
+            if (flag == true && storey != null && (space.Label != null && space.StoreyId != 0 && space.SpaceType != 0 && space.Length > 0 && space.Width > 0 && space.WallsHeight > 0 && space.PositionX >= 0 && space.PositionY >= 0 && space.Length + space.PositionX <= storey.Length && space.Width + space.PositionY <= storey.Width))
             {
                 _context.Spaces.Add(space);
                 _context.SaveChanges();
@@ -87,7 +102,7 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
-       
+
     }
 
 

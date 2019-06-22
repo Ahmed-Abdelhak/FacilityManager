@@ -14,7 +14,6 @@ namespace BuildingFacilityManager.Models.Assets
         public int Id { get; set; }
         [Required]
         public string Label { get; set; }
-        [JsonIgnore]
         public AssetType AssetType { get; set; }
         [JsonIgnore]
         public AssetStatus AssetStatus { get; set; }

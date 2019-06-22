@@ -26,5 +26,12 @@
             $("#spaces").DataTable();
             $("#stories").DataTable();
         });
+
+        if (@ViewBag.DimentionAlert == 1) {
+            alert("Dimensions of Space could NOT exceed the Floor Dimensions");
+        }
+        if (@ViewBag.SpaceConflict == 1) {
+            alert("There's a Conflict between two Spaces, please try to re-position the Space");
+        }
     </script>
 }

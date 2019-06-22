@@ -496,6 +496,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootbox.all.min.js" />
+    <Content Include="Scripts\bootbox.locales.min.js" />
+    <Content Include="Scripts\bootbox.min.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Areas\Admin\Views\web.config" />
@@ -699,6 +702,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\ThreeJS\boxwithmouse.html" />
+    <Content Include="Scripts\ThreeJS\Classes\Asset.js" />
     <Content Include="Scripts\ThreeJS\Classes\Storey.js" />
     <Content Include="Scripts\ThreeJS\Classes\Helper.js" />
     <Content Include="Scripts\ThreeJS\Classes\Space.js" />
