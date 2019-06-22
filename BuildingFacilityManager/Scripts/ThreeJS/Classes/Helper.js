@@ -22,7 +22,7 @@ class Helper {
 }
 
 class Point2D{
-    constructor(x,z) {
+    constructor(z,x) {
         this.x = x;
         this.z = z;
     }

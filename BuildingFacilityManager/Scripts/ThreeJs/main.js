@@ -120,9 +120,9 @@
 //    //Stories.push(floor3);
 
 //    //let position1 =new Point2D(0,0)
-//    //let room1=new Room(2,1.5,1.2,position1,1,1,"room1")
-//    //let room2=new Room(2,1.5,1.2,position1,2,2,"room2")
-//    //let room3=new Room(2,1.5,1.2,position1,3,3,"room3")
+//    //let room1=new Space(2,1.5,1.2,position1,1,1,"room1")
+//    //let room2=new Space(2,1.5,1.2,position1,2,2,"room2")
+//    //let room3=new Space(2,1.5,1.2,position1,3,3,"room3")
 //    //rooms.push(room1)
 //    //rooms.push(room2)
 //    //rooms.push(room3)

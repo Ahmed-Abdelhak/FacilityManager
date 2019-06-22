@@ -485,6 +485,7 @@
     <Content Include="Content\Images\homePageScreen.png" />
     <Content Include="Content\Images\mark.png" />
     <Content Include="Content\Images\navbar-logo.png" />
+    <Content Include="Content\Images\positioning.png" />
     <Content Include="Content\Images\Services.png" />
     <Content Include="Content\Images\sign-logo.png" />
     <Content Include="Content\loading-indicator.css" />
@@ -700,7 +701,7 @@
     <Content Include="Scripts\ThreeJS\boxwithmouse.html" />
     <Content Include="Scripts\ThreeJS\Classes\Storey.js" />
     <Content Include="Scripts\ThreeJS\Classes\Helper.js" />
-    <Content Include="Scripts\ThreeJS\Classes\Room.js" />
+    <Content Include="Scripts\ThreeJS\Classes\Space.js" />
     <Content Include="Scripts\ThreeJS\index.html" />
     <Content Include="Scripts\ThreeJS\Libraries\CopyShader.js" />
     <Content Include="Scripts\ThreeJS\Libraries\dat.gui.min.js" />
