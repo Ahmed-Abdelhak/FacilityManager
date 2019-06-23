@@ -1,0 +1,39 @@
+﻿@model BuildingFacilityManager.ViewModels.DashBoardViewModel
+@{
+    Layout = "~/Areas/Purchase/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Dashboard";
+}
+<style type="text/css">
+    .col-xl-3.col-sm-6.mb-3 {
+        padding-bottom: 5px;
+    }
+</style>
+
+@Html.Partial("IconCardsTodayStats_Partial")
+
+
+@Html.Partial("ChangeStatus_Partial")
+
+@Html.Partial("MyTodayWaitingPurchaseOrders_Partial")
+
+@Html.Partial("MyTodayCompletedPurchaseOrders_Partial")
+
+
+@section styles {
+    @Styles.Render("~/Content/sb-adminCustom.css")
+    @Styles.Render("~/Content/fonts/all.css")
+}
+
+@section Scripts {
+
+    @Scripts.Render("~/Scripts/jquery.easing.min.js");
+    @Scripts.Render("~/bundles/jquery");
+    @Scripts.Render("~/bundles/charts");
+    <script>
+        $(document).ready(function () {
+            $("#CompletedPurchaseToday").DataTable();
+            $("#WaitingPurchaseToday").DataTable();
+        });
+
+    </script>
+}

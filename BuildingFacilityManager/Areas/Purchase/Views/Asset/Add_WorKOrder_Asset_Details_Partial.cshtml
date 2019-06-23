@@ -1,0 +1,90 @@
+﻿@using BuildingFacilityManager.Models.Assets.Enums
+@using BuildingFacilityManager.Models.Work_Order.Enums
+@using Microsoft.AspNet.Identity
+@model BuildingFacilityManager.ViewModels.WorkOrderViewModel
+
+
+@{
+
+    using (Ajax.BeginForm("AddWorkOrderFromAssetDetails", "Asset", new AjaxOptions()
+    {
+        Confirm = "Are you Sure ?",
+        HttpMethod = "Post",
+        UpdateTargetId = "Work-table",
+        InsertionMode = InsertionMode.InsertAfter,
+        OnSuccess = "$('.close').click();"
+
+    }))
+    {
+
+
+        <div class="modal fade" id="myModal-AddWork" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add a new Work Order</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+
+                            @Html.HiddenFor(e => e.WorkOrder.AssetId, new { Value = ViewBag.AssetId })
+                            @Html.HiddenFor(s => s.WorkOrder.ReporterId, new { Value = @User.Identity.GetUserId() })
+                            @Html.HiddenFor(e => e.WorkOrder.Date, new { Value = @DateTime.Now })
+
+                        </div>
+
+                        <div>
+                            @Html.LabelFor(e => e.WorkOrder.Description)
+                            @Html.TextAreaFor(e => e.WorkOrder.Description, new { @class = "form-control", style = "width: 100%; max-width: 100%;" })
+                            @Html.ValidationMessageFor(e => e.WorkOrder.Description)
+
+                        </div>
+
+                        <div>
+                            @Html.LabelFor(e => e.WorkOrder.WorkOrderStatus)
+                            @Html.DropDownListFor(e => e.WorkOrder.WorkOrderStatus, EnumHelper.GetSelectList(typeof(WorkOrderStatus)) ,
+                                "Select Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.WorkOrder.WorkOrderStatus)
+
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(e => e.WorkOrder.WorkOrderType)
+                            @Html.DropDownListFor(e => e.WorkOrder.WorkOrderType, EnumHelper.GetSelectList(typeof(WorkOrderType)) ,
+                                "Select Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.WorkOrder.WorkOrderType)
+
+                        </div>
+                        
+                        <div>
+                            @Html.LabelFor(e => e.WorkOrder.FixerId)
+                            @Html.DropDownListFor(c => c.WorkOrder.FixerId, new SelectList(@Model.Fixers, "Id", "Fullname"), "Select a Fixer" , new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.WorkOrder.FixerId)
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Save" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+
+    }
+}
+
+
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}
+
+

@@ -25,7 +25,7 @@
                     </div>
                     <div class="modal-body">
 
-                        <img src="/Content/Images/positioning.png" style="float: right">
+                        @*<img src="/Content/Images/positioning.png" style="float: right">*@
                         <div>
                             @Html.HiddenFor(s => s.Space.Id)
 
@@ -56,7 +56,7 @@
                             @Html.ValidationMessageFor(e => e.Space.Storey)
 
                         </div>
-                        <div>
+                        @*<div>
                             @Html.LabelFor(e => e.Space.Width)
                             @Html.TextBoxFor(e => e.Space.Width, new { @class = "form-control", placeholder="Please Enter Width in Meter" })
                             @Html.ValidationMessageFor(e => e.Space.Width)
@@ -67,8 +67,8 @@
                             @Html.TextBoxFor(e => e.Space.Length, new { @class = "form-control", placeholder = "Please Enter Length in Meter" })
                             @Html.ValidationMessageFor(e => e.Space.Length)
 
-                        </div>
-                        <div>
+                        </div>*@
+                        @*<div>
                             @Html.LabelFor(e => e.Space.WallsHeight)
                             @Html.TextBoxFor(e => e.Space.WallsHeight, new { @class = "form-control", placeholder = "Please Enter Walls Height in Meter" })
                             @Html.ValidationMessageFor(e => e.Space.WallsHeight)
@@ -85,7 +85,7 @@
                             @Html.TextBoxFor(e => e.Space.PositionY, new { @class = "form-control", placeholder = "Please Enter Position in Meter" })
                             @Html.ValidationMessageFor(e => e.Space.PositionY)
 
-                        </div>
+                        </div>*@
                     </div>
 
                 </div>

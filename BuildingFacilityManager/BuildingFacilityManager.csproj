@@ -202,6 +202,10 @@
     <Compile Include="Areas\Org\Controllers\OrgAuthorizationController.cs" />
     <Compile Include="Areas\Org\Controllers\WorkOrderController.cs" />
     <Compile Include="Areas\Org\OrgAreaRegistration.cs" />
+    <Compile Include="Areas\Purchase\Controllers\AssetController.cs" />
+    <Compile Include="Areas\Purchase\Controllers\DashboardController.cs" />
+    <Compile Include="Areas\Purchase\Controllers\PurchaseAuthorizationController.cs" />
+    <Compile Include="Areas\Purchase\PurchaseAreaRegistration.cs" />
     <Compile Include="Controllers\APIControllers\CoreAPIController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ViewerController.cs" />
@@ -301,9 +305,18 @@
     <Compile Include="Migrations\201906211859330_PurchaseDateOfAssetsIsDateTimeType.Designer.cs">
       <DependentUpon>201906211859330_PurchaseDateOfAssetsIsDateTimeType.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906231557223_PurchaseRequestNoteColumnInWorkOrderTable.cs" />
+    <Compile Include="Migrations\201906231557223_PurchaseRequestNoteColumnInWorkOrderTable.Designer.cs">
+      <DependentUpon>201906231557223_PurchaseRequestNoteColumnInWorkOrderTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906231938577_AddPurchaseOrderTable.cs" />
+    <Compile Include="Migrations\201906231938577_AddPurchaseOrderTable.Designer.cs">
+      <DependentUpon>201906231938577_AddPurchaseOrderTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Enums\Department.cs" />
     <Compile Include="Models\Enums\ShiftType.cs" />
     <Compile Include="Models\NoCache.cs" />
+    <Compile Include="Models\Purchase Orders\PurchaseOrder.cs" />
     <Compile Include="Models\SystemRoles.cs" />
     <Compile Include="Models\Tasks\Enums\InspectionStatus.cs" />
     <Compile Include="Models\Tasks\InspectionTask.cs" />
@@ -617,6 +630,36 @@
     <Content Include="Areas\Org\Views\Dashboard\MyAllWorkOrders_Partial.cshtml" />
     <Content Include="Areas\Org\Views\Dashboard\ChangeStatus_Partial.cshtml" />
     <Content Include="Areas\Admin\Views\Dashboard\newInstalledAssetsToday_Partial.cshtml" />
+    <Content Include="Areas\Org\Views\Dashboard\PurchaseRequest_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\web.config" />
+    <Content Include="Areas\Purchase\Views\Shared\_Sidebar_BuildingTree_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\Add_Assets_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\Add_WorKOrder_Asset_Details_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\Add_WorKOrder_SpaceAssets_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\AddAssetsFromSpaceAssets.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\AddWorkOrderFromSpaceAssetsForm.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\Assets_Table_Org_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\Assets_Table_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\Assets_WorkOrders_Org_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\Assets_WorkOrders_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\AssetsDetails.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\AssignFixer_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\ChangeStatus_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\Index.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\SingleAssetDetails_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\SingleAssetDetailsOrderTable_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Asset\SpaceAssets.cshtml" />
+    <Content Include="Areas\Purchase\Views\Dashboard\ChangeStatus_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Dashboard\ChangeTaskStatus_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Dashboard\IconCardsTodayStats_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Dashboard\Index.cshtml" />
+    <Content Include="Areas\Purchase\Views\Dashboard\MyAllWorkOrders_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Dashboard\MyNewTasksToday_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Dashboard\MyScheduledTasks_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Dashboard\MyTodayCompletedPurchaseOrders_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Dashboard\PurchaseRequest_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Dashboard\MyTodayWaitingPurchaseOrders_Partial.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Chart.bundle.js" />
     <Content Include="Scripts\Chart.bundle.min.js" />
@@ -1100,6 +1143,7 @@
     <Folder Include="Areas\Inspector\Views\InspectorAuthorization\" />
     <Folder Include="Areas\Org\Models\" />
     <Folder Include="Areas\Org\Views\OrgAuthorization\" />
+    <Folder Include="Areas\Purchase\Models\" />
     <Folder Include="Scripts\ThreeJS\OBJformat\sample_mtl_res\" />
     <Folder Include="Scripts\ThreeJS\OBJformat\Textures\" />
     <Folder Include="Scripts\ThreeJS\OBJformat\yarab_mtl_res\" />
@@ -1199,6 +1243,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906211859330_PurchaseDateOfAssetsIsDateTimeType.resx">
       <DependentUpon>201906211859330_PurchaseDateOfAssetsIsDateTimeType.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906231557223_PurchaseRequestNoteColumnInWorkOrderTable.resx">
+      <DependentUpon>201906231557223_PurchaseRequestNoteColumnInWorkOrderTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906231938577_AddPurchaseOrderTable.resx">
+      <DependentUpon>201906231938577_AddPurchaseOrderTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

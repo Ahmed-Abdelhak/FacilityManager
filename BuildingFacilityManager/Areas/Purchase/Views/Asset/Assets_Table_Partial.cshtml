@@ -1,0 +1,84 @@
+﻿@model BuildingFacilityManager.ViewModels.AssetsViewModel
+
+<br/>
+<br/>
+<br/>
+<div class="thumbnail">
+
+    <div class="caption">
+        <table class="table table-hover table-bordered" id="assetsTable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Label</th>
+                    <th>Space Location</th>
+                    <th>Status</th>
+                    <th>Type</th>
+                    <th>InstallationDate</th>
+                    <th>ManufacturedDate</th>
+                    <th>Price</th>
+                    <th>Vendor</th>
+                    <th>Warranty</th>
+                    <th>Work Orders</th>
+                    @*<th>Related Asset</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var asset in Model.Assets)
+                {
+
+                    <tr id="id-@asset.Id">
+
+                        <td>
+                            @asset.Id
+                        </td>
+                        <td>
+                            @asset.Label
+                        </td>
+                        <td>
+                            @asset.Space.Label
+                        </td>
+                        <td>
+                            @asset.AssetStatus
+                        </td>
+                        <td>
+                            @asset.AssetType
+                        </td>
+                        <td>
+                            @asset.InstallationDate
+                        </td>
+                        <td>
+                            @asset.ManufacturedDate
+                        </td>
+                        <td>
+                            @asset.Price EGP
+                        </td>
+                        <td>
+                            @asset.Vendor
+                        </td>
+                        <td>
+                            @asset.Warranty
+                        </td>
+
+                        <td>
+                            @Ajax.ActionLink("Work Orders", "AssetsWorkOrders", new { id = asset.Id }, new AjaxOptions { HttpMethod = "GET" })
+                        </td>
+
+
+                        @*<td>
+                                <button type="button" class="btn btn-default" style="float: right" data-toggle="modal" data-target="#myModal-AssetWorkOrders">
+                                    Work Orders
+                                </button>
+                            </td>*@
+                        @*<td>
+                                @foreach (var related in @asset.RelatedAssets)
+                                {
+                                    @related.Label
+                                }
+
+                            </td>*@
+                    </tr>
+                }
+            </tbody>
+        </table></div></div>
+

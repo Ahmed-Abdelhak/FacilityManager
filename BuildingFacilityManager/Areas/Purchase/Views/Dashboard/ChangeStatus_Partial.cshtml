@@ -1,0 +1,57 @@
+﻿@using BuildingFacilityManager.Models.Work_Order.Enums
+@using Microsoft.AspNet.Identity
+@model BuildingFacilityManager.ViewModels.DashBoardViewModel
+
+@{
+
+    using (Html.BeginForm("ChangeStatusWorkOrder", "Dashboard", new AjaxOptions()
+    {
+        HttpMethod = "Post",
+        OnSuccess = "$('.close').click();"
+    }))
+    {
+
+
+        <div class="modal fade" id="Change-Status" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Change Work Order Status</h4>
+                    </div>
+                    <div class="modal-body">
+                        <input id="work-Id-Status" name="WorkOrder.Id" type="hidden" value="">
+                        <div>
+                            @Html.LabelFor(e => e.WorkOrder.WorkOrderStatus)
+                            @Html.DropDownListFor(e => e.WorkOrder.WorkOrderStatus, EnumHelper.GetSelectList(typeof(WorkOrderStatus)) ,
+                                "Select Type", new { @class = "form-control" })
+                            @Html.ValidationMessageFor(e => e.WorkOrder.WorkOrderStatus)
+
+                        </div>
+                       
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Change Status" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+
+    }
+}
+
+
+
+<script>
+    let statusId;
+
+    function WorkIdForStatusChange(id) {
+        statusId = id;
+        document.getElementById("work-Id-Status").value = statusId;
+
+    }
+</script>

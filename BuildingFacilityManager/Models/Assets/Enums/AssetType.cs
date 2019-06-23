@@ -2,11 +2,10 @@
 {
     public enum AssetType
     {
-        Chair = 1,
-        ChairDesk = 2,
-        Desk = 3,
-        Table = 4,
-        Laptop = 5,
-        TelevisionModern = 6,
+        Furniture = 1,
+        Electrical = 2,
+        AirCondition = 3,
+        ElevatorCabinet = 4,
+        Sanitary = 5,
     }
 }

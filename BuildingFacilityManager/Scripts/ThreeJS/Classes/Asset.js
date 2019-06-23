@@ -51,7 +51,7 @@
             var objMaterial = new THREE.MeshStandardMaterial({
                 color: 'rgb(200, 200, 200)'
             });
-           
+
             obj.traverse(function (child) {
                 child.material = objMaterial;
                 child.name = 'asset';

@@ -15,6 +15,8 @@ namespace BuildingFacilityManager.ViewModels
         public ICollection<WorkOrder> TodayCompletedWorkOrders { get; set; }
         public ICollection<WorkOrder> TodayActiveWorkOrders { get; set; }
         public ICollection<WorkOrder> TodayInProgressWorkOrders { get; set; }
+        public ICollection<WorkOrder> TodayWaitingPurchaseWorkOrders { get; set; }
+        public ICollection<WorkOrder> TodayCompletedPurchaseWorkOrders { get; set; }
         public ICollection<WorkOrder> MyCreatedWorkOrdersToday { get; set; }
         public ICollection<Asset> TodayInstalledAssets { get; set; }
 

@@ -88,10 +88,7 @@ namespace BuildingFacilityManager.Controllers
         [ValidateAntiForgeryToken]
         public async Task<ActionResult> Login(LoginViewModel model, string returnUrl)
         {
-            var user = UserManager.Users.SingleOrDefault(u => u.Email == model.Email);
-
-            var userRole = RoleManager.Roles.SingleOrDefault(r => r.Users.Any(u => u.UserId == user.Id));
-
+           
             if (!ModelState.IsValid)
             {
                 return View(model);
@@ -104,12 +101,15 @@ namespace BuildingFacilityManager.Controllers
             {
                 case SignInStatus.Success:
 
+                    var user = UserManager.Users.SingleOrDefault(u => u.Email == model.Email);
+
+                    var userRole = RoleManager.Roles.SingleOrDefault(r => r.Users.Any(u => u.UserId == user.Id));
 
 
                     // if you used User.IsInRole(), it won't work !
                     //                                              because the method is Async
                     // still no data about the User
-                    
+
                     if (userRole.Name == SystemRoles.Admin)
                     {
                         return RedirectToAction("Index", "Dashboard", new { area = "Admin" });
@@ -121,6 +121,10 @@ namespace BuildingFacilityManager.Controllers
                     else if (userRole.Name == SystemRoles.Fixer)
                     {
                         return RedirectToAction("Index", "Dashboard", new { area = "Org" });
+                    }
+                    else if (userRole.Name == SystemRoles.Purchase)
+                    {
+                        return RedirectToAction("Index", "Dashboard", new { area = "Purchase" });
                     }
 
                     return RedirectToLocal(returnUrl);

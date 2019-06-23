@@ -114,7 +114,7 @@
             renderer.setSize(window.innerWidth, window.innerHeight);
             renderer.setClearColor('rgb (250, 250, 250)');
             document.getElementById('webgl').appendChild(renderer.domElement);
-          
+
 
             //Controls Orbit Control
 
@@ -124,7 +124,7 @@
 
             scene.background = new THREE.Color(0xaaaaaa);
 
- 
+
             //Calling the functions
             update(renderer, scene, camera, controls); //calling the function with the same arguments and the renderer object
 
@@ -166,7 +166,7 @@
 
             scene.add(mesh);
         }
-        
+
 
         let Assets = @Html.Raw(@assetsList);
 

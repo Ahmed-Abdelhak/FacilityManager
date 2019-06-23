@@ -65,5 +65,19 @@ namespace BuildingFacilityManager.Areas.Org.Controllers
             return RedirectToAction("Index");
 
         }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PurchaseRequest(WorkOrder workOrder)
+        {
+            var myWork = _context.WorkOrders.SingleOrDefault(w => w.Id == workOrder.Id);
+            if (myWork != null && workOrder.WorkOrderStatus != 0) myWork.WorkOrderStatus = workOrder.WorkOrderStatus;
+            if (myWork != null && workOrder.PurchaseRequestNotes != null) myWork.PurchaseRequestNotes = workOrder.PurchaseRequestNotes;
+
+            _context.SaveChanges();
+
+            return RedirectToAction("Index");
+
+        }
     }
 }

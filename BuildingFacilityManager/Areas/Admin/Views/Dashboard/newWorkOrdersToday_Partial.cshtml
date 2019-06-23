@@ -18,6 +18,7 @@
                     <th>Reporter</th>
                     <th>Fixer</th>
                     <th>Fixer Notes</th>
+                    <th>Purchase Notes</th>
                 </tr>
             </thead>
             <tbody>
@@ -47,7 +48,7 @@
                     <td>
                         @work.Date
                     </td>
-                   
+
                     <td>
                         @{
                             if (@work.Reporter != null)
@@ -70,6 +71,9 @@
                     </td>
                     <td>
                         @work.FixerNotes
+                    </td>
+                    <td>
+                        @work.PurchaseRequestNotes
                     </td>
                 </tr>
                 }

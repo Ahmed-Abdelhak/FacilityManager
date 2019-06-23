@@ -5,6 +5,7 @@
         IT = 1,
         Electrical =2,
         Furniture = 3,
-        Sanitary = 4
+        Sanitary = 4,
+        PurchaseTeam = 5
     }
 }

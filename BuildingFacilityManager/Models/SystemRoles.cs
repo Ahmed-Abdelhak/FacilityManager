@@ -10,5 +10,6 @@ namespace BuildingFacilityManager.Models
         public const string Admin = "Admin";
         public const string Inspector = "Inspector";
         public const string Fixer = "Fixer";
+        public const string Purchase = "PurchaseManager";
     }
 }

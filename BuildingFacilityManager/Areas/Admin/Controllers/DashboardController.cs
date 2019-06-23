@@ -84,7 +84,20 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
 
                         &&
 
-                        w.WorkOrderStatus == WorkOrderStatus.In_Progress
+                        w.WorkOrderStatus == WorkOrderStatus.InProgress
+
+                    )
+                    .Include(w => w.Asset)
+                    .Include(w => w.Asset.Space)
+                    .Include(w => w.Asset.Space.Storey).ToList(),
+
+                TodayWaitingPurchaseWorkOrders = _context.WorkOrders.Where(w =>
+                        DbFunctions.TruncateTime(w.Date)
+                        == DbFunctions.TruncateTime(DateTime.Today)
+
+                        &&
+
+                        w.WorkOrderStatus == WorkOrderStatus.WaitingPurchase
 
                     )
                     .Include(w => w.Asset)

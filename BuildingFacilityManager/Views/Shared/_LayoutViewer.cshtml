@@ -1,0 +1,67 @@
+﻿@using BuildingFacilityManager.Models
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Facility Manager</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body>
+    <div id="selectAbsTop" class="navbar navbar-inverse navbar-fixed-top ">
+        <div class="container">
+            <div class="navbar-header">
+                <img src="~/Content/Images/navbar-logo.png" style="float:left">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Facility Manager", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    @{
+                        string area = "";
+                        if (User.IsInRole(SystemRoles.Admin))
+                        {
+                            area = "Admin";
+                        }
+                        else if (User.IsInRole(SystemRoles.Inspector))
+                        {
+                            area = "Inspector";
+
+                        }
+                        else
+                        {
+                            area = "Org";
+
+                        }
+
+
+                    }
+                    <li>  @Html.ActionLink("DashBoard", "Index", "Dashboard", new { area = area }, null)</li>
+                    <li> @Html.ActionLink("Contact Us", "Contact", "Home", new { area = "" }, null)</li>
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>
+    @*<div class="container body-content">*@
+        @RenderBody()
+        @*<footer id="selectAbsBottom">
+            <p>&copy; @DateTime.Now.Year - Facility Manager</p>
+        </footer>*@
+    @*</div>*@
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+    @RenderSection("styles", required: false)
+
+   
+</body>
+</html>

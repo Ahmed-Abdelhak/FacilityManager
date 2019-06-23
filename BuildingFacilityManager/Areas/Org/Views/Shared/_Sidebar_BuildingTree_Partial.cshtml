@@ -5,13 +5,13 @@
 
 }
 <div class="sidenav">
-    <h4 class="btn btn-primary" id="buildingTree">My Building</h4>
+    <h4 class="btn btn-primary" id="buildingTree">ITI Building</h4>
     <ul id="nav">
 
         @foreach (var storey in building.Stories)
         {
             <li>
-                <a style="color: #ce8d16;" href="#"><i class="fas fa-warehouse"></i> @storey.Label Storey</a>
+                <a style="color: #ce8d16;" href="#"><i class="fas fa-warehouse"></i> @storey.Label </a>
                 <ul class="nested-nav-ul">
                     @foreach (var space in @storey.Spaces)
                     {

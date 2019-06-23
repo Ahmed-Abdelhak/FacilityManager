@@ -51,7 +51,7 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult AddStorey(Storey storey)
         {
-            if (storey.Label != null && storey.Width > 0 && storey.Length > 0 && storey.Level >= 0)
+            if (storey.Label != null )
             {
                 _context.Stories.Add(storey);
                 _context.SaveChanges();
@@ -65,36 +65,50 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
         public ActionResult AddSpace(Space space)
         {
             // I need to validate the Intersect of Lines of the Space, by the PositionX and PositionY
-            var spaces = _context.Spaces.Where(s => s.StoreyId == space.StoreyId).ToList();
-            var storey = _context.Stories.SingleOrDefault(s => s.Id == space.StoreyId);
+            //var spaces = _context.Spaces.Where(s => s.StoreyId == space.StoreyId).ToList();
+            //var storey = _context.Stories.SingleOrDefault(s => s.Id == space.StoreyId);
 
-            var flag = false;
+            //var flag = false;
 
-            foreach (var t in spaces)
-            {
-                var x = Math.Abs(t.PositionX - space.PositionX);
-                var y = Math.Abs(t.PositionY - space.PositionY);
 
-                if (x >= (t.Width)
-                    &&
-                    y >= (t.Length)
+            //if (spaces.Count == 0)
+            //{
+            //    flag = true;
+            //}
+            //else
+            //{
+            //    foreach (var t in spaces)
+            //    {
+            //        var x = Math.Abs(t.PositionX - space.PositionX);
+            //        var y = Math.Abs(t.PositionY - space.PositionY);
 
-                )
-                {
-                    flag = true;
-                }
-                else
-                {
-                    TempData["SpaceConflict"] = 1;
-                }
-            }
+            //        if (x >= (t.Width)
+            //            &&
+            //            y >= (t.Length)
 
-            if (storey != null && (space.Length + space.PositionX > storey.Length || space.Width + space.PositionY > storey.Width))
-            {
-                TempData["dimensionAlert"] = 1;
-            }
+            //        )
+            //        {
+            //            flag = true;
+            //        }
+            //        else
+            //        {
+            //            flag = false;
+            //            TempData["SpaceConflict"] = 1;
+            //            break;
+            //        }
+            //    }
+            //}
+            
 
-            if (flag == true && storey != null && (space.Label != null && space.StoreyId != 0 && space.SpaceType != 0 && space.Length > 0 && space.Width > 0 && space.WallsHeight > 0 && space.PositionX >= 0 && space.PositionY >= 0 && space.Length + space.PositionX <= storey.Length && space.Width + space.PositionY <= storey.Width))
+           
+
+            //if (storey != null && (space.Length + space.PositionX > storey.Length || space.Width + space.PositionY > storey.Width))
+            //{
+            //    TempData["dimensionAlert"] = 1;
+            //}
+
+            //if (flag == true && storey != null && (space.Label != null && space.StoreyId != 0 && space.SpaceType != 0 && space.Length > 0 && space.Width > 0 && space.WallsHeight > 0 && space.PositionX >= 0 && space.PositionY >= 0 && space.Length + space.PositionX <= storey.Length && space.Width + space.PositionY <= storey.Width))
+            if (space.Label != null && space.StoreyId != 0 && space.SpaceType != 0 )
             {
                 _context.Spaces.Add(space);
                 _context.SaveChanges();

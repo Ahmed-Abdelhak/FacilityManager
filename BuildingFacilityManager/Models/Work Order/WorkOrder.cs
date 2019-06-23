@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 using BuildingFacilityManager.Models.Assets;
+using BuildingFacilityManager.Models.Purchase_Orders;
 using BuildingFacilityManager.Models.Work_Order.Enums;
 
 namespace BuildingFacilityManager.Models.Work_Order
@@ -34,6 +35,9 @@ namespace BuildingFacilityManager.Models.Work_Order
         public string FixerId { get; set; }
 
         public string FixerNotes { get; set; }
+        public string PurchaseRequestNotes { get; set; }
+
+        public ICollection<PurchaseOrder> PurchaseOrders { get; set; }
 
 
         /*

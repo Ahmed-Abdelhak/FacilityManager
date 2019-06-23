@@ -52,10 +52,10 @@
         var myPieChart = new Chart(ctx, {
             type: 'pie',
             data: {
-                labels: ["In Progress", "Active", "Completed"],
+                labels: ["In Progress", "Active", "Completed", "Waiting Purchase"],
                 datasets: [{
-                    data: [@Model.TodayInProgressWorkOrders.Count,@Model.TodayActiveWorkOrders.Count,  @Model.TodayCompletedWorkOrders.Count],
-                    backgroundColor: ['#007bff', '#dc3545',  '#28a745']
+                    data: [@Model.TodayInProgressWorkOrders.Count,@Model.TodayActiveWorkOrders.Count,  @Model.TodayCompletedWorkOrders.Count,@Model.TodayWaitingPurchaseWorkOrders.Count],
+                    backgroundColor: ['#007bff', '#dc3545', '#28a745', '#ffc107' ]
                 }]
             }
         });
