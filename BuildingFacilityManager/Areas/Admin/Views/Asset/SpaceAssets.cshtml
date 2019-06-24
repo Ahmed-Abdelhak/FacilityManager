@@ -1,4 +1,5 @@
 ﻿@using Antlr.Runtime.Tree
+@using BuildingFacilityManager.Models.Assets.Enums
 @model List<BuildingFacilityManager.Models.Assets.Asset>
 @{
     ViewBag.Title = ViewBag.spaceLabel;
@@ -7,7 +8,7 @@
 }
 
 <h2>@ViewBag.spaceLabel Assets</h2>
-@Html.ActionLink("Add", "AddAssetsFromSpaceAssets", new { id = ViewBag.SpaceId , name= ViewBag.spaceLabel }, new { @class = "btn btn-primary", Style = "float:right;" })
+@Html.ActionLink("Add", "AddAssetsFromSpaceAssets", new { id = ViewBag.SpaceId, name = ViewBag.spaceLabel }, new { @class = "btn btn-primary", Style = "float:right;" })
 
 
 <table class="table table-hover table-striped" id="assets">
@@ -40,12 +41,22 @@
                 </td>
                 <td>
                     @Html.ActionLink("View Details", "AssetsDetails", new { id = asset.Id }, new { @class = "btn btn-success" })
-                    @Html.ActionLink("Add Work Order", "AddWorkOrderFromSpaceAssetsForm", new { id = asset.Id }, new { @class = "btn btn-danger" })
+                    @Html.ActionLink("Add Work Order", "AddWorkOrderFromSpaceAssetsForm", new { id = asset.Id }, new { @class = "btn btn-primary" })
+                    
+                    @{
+                        if (asset.AssetType == AssetType.AirCondition || asset.AssetType == AssetType.Machines || asset.AssetType == AssetType.FireFighting || asset.AssetType == AssetType.ElevatorCabinet)
+                        {
+                            @Html.ActionLink("Drop Health Report", "HealthReportOfAssets", new { id = asset.Id }, new { @class = "btn btn-danger" })
+
+                        }
+                    }
+                   
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
 
 
 @section scripts
@@ -54,5 +65,7 @@
         $(document).ready(function () {
             $("#assets").DataTable();
         });
+
+
     </script>
 }

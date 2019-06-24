@@ -6,6 +6,7 @@
         Electrical =2,
         Furniture = 3,
         Sanitary = 4,
-        PurchaseTeam = 5
+        Mechanical = 5,
+        PurchaseTeam = 6
     }
 }

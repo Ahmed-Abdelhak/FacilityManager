@@ -2,7 +2,7 @@
 @model BuildingFacilityManager.ViewModels.AssetsViewModel
 
 @{
-    ViewBag.Title = "Add Asset to"+ " " +  @ViewBag.SpaceLabel;
+    ViewBag.Title = "Add Asset to" + " " + @ViewBag.SpaceLabel;
 }
 
 <style type="text/css">
@@ -80,6 +80,12 @@
         @Html.LabelFor(e => e.Asset.Vendor)
         @Html.TextBoxFor(e => e.Asset.Vendor, new { @class = "form-control" })
         @Html.ValidationMessageFor(e => e.Asset.Vendor)
+
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(e => e.Asset.VendorContact)
+        @Html.TextBoxFor(e => e.Asset.VendorContact, new { @class = "form-control" })
+        @Html.ValidationMessageFor(e => e.Asset.VendorContact)
 
     </div>
     <div class="form-group">

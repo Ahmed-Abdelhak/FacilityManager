@@ -318,6 +318,14 @@
     <Compile Include="Migrations\201906231952593_AddPurchaseDateColumn.Designer.cs">
       <DependentUpon>201906231952593_AddPurchaseDateColumn.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201906240818140_HealthColumnForAssets.cs" />
+    <Compile Include="Migrations\201906240818140_HealthColumnForAssets.Designer.cs">
+      <DependentUpon>201906240818140_HealthColumnForAssets.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906241006510_HealthNotes.cs" />
+    <Compile Include="Migrations\201906241006510_HealthNotes.Designer.cs">
+      <DependentUpon>201906241006510_HealthNotes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Models\Enums\Department.cs" />
     <Compile Include="Models\Enums\ShiftType.cs" />
     <Compile Include="Models\NoCache.cs" />
@@ -676,6 +684,9 @@
     <Content Include="Areas\Admin\Views\Cost\SanitaryAssetsCosts_Partial.cshtml" />
     <Content Include="Areas\Admin\Views\Cost\MachinesAssetsCosts_Partial.cshtml" />
     <Content Include="Areas\Admin\Views\Cost\ElectronicsAssetsCosts_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Asset\Health_Report_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Asset\HealthReportOfAssets.cshtml" />
+    <Content Include="Areas\Inspector\Views\Asset\HealthReportOfAssets.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Chart.bundle.js" />
     <Content Include="Scripts\Chart.bundle.min.js" />
@@ -1268,6 +1279,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906231952593_AddPurchaseDateColumn.resx">
       <DependentUpon>201906231952593_AddPurchaseDateColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906240818140_HealthColumnForAssets.resx">
+      <DependentUpon>201906240818140_HealthColumnForAssets.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906241006510_HealthNotes.resx">
+      <DependentUpon>201906241006510_HealthNotes.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,41 @@
+﻿@using BuildingFacilityManager.Models.Work_Order.Enums
+@using Microsoft.AspNet.Identity
+@model BuildingFacilityManager.Models.Assets.Asset
+
+
+
+&nbsp;
+&nbsp;
+&nbsp;
+
+@using (Html.BeginForm("HealthReportOfAssets", "Asset", FormMethod.Post))
+{
+    <div class="form-group">
+
+        @Html.HiddenFor(e => e.Id, new { Value = ViewBag.AssetId })
+
+
+    </div>
+    <div class="form-group">
+    @Html.LabelFor(e => e.HealthMeasurement)
+    @Html.TextBoxFor(e => e.HealthMeasurement, new { @class = "form-control", @placeholder = "the Health Measurement is from 0 to 100" })
+    @Html.ValidationMessageFor(e => e.HealthMeasurement)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(e => e.HealthNotes)
+        @Html.TextAreaFor(e => e.HealthNotes, new { @class = "form-control"})
+        @Html.ValidationMessageFor(e => e.HealthNotes)
+    </div>
+
+    <br />
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Change Health Status" class="btn btn-primary" />
+
+}
+
+@section scripts
+{
+    @Scripts.Render("~/bundles/jqueryval")
+
+}

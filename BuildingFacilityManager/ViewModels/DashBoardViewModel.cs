@@ -55,6 +55,8 @@ namespace BuildingFacilityManager.ViewModels
         public float TotalBuildingCosts { get; set; }
         public float TodayBuildingCosts { get; set; }
         public float YesterdayBuildingCosts { get; set; }
+        public int AssetHealthAffected { get; set; }
+        public int AssetHealthAffectedId { get; set; }
 
     }
 }

@@ -33,8 +33,8 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
         public ActionResult Index()
         {
 
-            ViewBag.DimentionAlert = Convert.ToInt32(TempData["dimensionAlert"]);
-            ViewBag.SpaceConflict = Convert.ToInt32(TempData["SpaceConflict"]);
+            //ViewBag.DimentionAlert = Convert.ToInt32(TempData["dimensionAlert"]);
+            //ViewBag.SpaceConflict = Convert.ToInt32(TempData["SpaceConflict"]);
 
             var buildingModel = new BuildingViewModel
             {

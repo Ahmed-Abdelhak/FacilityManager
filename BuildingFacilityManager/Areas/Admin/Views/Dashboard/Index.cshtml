@@ -1,4 +1,5 @@
-﻿@model BuildingFacilityManager.ViewModels.DashBoardViewModel
+﻿@using BuildingFacilityManager.Models.Assets
+@model BuildingFacilityManager.ViewModels.DashBoardViewModel
 @{
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
     ViewBag.Title = "Dashboard";
@@ -8,6 +9,22 @@
         padding-bottom: 5px;
     }
 </style>
+
+<h3>Today's new Stats</h3>
+
+<br />
+<div class="progress">
+    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100" style="width:  @Model.AssetHealthAffected%"><strong>Special Assets Health @Model.AssetHealthAffected %</strong></div>
+</div>
+@{
+    if (@Model.AssetHealthAffected < 100)
+    {
+        @Html.ActionLink("Contact the Asset Vendor","AssetsDetails","Asset", new{area="Admin", id= @Model.AssetHealthAffectedId}, new {@style="float:right"})
+
+    }
+
+}
+<br />
 
 @Html.Partial("IconCardsTodayStats_Partial")
 
@@ -72,5 +89,7 @@
                 }]
             }
         });
+
+
     </script>
 }

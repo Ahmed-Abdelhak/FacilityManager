@@ -32,12 +32,27 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
+            //ViewBag.HealthAlert = Convert.ToInt32(TempData["HealthAlert"]);
+            //ViewBag.AssetId = Convert.ToInt32(TempData["AssetId"]);
+
             var today = DateTime.Today;
             var todayLastWeek = today.AddDays(-7);
             //var todayLastWeek = today.(-7);
             var tomorrow = today.AddDays(1);
             var yesterday = today.AddDays(-1);
 
+            int health = 100;
+            int id = 0;
+            var assetAffected = _context.Assets.Where(a => a.HealthMeasurement < 100).ToList();
+            foreach (var asset in assetAffected)
+            {
+                if (asset.HealthMeasurement != null)
+                {
+                    health = (int) asset.HealthMeasurement;
+                    id = asset.Id;
+                }
+                
+            }
             var model = new DashBoardViewModel()
             {
                 WorkOrders = _context.WorkOrders.Where(w=>
@@ -252,6 +267,8 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
                     )
                     .Include(w => w.WorkOrder)
                     .ToList(),
+                AssetHealthAffected = health,
+                AssetHealthAffectedId = id,
             };
             return View(model);
         }

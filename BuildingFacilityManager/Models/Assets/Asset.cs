@@ -23,6 +23,12 @@ namespace BuildingFacilityManager.Models.Assets
         public int SpaceId { get; set; }
         [JsonIgnore]
         public string Vendor { get; set; }
+        [EmailAddress]
+        public string VendorContact { get; set; }
+
+        public int? HealthMeasurement { get; set; }
+        public string HealthNotes { get; set; }
+
         [JsonIgnore]
         [DataType(DataType.Date)]
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyy}", ApplyFormatInEditMode = true)]

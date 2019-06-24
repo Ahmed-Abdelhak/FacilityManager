@@ -3,7 +3,7 @@
     public enum AssetStatus 
     {
         Active = 1,
-        OnHold = 2,
+        InMaintenance = 2,
         Deprecated = 3
     }
 }

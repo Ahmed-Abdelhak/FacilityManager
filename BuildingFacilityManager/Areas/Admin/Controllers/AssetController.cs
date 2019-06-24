@@ -232,5 +232,32 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
 
         }
 
+
+        public ActionResult HealthReportOfAssets(int id)
+        {
+            ViewBag.AssetId = id;
+            return View();
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult HealthReportOfAssets(Asset asset)
+        {
+            var myAsset = _context.Assets.SingleOrDefault(w => w.Id == asset.Id);
+            if (myAsset != null && asset.HealthMeasurement != 0)
+            {
+                myAsset.HealthMeasurement = asset.HealthMeasurement;
+                //TempData["HealthAlert"] = asset.HealthMeasurement;
+                //TempData["AssetId"] = asset.Id;
+
+            }
+
+            _context.SaveChanges();
+
+
+            return RedirectToAction("Index", "Dashboard");
+        }
+
     }
 }
