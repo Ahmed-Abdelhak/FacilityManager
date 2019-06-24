@@ -44,11 +44,13 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
             int health = 100;
             int id = 0;
             var assetAffected = _context.Assets.Where(a => a.HealthMeasurement < 100).ToList();
+            var minAffectedHealth = new List<int>();
             foreach (var asset in assetAffected)
             {
                 if (asset.HealthMeasurement != null)
                 {
-                    health = (int) asset.HealthMeasurement;
+                    minAffectedHealth.Add((int)asset.HealthMeasurement);
+                    health = minAffectedHealth.Min();
                     id = asset.Id;
                 }
                 
