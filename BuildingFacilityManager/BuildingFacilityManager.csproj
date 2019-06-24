@@ -185,6 +185,7 @@
     <Compile Include="Areas\Admin\Controllers\AdminAuthorizationController.cs" />
     <Compile Include="Areas\Admin\Controllers\AssetController.cs" />
     <Compile Include="Areas\Admin\Controllers\BuildingController.cs" />
+    <Compile Include="Areas\Admin\Controllers\CostController.cs" />
     <Compile Include="Areas\Admin\Controllers\DashboardController.cs" />
     <Compile Include="Areas\Admin\Controllers\GroupController.cs" />
     <Compile Include="Areas\Admin\Controllers\TaskController.cs" />
@@ -312,6 +313,10 @@
     <Compile Include="Migrations\201906231938577_AddPurchaseOrderTable.cs" />
     <Compile Include="Migrations\201906231938577_AddPurchaseOrderTable.Designer.cs">
       <DependentUpon>201906231938577_AddPurchaseOrderTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201906231952593_AddPurchaseDateColumn.cs" />
+    <Compile Include="Migrations\201906231952593_AddPurchaseDateColumn.Designer.cs">
+      <DependentUpon>201906231952593_AddPurchaseDateColumn.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Enums\Department.cs" />
     <Compile Include="Models\Enums\ShiftType.cs" />
@@ -660,6 +665,17 @@
     <Content Include="Areas\Purchase\Views\Dashboard\MyTodayCompletedPurchaseOrders_Partial.cshtml" />
     <Content Include="Areas\Purchase\Views\Dashboard\PurchaseRequest_Partial.cshtml" />
     <Content Include="Areas\Purchase\Views\Dashboard\MyTodayWaitingPurchaseOrders_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Dashboard\AddPurchaseOrder_Partial.cshtml" />
+    <Content Include="Areas\Purchase\Views\Dashboard\AllCompletedPurchaseOrders_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Cost\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Cost\IconCardsTodayCostsStats_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Cost\AreaChartOfCosts_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Cost\MyTodayCompletedPurchaseOrders_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Cost\FurnitureAssetsCosts_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Cost\ElectricalAssetsCosts_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Cost\SanitaryAssetsCosts_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Cost\MachinesAssetsCosts_Partial.cshtml" />
+    <Content Include="Areas\Admin\Views\Cost\ElectronicsAssetsCosts_Partial.cshtml" />
     <None Include="Scripts\jquery-3.3.1.intellisense.js" />
     <Content Include="Scripts\Chart.bundle.js" />
     <Content Include="Scripts\Chart.bundle.min.js" />
@@ -1249,6 +1265,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201906231938577_AddPurchaseOrderTable.resx">
       <DependentUpon>201906231938577_AddPurchaseOrderTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201906231952593_AddPurchaseDateColumn.resx">
+      <DependentUpon>201906231952593_AddPurchaseDateColumn.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

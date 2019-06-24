@@ -1,0 +1,60 @@
+﻿@model BuildingFacilityManager.ViewModels.DashBoardViewModel
+
+<h3>Furniture Assets Costs : @Model.AssetsFurnitureCosts EGP</h3>
+<div class="thumbnail">
+
+    <div class="caption">
+        <table class="table table-hover table-bordered" id="assetsFurnitureTable">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Label</th>
+                    <th>Space Location</th>
+                    <th>Price</th>
+                    <th>Status</th>
+                    <th>InstallationDate</th>
+                    <th>ManufacturedDate</th>
+                    <th>Vendor</th>
+                    @*<th>Related Asset</th>*@
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var asset in Model.AssetsFurniture)
+                {
+
+                    <tr id="id-@asset.Id">
+
+                        <td>
+                            @asset.Id
+                        </td>
+                        <td>
+                            @asset.Label
+                        </td>
+                        <td>
+                            @asset.Space.Label
+                        </td>
+                        <td>
+                            @asset.AssetStatus
+                        </td>
+                        <td>
+                            @asset.Price EGP
+                        </td>
+                        <td>
+                            @asset.InstallationDate
+                        </td>
+                        <td>
+                            @asset.ManufacturedDate
+                        </td>
+                       
+                        <td>
+                            @asset.Vendor
+                        </td>
+                
+
+                        
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

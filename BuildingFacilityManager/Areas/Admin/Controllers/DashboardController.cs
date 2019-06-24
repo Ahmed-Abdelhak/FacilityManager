@@ -243,6 +243,15 @@ namespace BuildingFacilityManager.Areas.Admin.Controllers
 
                     .Include(t => t.StoreyInspection)
                     .ToList(),
+
+                TodayCompletedPurchaseOrders = _context.PurchaseOrders.Where(w =>
+                        DbFunctions.TruncateTime(w.PurchaseDateTime)
+                        == DbFunctions.TruncateTime(DateTime.Today)
+
+
+                    )
+                    .Include(w => w.WorkOrder)
+                    .ToList(),
             };
             return View(model);
         }

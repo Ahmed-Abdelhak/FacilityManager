@@ -14,6 +14,8 @@ namespace BuildingFacilityManager.Models.Purchase_Orders
         public float Cost { get; set; }
         public WorkOrder WorkOrder { get; set; }
         [ForeignKey("WorkOrder")]
-        public int WorkOrderID { get; set; }
+        public int WorkOrderId { get; set; }
+
+        public DateTime? PurchaseDateTime { get; set; }
     }
 }

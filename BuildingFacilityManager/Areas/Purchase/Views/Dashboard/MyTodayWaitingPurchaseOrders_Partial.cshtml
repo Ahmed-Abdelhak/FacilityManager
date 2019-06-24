@@ -82,9 +82,12 @@
                             @work.FixerNotes
                         </td>
                         <td>
-                        <button type="button" title="Change Status" style="background-color: #dda0dd; background-repeat: no-repeat; border: none;cursor: pointer; overflow: hidden; outline: none;" data-toggle="modal" data-target="#Change-Status" onclick="WorkIdForStatusChange(@work.Id)">
-                            <span class="far fa-edit" aria-hidden="true"></span>
-                        </button>
+                            <button type="button" title="Change Status" style="background-color: #dda0dd; background-repeat: no-repeat; border: none;cursor: pointer; overflow: hidden; outline: none;" data-toggle="modal" data-target="#Change-Status" onclick="WorkIdForStatusChange(@work.Id)">
+                                <span class="far fa-edit" aria-hidden="true"></span>
+                            </button>
+                            <button type="button" title="Add Purchase Order" style="background-color: #28a745; background-repeat: no-repeat; border: none;cursor: pointer; overflow: hidden; outline: none;" data-toggle="modal" data-target="#AddPurchaseOrder" onclick="WorkIdForNewPurchaseOrder(@work.Id)">
+                                <span class="fas fa-cart-plus" aria-hidden="true"></span>
+                            </button>
                         </td>
                     </tr>
                 }

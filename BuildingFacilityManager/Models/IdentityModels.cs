@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using BuildingFacilityManager.Models.Assets;
 using BuildingFacilityManager.Models.Building_Models;
 using BuildingFacilityManager.Models.Enums;
+using BuildingFacilityManager.Models.Purchase_Orders;
 using BuildingFacilityManager.Models.Tasks;
 using BuildingFacilityManager.Models.Work_Order;
 using Microsoft.AspNet.Identity;
@@ -57,6 +58,7 @@ namespace BuildingFacilityManager.Models
         public virtual DbSet<Asset> Assets { get; set; }
         public virtual DbSet<WorkOrder> WorkOrders { get; set; }
         public virtual DbSet<InspectionTask> InspectionTasks { get; set; }
+        public virtual DbSet<PurchaseOrder> PurchaseOrders { get; set; }
 
 
         public static ApplicationDbContext Create()

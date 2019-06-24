@@ -5,6 +5,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using BuildingFacilityManager.Models;
+using BuildingFacilityManager.Models.Purchase_Orders;
 using BuildingFacilityManager.Models.Work_Order;
 using BuildingFacilityManager.Models.Work_Order.Enums;
 using BuildingFacilityManager.ViewModels;
@@ -48,18 +49,14 @@ namespace BuildingFacilityManager.Areas.Purchase.Controllers
                     .Include(w => w.Asset.Space)
                     .Include(w => w.Asset.Space.Storey).ToList(),
 
-                TodayCompletedPurchaseWorkOrders = _context.WorkOrders.Where(w =>
-                        DbFunctions.TruncateTime(w.Date)
+                TodayCompletedPurchaseOrders = _context.PurchaseOrders.Where(w =>
+                        DbFunctions.TruncateTime(w.PurchaseDateTime)
                         == DbFunctions.TruncateTime(DateTime.Today)
 
-                        &&
-
-                        w.WorkOrderStatus == WorkOrderStatus.PurchaseComplete
 
                     )
-                    .Include(w => w.Asset)
-                    .Include(w => w.Asset.Space)
-                    .Include(w => w.Asset.Space.Storey).ToList(),
+                    .Include(w => w.WorkOrder)
+                   .ToList(),
             };
 
             return View(model);
@@ -78,5 +75,19 @@ namespace BuildingFacilityManager.Areas.Purchase.Controllers
 
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AddPurchaseOrder(PurchaseOrder purchaseOrder)
+        {
+            if (purchaseOrder.WorkOrderId != 0 && purchaseOrder.Description != null
+                                                   && purchaseOrder.Cost != 0
+                                                   && purchaseOrder.PurchaseDateTime != null)
+            {
+                _context.PurchaseOrders.Add(purchaseOrder);
+                _context.SaveChanges();
+            }
+            return RedirectToAction("Index");
+
+        }
     }
 }

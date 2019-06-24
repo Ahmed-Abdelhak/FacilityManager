@@ -1,0 +1,79 @@
+﻿@model BuildingFacilityManager.ViewModels.DashBoardViewModel
+
+
+
+@{
+
+    using (Ajax.BeginForm("AddPurchaseOrder", "Dashboard", new AjaxOptions()
+    {
+        Confirm = "Are you Sure ?",
+        HttpMethod = "Post",
+        OnSuccess = "$('.close').click();"
+
+    }))
+    {
+
+
+        <div class="modal fade" id="AddPurchaseOrder" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title" id="myModalLabel">Add a new Purchase Order</h4>
+                    </div>
+                    <div class="modal-body">
+                        <div>
+                            <input id="work-Id-purchase" name="PurchaseOrder.WorkOrderId" type="hidden" value="">
+
+
+                        </div>
+
+                        <div class="form-group">
+                            @Html.LabelFor(e => e.PurchaseOrder.Description)
+                            @Html.TextAreaFor(e => e.PurchaseOrder.Description, new { @class = "form-control", style = "width: 100%; max-width: 100%;" })
+                            @Html.ValidationMessageFor(e => e.PurchaseOrder.Description)
+
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(e => e.PurchaseOrder.PurchaseDateTime)
+                            @Html.TextBoxFor(c => c.PurchaseOrder.PurchaseDateTime, new { @class = "datepicker form-control", @type = "datetime-local" })
+                            @Html.ValidationMessageFor(e => e.PurchaseOrder.PurchaseDateTime)
+
+                        </div>
+
+
+                        <div class="form-group">
+                            @Html.LabelFor(e => e.PurchaseOrder.Cost)
+                            @Html.TextBoxFor(e => e.PurchaseOrder.Cost, new { @class = "form-control", @placeholder= "Enter the Cost in EGP"})
+                            @Html.ValidationMessageFor(e => e.PurchaseOrder.Cost)
+
+                        </div>
+
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    @Html.AntiForgeryToken()
+                    <input type="submit" value="Add" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+
+    }
+    
+}
+
+
+<script>
+    let WorkIdForPurchase;
+
+    function WorkIdForNewPurchaseOrder(id) {
+        WorkIdForPurchase = id;
+        document.getElementById("work-Id-purchase").value = WorkIdForPurchase;
+
+    }
+</script>
