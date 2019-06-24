@@ -7,6 +7,7 @@
         Completed = 3,
         WaitingPurchase = 4,
         PurchaseComplete = 5,
+        InventoryCheck = 6
 
     }
 }

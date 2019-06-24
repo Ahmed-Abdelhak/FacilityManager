@@ -9,6 +9,7 @@
         Sanitary = 5,
         FireFighting = 6,
         Electronics = 7,
-        Machines = 8
+        Machines = 8,
+        Pipes = 9
     }
 }
