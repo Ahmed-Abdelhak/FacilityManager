@@ -7,7 +7,9 @@ EntityFramework, JQuery and Bootstrap.
 
 Features:
 1- Admin Dashboard with different Charts to monitor all Work Orders, Inspection Tasks, Periodic Inspection
+
 2- Group Policy Module to View and Add Users with different Roles
+
 3- Building Definition Module to Define the Hierarchy of the building
 4- Assets Control Module to define and View Assets with Different Categories
 5- Inspection Tasks Module includes assigning tasks to Users in the Role ( Inspectors )
