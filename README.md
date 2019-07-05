@@ -26,3 +26,45 @@ Features:
 9- Redirection after Login to Different Areas Based on the Role type
 
 10- Dynamic Sidebar Navigation to View Assets in the Building Hirearchy and reports Work Order
+
+
+Setup : 
+
+1- Open the Folder Source Code, then the Solution File (.sln)
+
+2- Create a new Migration and write the following Code to Create a new Admin Account
+```
+protected override void Seed(BuildingFacilityManager.Models.ApplicationDbContext context)
+        {
+            //  This method will be called after migrating to the latest version.
+
+            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
+            //  to avoid creating duplicate seed data.
+            if (!context.Roles.Any(r => r.Name == SystemRoles.Admin))
+            {
+                var store = new RoleStore<IdentityRole>(context);
+                var manager = new RoleManager<IdentityRole>(store);
+                var role = new IdentityRole { Name = SystemRoles.Admin };
+
+                manager.Create(role);
+            }
+
+            if (!context.Users.Any(u => u.UserName == "Admin@facilitymanager.com"))
+            {
+                var store = new UserStore<ApplicationUser>(context);
+                var manager = new UserManager<ApplicationUser>(store);
+                var user = new ApplicationUser { UserName = "Admin@facilitymanager.com", Email= "Admin@facilitymanager.com" };
+
+                manager.Create(user, "**********");
+                manager.AddToRole(user.Id, SystemRoles.Admin);
+            }
+        }
+```
+
+3- Update the Database
+
+4- Run the Project and once the website runs, log in from the top right with the created Admin credentials, That's it !
+
+
+NOTE: You can Create accounts with different roles from the page  "/Admin/Group" using the "Add" button
+   *The default password for new Accounts is  o]`Y.<:~1{-7{E   
