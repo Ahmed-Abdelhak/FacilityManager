@@ -21,9 +21,9 @@ EntityFramework, JQuery and Bootstrap.
 
 **Setup** : 
 
-1- Open the Folder Source Code, then the Solution File (.sln)
+1- run the Solution File (.sln)
 
-2- Create a new Migration and write the following Code to Create a new Admin Account
+2- Create a new Admin Account using the below code in your configurations.cs file under your Migration Folder (EF-Code First)
 ```
 protected override void Seed(BuildingFacilityManager.Models.ApplicationDbContext context)
         {
@@ -52,7 +52,7 @@ protected override void Seed(BuildingFacilityManager.Models.ApplicationDbContext
         }
 ```
 
-3- Update the Database
+3- run the command "Update-Database" through NuGet Package Manager
 
 4- Run the Project and once the website runs, log in from the top right with the created Admin credentials, That's it !
 
