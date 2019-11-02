@@ -1,5 +1,5 @@
 # FacilityManager
-
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Facility Manager](https://repository-images.githubusercontent.com/187499021/504e3780-9c54-11e9-9e12-c923ac627389)
 
 A Web Based Facility Management System with different Roles. Built with ASP.NET MVC,
